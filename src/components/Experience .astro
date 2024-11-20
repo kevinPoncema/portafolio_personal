@@ -1,0 +1,87 @@
+---
+import portafolio from '../json/portafolio.json';
+
+const { experiencia } = portafolio;
+---
+
+<section class="experiencia-laboral">
+  <h2>Experiencia Laboral y Frelance</h2>
+  <div class="timeline">
+    {experiencia.map((trabajo) => (
+      <div class="timeline-item">
+        <div class="timeline-icon"></div>
+        <div class="timeline-content">
+          <h3 class="puesto"><span class="titulo">{trabajo.title}</span> en <span class="empresa">{trabajo.company}</span></h3>
+          <p class="fecha">{trabajo.date}</p>
+          <p class="descripcion">{trabajo.description}</p>
+          {trabajo.link && <a href={trabajo.link} class="link-mas" target="_blank">Saber más &gt;</a>}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .experiencia-laboral {
+    padding: 2rem;
+    background-color: #1e1e2f;
+    color: #f1f1f1;
+  }
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin-left: 1rem;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ffc107;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .timeline-icon {
+    position: absolute;
+    left: -1.2rem;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: #ffc107;
+    border-radius: 50%;
+  }
+  .timeline-content {
+    margin-left: 2rem;
+  }
+  .puesto {
+    font-weight: bold;
+    color: #ffc107;
+  }
+  .titulo {
+    color: #ffc107;
+    font-weight: bold;
+  }
+  .empresa {
+    font-style: italic;
+    color: #ffffff;
+  }
+  .fecha {
+    color: #aaaaaa;
+    margin-bottom: 0.5rem;
+  }
+  .descripcion {
+    margin-bottom: 1rem;
+  }
+  .link-mas {
+    color: #ffc107;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .link-mas:hover {
+    text-decoration: underline;
+  }
+</style>

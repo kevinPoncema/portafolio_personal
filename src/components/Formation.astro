@@ -1,0 +1,36 @@
+---
+import portafolio from '../json/portafolio.json';
+
+const { Formacion } = portafolio;
+---
+
+<section class="formacion py-8 bg-gray-100 flex justify-center">
+  <div class="card w-full max-w-4xl p-8 bg-white rounded-lg shadow-2xl">
+    <h2 class="text-2xl font-bold mb-6">Formación Profesional</h2>
+    <div class="formacion-profesional space-y-6">
+      {Formacion.profecional.map((formacion) => (
+        <div class="formacion-card p-6 bg-gray-50 rounded-lg shadow-lg">
+          <h3 class="formacion-titulo text-xl font-semibold">{formacion.titulo}</h3>
+          <p class="formacion-institucion text-blue-500 mb-2">
+            {formacion.institucion} - {formacion.lugar}
+          </p>
+          <p class="formacion-fecha text-gray-600">{formacion['fecha:']}</p>
+          <hr class="separador my-4" />
+        </div>
+      ))}
+    </div>
+
+    <h2 class="text-2xl font-bold mt-12 mb-6">Cursos</h2>
+    <div class="cursos grid grid-cols-1 md:grid-cols-2 gap-6">
+      {Formacion.Cursos.map((curso) => (
+        <div class="curso-card p-6 bg-gray-50 rounded-lg shadow-lg flex items-center space-x-4">
+          <div>
+            <h3 class="curso-titulo text-lg font-semibold">{curso.titulo}</h3>
+            <p class="curso-plataforma text-green-500 font-bold">{curso.plataforma}</p>
+          </div>
+          <a href={curso.link} class="boton-certificado px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700" target="_blank">Ver Certificado</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

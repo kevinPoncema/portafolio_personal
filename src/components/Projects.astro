@@ -15,16 +15,16 @@ import portafolio from '../json/portafolio.json';
             <p class="text-gray-700 mb-4">{proyecto.descripcion}</p>
             <div class="flex flex-wrap gap-2 mb-4">
               {proyecto.tecnologias.map((tecnologia) => (
-                <span class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 font-semibold text-xs" key={tecnologia}>
+                <span class="bg-blue-100 px-3 py-1 rounded-lg text-blue-800 font-bold text-xs" key={tecnologia}>
                   {tecnologia.toUpperCase()}
                 </span>
               ))}
             </div>
             <div class="border-t pt-4 flex justify-between items-center">
-              <a href={proyecto.github} target="_blank" class="text-gray-600 hover:text-gray-800">
+              <a href={proyecto.github} target="_blank" class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110">
                 <img src="/src/icons/github.svg" alt="GitHub" class="w-6 h-6">
               </a>
-              <a href={proyecto.producion} target="_blank" class="text-gray-600 hover:text-gray-800">
+              <a href={proyecto.producion} target="_blank" class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110">
                 <img src="/src/icons/share.svg" alt="Producción" class="w-6 h-6">
               </a>
             </div>
@@ -66,12 +66,18 @@ import portafolio from '../json/portafolio.json';
   }
   span {
     padding: 0.25rem 0.75rem;
-    border-radius: 0.375rem;
-    background-color: #e2e8f0;
+    border-radius: 0.5rem;
+    background-color: #bfdbfe;
+    color: #1e3a8a;
+    font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .border-t {
     border-top: 1px solid #e5e7eb;
+  }
+  a:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
   @media (min-width: 1024px) {
     .w-full.md\:w-1\/2.lg\:w-1\/3 {

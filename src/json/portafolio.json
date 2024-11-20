@@ -1,5 +1,55 @@
 {
-    "habilidades":[
-        
+    "habilidades": {
+      "tecnologias": [
+        {
+          "nombre": "HTML",
+          "ruta": "/src/icons/html.svg"
+        },
+        {
+          "nombre": "JavaScript",
+          "ruta": "/src/icons/javascript.svg"
+        },
+        {
+          "nombre": "Bootstrap",
+          "ruta": "/src/icons/bootstrap.svg"
+        },
+        {
+          "nombre": "PHP",
+          "ruta": "/src/icons/php.svg"
+        },
+        {
+          "nombre": "Express",
+          "ruta": "/src/icons/express.svg"
+        },
+        {
+          "nombre": "MySQL",
+          "ruta": "/src/icons/mysql.svg"
+        },
+        {
+          "nombre": "Github",
+          "ruta": "/src/icons/github.svg"
+        }
+      ],
+      "blandas": [
+        {
+          "nombre": "Autodidacta"
+        },
+        {
+          "nombre": "Dedicado"
+        },
+        {
+          "nombre": "Adaptabilidad"
+        }
+      ]
+    },
+    "proyectos":[
+        {
+            "titulo":"app de notas",
+            "descripcion":"Este proyecto personal es una aplicación web diseñada para gestionar notas y listas de tareas de forma intuitiva y eficiente. Los usuarios pueden crear, editar y eliminar notas con títulos, contenido detallado y fechas, así como gestionar listas de tareas donde cada elemento puede marcarse como completado o pendiente. Además, ofrece la funcionalidad de crear categorías personalizadas, como «Trabajo», «Personal» o «Estudios», permitiendo organizar y filtrar fácilmente las notas y tareas según sus necesidades.",
+            "imagen":"",
+            "tecnologias":[],
+            "github":"https://github.com/kevinPoncema/note-app",
+            "producion":"https://notas.kevinponcedev.xyz/"
+        }
     ]
-}
+  }

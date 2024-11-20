@@ -1,0 +1,67 @@
+---
+// Archivo: src/components/Footer.astro
+---
+
+<footer class="bg-blue-800 py-3 w-full">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-white">
+      <div class="flex flex-wrap justify-center text-center md:text-left mb-4 md:mb-0">
+        <div class="w-1/2 md:w-auto mb-2">
+          <a href="#inicio" class="hover:text-blue-300 block">Inicio</a>
+        </div>
+        <div class="w-1/2 md:w-auto mb-2">
+          <a href="#habilidades" class="hover:text-blue-300 block">Habilidades</a>
+        </div>
+        <div class="w-1/2 md:w-auto mb-2">
+          <a href="#proyectos" class="hover:text-blue-300 block">Proyectos</a>
+        </div>
+        <div class="w-1/2 md:w-auto mb-2">
+          <a href="#experiencia" class="hover:text-blue-300 block">Experiencia</a>
+        </div>
+        <div class="w-1/2 md:w-auto mb-2">
+          <a href="#formacion" class="hover:text-blue-300 block">Formación</a>
+        </div>
+        <div class="w-1/2 md:w-auto mb-2">
+          <a href="#contacto" class="hover:text-blue-300 block">Contacto</a>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="https://github.com/" target="_blank" class="text-white hover:text-blue-300">
+          <img src="/src/icons/github.svg" alt="GitHub" class="w-6 h-6">
+        </a>
+        <a href="mailto:tuemail@gmail.com" target="_blank" class="text-white hover:text-blue-300">
+          <img src="/src/icons/gemail.svg" alt="Gmail" class="w-6 h-6">
+        </a>
+      </div>
+      <div class="text-white text-xl font-bold flex items-center mt-4 md:mt-0">
+        <span class="text-white text-2xl mr-2">&lt;/&gt;</span>PonceDev
+      </div>
+    </div>
+  </footer>
+  
+  <style>
+    footer {
+      background-color: #1e3a8a;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1.5rem 0;
+    }
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .flex-col {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .flex.items-center {
+      margin-top: 1rem;
+    }
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+  

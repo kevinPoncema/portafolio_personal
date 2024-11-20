@@ -1,0 +1,65 @@
+---
+// Archivo: src/components/Header.astro
+---
+
+<header class="bg-blue-800 py-2">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" id="logo" class="text-white text-xl font-bold flex items-center md:block">
+        <span class="text-white text-3xl mr-2">&lt;/&gt;</span>PonceDev
+      </a>
+      <button id="menu-toggle" class="text-white text-3xl md:hidden focus:outline-none absolute top-3 right-4">
+        &#9776;
+      </button>
+      <nav id="menu" class="hidden md:block">
+        <ul class="flex flex-col md:flex-row md:space-x-6 text-white">
+          <li><a href="#inicio" class="hover:text-blue-300 block py-1 md:py-0">Inicio</a></li>
+          <li><a href="#habilidades" class="hover:text-blue-300 block py-1 md:py-0">Habilidades</a></li>
+          <li><a href="#proyectos" class="hover:text-blue-300 block py-1 md:py-0">Proyectos</a></li>
+          <li><a href="#experiencia" class="hover:text-blue-300 block py-1 md:py-0">Experiencia</a></li>
+          <li><a href="#formacion" class="hover:text-blue-300 block py-1 md:py-0">Formación</a></li>
+          <li><a href="#contacto" class="hover:text-blue-300 block py-1 md:py-0">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const menu = document.getElementById('menu');
+      const logo = document.getElementById('logo');
+      menu.classList.toggle('hidden');
+      logo.classList.toggle('hidden');
+    });
+  </script>
+  
+  <style>
+    header {
+      background-color: #1e3a8a;
+    }
+    #menu-toggle {
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    @media (min-width: 768px) {
+      #menu-toggle {
+        display: none;
+      }
+    }
+    #menu {
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 767px) {
+      #menu ul {
+        margin-top: 10px;
+      }
+      #menu ul li {
+        margin-bottom: 5px;
+      }
+      #menu ul li a {
+        padding-left: 5px;
+      }
+    }
+  </style>
+  

@@ -1,4 +1,12 @@
 {
+    "sobre_mi":{
+        "titulo":"Desarrollador Web",
+        "nombre":"Kevin D Ponce",
+        "descripcion":"Desarrollador web freelance enfocado en backend, con experiencia en el desarrollo de aplicaciones responsivas utilizando Bootstrap, Express y PHP bajo el patrón MVC. y en la creación de APIs RESTful con autenticación, generación de reportes PDF y despliegue de aplicaciones en producción, incluyendo configuración de VPS, proxy inverso y DNS para dominios.",
+        "github":"https://github.com/kevinPoncema/",
+        "gemail":"",
+        "img_src":""
+    },
     "habilidades": {
       "tecnologias": [
         {
@@ -90,8 +98,11 @@
             "Url":"https://github.com/kevinPoncema"
         },
         {
-            "icon":"/src/icons/gemail.com",
+            "icon":"src/icons/gemail.svg",
             "Url":"https://github.com/kevinPoncema"
+        },{
+            "icon":"src/icons/linkedink.svg",
+            "Url":"https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/"
         }
     ]
   }

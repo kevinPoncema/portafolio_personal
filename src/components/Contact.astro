@@ -1,0 +1,35 @@
+---
+import portafolio from '../json/portafolio.json';
+
+const { contactos } = portafolio;
+---
+
+<section class="contacto py-8 bg-gray-100 flex justify-center">
+  <div class="card w-full max-w-4xl p-8 bg-white rounded-lg shadow-2xl">
+    <h2 class="text-2xl font-bold mb-6 text-center">Contacto</h2>
+    <div class="contactos grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {contactos.map((contacto, index) => (
+        <div key={index} class="contacto-icon flex justify-center items-center p-4 bg-gray-50 rounded-lg shadow-md">
+          <a href={contacto.Url} target="_blank" rel="noopener noreferrer">
+            <img src={contacto.icon} alt="icono de contacto" class="w-12 h-12" />
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacto {
+    text-align: center;
+  }
+  .contactos {
+    margin-top: 1rem;
+  }
+  .contacto-icon {
+    transition: transform 0.2s;
+  }
+  .contacto-icon:hover {
+    transform: scale(1.1);
+  }
+</style>

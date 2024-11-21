@@ -19,8 +19,8 @@ const { sobre_mi } = portafolio;
             <img src="/src/icons/github.svg" alt="GitHub" class="w-6 h-6" />
           </a>
         )}
-        {sobre_mi.gemail && (
-          <a href={`mailto:${sobre_mi.gemail}`} target="_blank" class="text-gray-600 hover:text-gray-800">
+        {sobre_mi.email && (
+          <a href={`mailto:${sobre_mi.email}`} target="_blank" class="text-gray-600 hover:text-gray-800">
             <img src="/src/icons/gemail.svg" alt="Gmail" class="w-6 h-6" />
           </a>
         )}
@@ -31,7 +31,6 @@ const { sobre_mi } = portafolio;
 
 <style>
   section {
-    background-color: #f3f4f6;
     padding: 3rem 0;
   }
   .container {

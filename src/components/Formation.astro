@@ -1,14 +1,15 @@
 ---
 import portafolio from '../json/portafolio.json';
 
-const { Formacion } = portafolio;
+const Formacion = portafolio.formacion;
+console.log(Formacion)
 ---
 
 <section class="formacion py-8 bg-gray-100 flex justify-center">
   <div class="card w-full max-w-4xl p-8 bg-white rounded-lg shadow-2xl">
     <h2 class="text-2xl font-bold mb-6">Formación Profesional</h2>
     <div class="formacion-profesional space-y-6">
-      {Formacion.profecional.map((formacion) => (
+      {Formacion.profesional.map((formacion) => (
         <div class="formacion-card p-6 bg-gray-50 rounded-lg shadow-lg">
           <h3 class="formacion-titulo text-xl font-semibold">{formacion.titulo}</h3>
           <p class="formacion-institucion text-blue-500 mb-2">
@@ -22,7 +23,7 @@ const { Formacion } = portafolio;
 
     <h2 class="text-2xl font-bold mt-12 mb-6">Cursos</h2>
     <div class="cursos grid grid-cols-1 md:grid-cols-2 gap-6">
-      {Formacion.Cursos.map((curso) => (
+      {Formacion.cursos.map((curso) => (
         <div class="curso-card p-6 bg-gray-50 rounded-lg shadow-lg flex items-center space-x-4">
           <div>
             <h3 class="curso-titulo text-lg font-semibold">{curso.titulo}</h3>

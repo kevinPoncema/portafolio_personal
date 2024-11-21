@@ -1,10 +1,11 @@
 ---
+// Importaciones de los componentes
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Skils from "../components/Skils.astro";
 import Projects from "../components/Projects.astro";
-import Experience from "../components/Experience .astro";
+import Experience from "../components/Experience.astro";
 import Formation from "../components/Formation.astro";
 import Contact from "../components/Contact.astro";
 ---
@@ -18,25 +19,33 @@ import Contact from "../components/Contact.astro";
     <title>Astro</title>
   </head>
   <body>
-    <Header></Header>
-    <section id="inicio">
-      <Hero />
-    </section>
-    <section id="habilidades">
-      <Skils />
-    </section>
-    <section id="proyectos">
-      <Projects />
-    </section>
-    <section id="experiencia">
-      <Experience />
-    </section>
-    <section id="formacion">
-      <Formation />
-    </section>
-    <section id="contacto">
-      <Contact />
-    </section>
-    <Footer />
+    <div id="app">
+      <Header></Header>
+      <section id="inicio">
+        <Hero />
+      </section>
+      <section id="habilidades">
+        <Skils />
+      </section>
+      <section id="proyectos">
+        <Projects />
+      </section>
+      <section id="experiencia">
+        <Experience />
+      </section>
+      <section id="formacion">
+        <Formation />
+      </section>
+      <section id="contacto">
+        <Contact />
+      </section>
+      <Footer />
+    </div>
+    <style>
+      html {
+  scroll-behavior: smooth;
+}
+
+    </style>
   </body>
 </html>

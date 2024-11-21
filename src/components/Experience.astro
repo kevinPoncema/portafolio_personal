@@ -4,7 +4,7 @@ import portafolio from '../json/portafolio.json';
 const { experiencia } = portafolio;
 ---
 
-<section class="experiencia-laboral  text-white flex justify-center">
+<section class="experiencia-laboral   flex justify-center">
   <div class="w-full max-w-5xl">
     <h2 class="text-3xl font-bold mb-8 text-center">Experiencia Laboral y Freelance</h2>
     <div class="timeline relative pl-10">
@@ -14,11 +14,11 @@ const { experiencia } = portafolio;
           <div class="timeline-icon absolute left-0 top-0 w-4 h-4 bg-yellow-500 rounded-full"></div>
           <div class="timeline-content ml-10">
             <h3 class="puesto text-lg font-bold text-yellow-500">
-              <span class="titulo">{trabajo.title}</span> en <span class="empresa italic text-white">{trabajo.company}</span>
+              <span class="titulo">{trabajo.title}</span>
             </h3>
+            <p class="empresa font-bold  mb-2">{trabajo.company}</p>
             <p class="fecha text-gray-400 mb-2">{trabajo.date}</p>
             <p class="descripcion mb-4">{trabajo.description}</p>
-            
           </div>
         </div>
       ))}

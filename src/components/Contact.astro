@@ -10,7 +10,7 @@ const { contactos } = portafolio;
     <div class="contactos grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {contactos.map((contacto, index) => (
         <div key={index} class="contacto-icon flex justify-center items-center p-4 bg-gray-50 rounded-lg shadow-md">
-          <a href={contacto.Url} target="_blank" rel="noopener noreferrer">
+          <a href={contacto.url} target="_blank" rel="noopener noreferrer">
             <img src={contacto.icon} alt="icono de contacto" class="w-12 h-12" />
           </a>
         </div>

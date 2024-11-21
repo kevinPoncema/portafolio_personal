@@ -1,109 +1,146 @@
 {
-    "sobre_mi":{
-        "titulo":"Desarrollador Web",
-        "nombre":"Kevin D Ponce",
-        "descripcion":"Desarrollador web freelance enfocado en backend, con experiencia en el desarrollo de aplicaciones responsivas utilizando Bootstrap, Express y PHP bajo el patrón MVC. y en la creación de APIs RESTful con autenticación, generación de reportes PDF y despliegue de aplicaciones en producción, incluyendo configuración de VPS, proxy inverso y DNS para dominios.",
-        "github":"https://github.com/kevinPoncema/",
-        "gemail":"https://github.com/kevinPoncema/",
-        "img_src":""
-    },
-    "habilidades": {
-      "tecnologias": [
-        {
-          "nombre": "HTML",
-          "ruta": "/src/icons/html.svg"
-        },
-        {
-          "nombre": "JavaScript",
-          "ruta": "/src/icons/javascript.svg"
-        },
-        {
-          "nombre": "Bootstrap",
-          "ruta": "/src/icons/bootstrap.svg"
-        },
-        {
-          "nombre": "PHP",
-          "ruta": "/src/icons/php.svg"
-        },
-        {
-          "nombre": "Express",
-          "ruta": "/src/icons/express.svg"
-        },
-        {
-          "nombre": "MySQL",
-          "ruta": "/src/icons/mysql.svg"
-        },
-        {
-          "nombre": "Github",
-          "ruta": "/src/icons/github.svg"
-        }
-      ],
-      "blandas": [
-        {
-          "nombre": "Autodidacta"
-        },
-        {
-          "nombre": "Dedicado"
-        },
-        {
-          "nombre": "Adaptabilidad"
-        }
-      ]
-    },
-    "proyectos": [
+  "sobre_mi": {
+    "titulo": "Desarrollador Web",
+    "nombre": "Kevin D Ponce",
+    "descripcion": "Desarrollador web freelance enfocado en backend, con experiencia en el desarrollo de aplicaciones responsivas utilizando Bootstrap, Express y PHP bajo el patrón MVC. Además, experiencia en la creación de APIs RESTful con autenticación, generación de reportes PDF y despliegue de aplicaciones en producción, incluyendo configuración de VPS, proxy inverso y DNS para dominios.",
+    "github": "https://github.com/kevinPoncema/",
+    "email": "https://github.com/kevinPoncema/",
+    "img_src": "/images/foto_fea2.jpg"
+  },
+  "habilidades": {
+    "tecnologias": [
       {
-        "titulo": "Note App",
-        "descripcion": "Este proyecto personal es una aplicación web diseñada para gestionar notas y listas de tareas de forma intuitiva y eficiente. Los usuarios pueden crear, editar y eliminar notas con títulos, contenido detallado y fechas, así como gestionar listas de tareas donde cada elemento puede marcarse como completado o pendiente. Además, ofrece la funcionalidad de crear categorías personalizadas, como «Trabajo», «Personal» o «Estudios», permitiendo organizar y filtrar fácilmente las notas y tareas según sus necesidades.",
-        "imagen": "/images/projects/notas.webp",
-        "tecnologias": ["JavaScript", "Express", "patrón MVC", "EJS"],
-        "github": "https://github.com/kevinPoncema/note-app",
-        "producion": "https://notas.kevinponcedev.xyz/"
-      }
-    ],
-    "experiencia": [
-      {
-        "date": "Actualmente...",
-        "title": "Creador de Contenido",
-        "company": "Twitch",
-        "description": "Divulgo sobre programación y desarrollo web en diferentes plataformas. Galardonado como mejor creador de contenido de habla no-inglesa en 2022 y mejor comunidad en 2023 por GitHub.",
-        "link": "https://twitch.tv/midudev"
+        "nombre": "HTML",
+        "ruta": "/src/icons/html.svg"
       },
       {
-        "date": "Septiembre 2022",
-        "title": "Principal Frontend Engineer",
-        "company": "Adevinta Spain",
-        "description": "Responsable de la plataforma, componentes y utilidades para la creación y desarrollo de aplicaciones web. Mejora de un 30% en la entrega de software. Implantación de medidas de integración continua y despliegue con A/B testing en más de 15 equipos."
+        "nombre": "JavaScript",
+        "ruta": "/src/icons/javascript.svg"
+      },
+      {
+        "nombre": "Bootstrap",
+        "ruta": "/src/icons/bootstrap.svg"
+      },
+      {
+        "nombre": "PHP",
+        "ruta": "/src/icons/php.svg"
+      },
+      {
+        "nombre": "Express",
+        "ruta": "/src/icons/express.svg"
+      },
+      {
+        "nombre": "MySQL",
+        "ruta": "/src/icons/mysql.svg"
+      },
+      {
+        "nombre": "GitHub",
+        "ruta": "/src/icons/github.svg"
+      },
+      {
+        "nombre": "Python",
+        "ruta": "/src/icons/python.svg"
       }
     ],
-    "Formacion":{
-        "profecional":[
-            {
-                "titulo":"tecnico en programacion",
-                "fecha:":"Enero de 2022-actual",
-                "institucion":"Instituto tecnologico de exelencia educativa",
-                "lugar":"San Pedro Sula Honduras"
-            }
-        ],
-        "Cursos":[
-            {
-                "titulo":"python avansado",
-                "plataforma":"yutube",
-                "link":"https://twitch.tv/midudev"
-            }
-        ]
-    },
-    "contactos":[
-        {
-            "icon":"/src/icons/github.svg",
-            "Url":"https://github.com/kevinPoncema"
-        },
-        {
-            "icon":"src/icons/gemail.svg",
-            "Url":"https://github.com/kevinPoncema"
-        },{
-            "icon":"src/icons/linkedink.svg",
-            "Url":"https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/"
-        }
+    "blandas": [
+      {
+        "nombre": "Autodidacta"
+      },
+      {
+        "nombre": "Dedicado"
+      },
+      {
+        "nombre": "Adaptabilidad"
+      }
     ]
-  }
-  
+  },
+  "proyectos": [
+    {
+      "titulo": "Note App",
+      "descripcion": "Este proyecto personal es una aplicación web diseñada para gestionar notas y listas de tareas de forma intuitiva y eficiente. Los usuarios pueden crear, editar y eliminar notas con títulos, contenido detallado y fechas, así como gestionar listas de tareas donde cada elemento puede marcarse como completado o pendiente. Además, ofrece la funcionalidad de crear categorías personalizadas, como «Trabajo», «Personal» o «Estudios», permitiendo organizar y filtrar fácilmente las notas y tareas según sus necesidades.",
+      "imagen": "/images/projects/notas.webp",
+      "tecnologias": ["JavaScript", "Express", "patrón MVC", "EJS"],
+      "github": "https://github.com/kevinPoncema/note-app",
+      "produccion": "https://notas.kevinponcedev.xyz/"
+    },
+    {
+      "titulo": "Portafolio Personal",
+      "descripcion": "Este portafolio personal es una ventana a mi trayectoria profesional, donde muestro mi experiencia laboral, habilidades y proyectos destacados. Cada sección está diseñada para resaltar mi formación, mis logros en el ámbito freelance y mis proyectos más representativos, demostrando mis capacidades como desarrollador. Con un diseño limpio y moderno, este portafolio tiene como objetivo transmitir mis habilidades técnicas y creativas de una manera atractiva y accesible.",
+      "imagen": "/images/projects/portafolio.webp",
+      "tecnologias": ["JavaScript", "Astro",  "Talwing"],
+      "github": "https://github.com/kevinPoncema/portafolio_personal",
+      "produccion": "https://kevinponcedev.xyz/"
+    }
+  ],
+  "experiencia": [
+    {
+      "date": "Octubre 2024 - Diciembre 2024",
+      "title": "Desarrollador de Software (Pasantía)",
+      "company": "Box HN",
+      "description": "Durante mi pasantía, desarrollé una API utilizando PHP y el framework CodeIgniter. La API tenía como objetivo estandarizar la gestión del uso de inteligencia artificial en los productos de la empresa, integrando varios modelos de IA gestionados mediante Ollama en un contenedor Docker. Me encargué de configurar el contenedor, crear la API para interactuar con Ollama e implementar un sistema de créditos para el uso de los modelos de IA."
+    },
+    {
+      "date": "Marzo 2024 - Julio 2024",
+      "title": "Automatización de Cierre de Cajeros",
+      "company": "Metrocinema Honduras",
+      "description": "Lideré el proyecto de automatización del proceso de cierre de cajeros, reduciendo el tiempo necesario para el cierre de caja y minimizando errores manuales. Implementé una solución basada en software que facilitó la conciliación diaria de las transacciones de los cajeros de las salas de cine."
+    },
+    {
+      "date": "Diciembre 2022 - Enero 2023",
+      "title": "Desarrollador de Sistema de Inventario y Facturación",
+      "company": "Depósito Ponce",
+      "description": "Desarrollé un sistema de facturación e inventario que permitió al negocio administrar de manera eficiente sus inventarios de bebidas y emitir recibos para sus clientes. El sistema también generaba reportes en PDF del stock de inventario, los productos más vendidos y las ganancias diarias y mensuales. Utilicé una arquitectura modular, dividiendo el proyecto en varios mini módulos independientes para mejorar la organización y mantenimiento del sistema."
+    }
+  ],
+  "formacion": {
+    "profesional": [
+      {
+        "titulo": "Técnico en Programación",
+        "fecha": "Enero de 2022 - Actual",
+        "institucion": "Instituto Tecnológico Excelencia Educativa",
+        "lugar": "San Pedro Sula, Honduras"
+      }
+    ],
+    "cursos": [
+      {
+        "titulo": "Scrum",
+        "plataforma": "Scrum Foundation",
+        "link": "/Scrum.pdf"
+      },
+      {
+        "titulo": "Colaboración con Git",
+        "plataforma": "Microsoft Learn",
+        "link": "https://learn.microsoft.com/api/achievements/share/es-es/KevinPonce-7167/24JGWK2V?sharingId=B60F46A0FCD03637"
+      },
+      {
+        "titulo": "Introducción a GitHub",
+        "plataforma": "Microsoft Learn",
+        "link": "https://learn.microsoft.com/api/achievements/share/es-es/KevinPonce-7167/QD59Y5WE?sharingId=B60F46A0FCD03637"
+      },
+      {
+        "titulo": "GitHub Copilot para empresas",
+        "plataforma": "Microsoft Learn",
+        "link": "https://learn.microsoft.com/api/achievements/share/es-es/KevinPonce-7167/QD59Y5WE?sharingId=B60F46A0FCD03637"
+      },
+      {
+        "titulo": "Python Essentials 1",
+        "plataforma": "Cisco Networking Academy",
+        "link": "https://www.credly.com/badges/88712219-7bfb-4a57-9961-f81cf6665a3e/print"
+      }
+    ]
+  },
+  "contactos": [
+    {
+      "icon": "/src/icons/github.svg",
+      "url": "https://github.com/kevinPoncema"
+    },
+    {
+      "icon": "src/icons/gemail.svg",
+      "url": "mailto:ps12kevin@gmail.com"
+    },
+    {
+      "icon": "src/icons/linkedink.svg",
+      "url": "https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/"
+    }
+  ]
+}

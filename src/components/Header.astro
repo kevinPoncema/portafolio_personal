@@ -1,65 +1,94 @@
----
-// Archivo: src/components/Header.astro
----
+<header class="bg-blue-800 fixed top-0 left-0 w-full z-50">
+  <div class="container mx-auto flex justify-between items-center py-2 px-4">
+    <a href="#" id="logo" class="text-white text-xl font-bold flex items-center md:block">
+      <span class="text-white text-3xl mr-2">&lt;/&gt;</span>PonceDev
+    </a>
+    <button id="menu-toggle" class="text-white text-3xl md:hidden focus:outline-none">
+      &#9776;
+    </button>
+    <nav id="menu" class="hidden md:block bg-blue-800 md:bg-transparent absolute md:static top-12 left-0 w-full md:w-auto shadow-md md:shadow-none">
+      <ul class="flex flex-col md:flex-row md:space-x-6 text-white">
+        <li><a href="#inicio" class="hover:text-blue-300 block py-2 md:py-0 px-4">Inicio</a></li>
+        <li><a href="#habilidades" class="hover:text-blue-300 block py-2 md:py-0 px-4">Habilidades</a></li>
+        <li><a href="#proyectos" class="hover:text-blue-300 block py-2 md:py-0 px-4">Proyectos</a></li>
+        <li><a href="#experiencia" class="hover:text-blue-300 block py-2 md:py-0 px-4">Experiencia</a></li>
+        <li><a href="#formacion" class="hover:text-blue-300 block py-2 md:py-0 px-4">Formación</a></li>
+        <li><a href="#contacto" class="hover:text-blue-300 block py-2 md:py-0 px-4">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-<header class="bg-blue-800 py-2">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="#" id="logo" class="text-white text-xl font-bold flex items-center md:block">
-        <span class="text-white text-3xl mr-2">&lt;/&gt;</span>PonceDev
-      </a>
-      <button id="menu-toggle" class="text-white text-3xl md:hidden focus:outline-none absolute top-3 right-4">
-        &#9776;
-      </button>
-      <nav id="menu" class="hidden md:block">
-        <ul class="flex flex-col md:flex-row md:space-x-6 text-white">
-          <li><a href="#inicio" class="hover:text-blue-300 block py-1 md:py-0">Inicio</a></li>
-          <li><a href="#habilidades" class="hover:text-blue-300 block py-1 md:py-0">Habilidades</a></li>
-          <li><a href="#proyectos" class="hover:text-blue-300 block py-1 md:py-0">Proyectos</a></li>
-          <li><a href="#experiencia" class="hover:text-blue-300 block py-1 md:py-0">Experiencia</a></li>
-          <li><a href="#formacion" class="hover:text-blue-300 block py-1 md:py-0">Formación</a></li>
-          <li><a href="#contacto" class="hover:text-blue-300 block py-1 md:py-0">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  
-  <script>
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-      const menu = document.getElementById('menu');
-      const logo = document.getElementById('logo');
-      menu.classList.toggle('hidden');
-      logo.classList.toggle('hidden');
-    });
-  </script>
-  
-  <style>
-    header {
-      background-color: #1e3a8a;
-    }
-    #menu-toggle {
-      display: block;
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-    }
-    @media (min-width: 768px) {
-      #menu-toggle {
-        display: none;
-      }
-    }
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function () {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('hidden');
+  });
+</script>
+
+<style>
+  /* Estilos generales */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    background-color: #1e3a8a;
+  }
+
+  #menu-toggle {
+    display: block;
+  }
+
+  #menu {
+    transition: all 0.3s ease;
+  }
+
+  /* Estilos móviles */
+  @media (max-width: 767px) {
     #menu {
-      transition: all 0.3s ease;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      background-color: #1e3a8a;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
-    @media (max-width: 767px) {
-      #menu ul {
-        margin-top: 10px;
-      }
-      #menu ul li {
-        margin-bottom: 5px;
-      }
-      #menu ul li a {
-        padding-left: 5px;
-      }
+
+    #menu ul li {
+      margin: 0;
     }
-  </style>
-  
+
+    #menu ul li a {
+      display: block;
+      padding: 10px 20px;
+    }
+  }
+
+  /* Estilos para escritorio */
+  @media (min-width: 768px) {
+    #menu {
+      position: static;
+      box-shadow: none;
+      width: auto;
+    }
+
+    #menu ul {
+      display: flex;
+      gap: 1rem; /* Nueva propiedad para separar los elementos */
+    }
+
+    #menu ul li {
+      margin: 0;
+    }
+
+    #menu ul li a {
+      padding: 0;
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+  }
+</style>

@@ -11,35 +11,35 @@
     "tecnologias": [
       {
         "nombre": "HTML",
-        "ruta": "/src/icons/html.svg"
+        "ruta": "/icons/html.svg"
       },
       {
         "nombre": "JavaScript",
-        "ruta": "/src/icons/javascript.svg"
+        "ruta": "/icons/javascript.svg"
       },
       {
         "nombre": "Bootstrap",
-        "ruta": "/src/icons/bootstrap.svg"
+        "ruta": "/icons/bootstrap.svg"
       },
       {
         "nombre": "PHP",
-        "ruta": "/src/icons/php.svg"
+        "ruta": "/icons/php.svg"
       },
       {
         "nombre": "Express",
-        "ruta": "/src/icons/express.svg"
+        "ruta": "/icons/express.svg"
       },
       {
         "nombre": "MySQL",
-        "ruta": "/src/icons/mysql.svg"
+        "ruta": "/icons/mysql.svg"
       },
       {
         "nombre": "GitHub",
-        "ruta": "/src/icons/github.svg"
+        "ruta": "/icons/github.svg"
       },
       {
         "nombre": "Python",
-        "ruta": "/src/icons/python.svg"
+        "ruta": "/icons/python.svg"
       }
     ],
     "blandas": [
@@ -131,16 +131,17 @@
   },
   "contactos": [
     {
-      "icon": "/src/icons/github.svg",
+      "icon": "/icons/github.svg",
       "url": "https://github.com/kevinPoncema"
     },
     {
-      "icon": "src/icons/gemail.svg",
+      "icon": "/icons/gemail.svg",
       "url": "mailto:ps12kevin@gmail.com"
     },
     {
-      "icon": "src/icons/linkedink.svg",
+      "icon": "/icons/linkedink.svg",
       "url": "https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/"
     }
   ]
 }
+

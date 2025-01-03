@@ -21,10 +21,20 @@ import portafolio from '../json/portafolio.json';
               ))}
             </div>
             <div class="border-t pt-4 flex justify-between items-center">
-              <a href={proyecto.github} target="_blank" class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110">
+              <a 
+                href={proyecto.github} 
+                target="_blank" 
+                class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 github-link" 
+                data-project-name={proyecto.titulo} 
+                data-link-type="GitHub">
                 <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6">
               </a>
-              <a href={proyecto.produccion} target="_blank" class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110">
+              <a 
+                href={proyecto.produccion} 
+                target="_blank" 
+                class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 production-link" 
+                data-project-name={proyecto.titulo} 
+                data-link-type="Producción">
                 <img src="/icons/share.svg" alt="Producción" class="w-6 h-6">
               </a>
             </div>
@@ -37,9 +47,25 @@ import portafolio from '../json/portafolio.json';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const tecnologias = document.querySelectorAll('.tecnologia');
-    tecnologias.forEach((tag) => {
-      tag.innerText = tag.innerText.toUpperCase();
+    document.addEventListener('click', (event) => {
+      // Verifica si el clic es en un enlace con data-project-name
+      const target = event.target.closest('a[data-project-name]');
+      if (!target) return;
+
+      // Obtén los datos del enlace
+      const projectName = target.getAttribute('data-project-name');
+      const linkType = target.getAttribute('data-link-type');
+
+      // Envía el evento a Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'click', {
+          'event_category': linkType,
+          'event_label': projectName
+        });
+      }
+
+      // Para depuración
+      console.log(`Evento enviado: ${linkType} - ${projectName}`);
     });
   });
 </script>

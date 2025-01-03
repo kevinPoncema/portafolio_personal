@@ -70,6 +70,14 @@
       "tecnologias": ["JavaScript", "Astro",  "Talwing"],
       "github": "https://github.com/kevinPoncema/portafolio_personal",
       "produccion": "https://kevinponcedev.xyz/"
+    },
+    {
+      "titulo": "File Converter",
+      "descripcion": "Este proyecto es una prueba técnica diseñada para demostrar mis habilidades en backend, mi área de especialización, y en frontend, donde, aunque no es mi fuerte, logré desarrollar una interfaz funcional y efectiva.El sistema permite la conversión de archivos entre múltiples formatos, utilizando una API robusta desarrollada en Node.js con librerías especializadas como Pandoc para conversiones avanzadas en entornos Linux. La API está documentada con Swagger para facilitar su exploración y pruebas.En el frontend, implementé una interfaz con Vue 3 y TypeScript, estilizada con TailwindCSS,",
+      "imagen": "/images/projects/file_converter.webp",
+      "tecnologias": ["JavaScript", "Express", "Swagger", "Vue 3","TailwindCSS","TypeScript"],
+      "github": "https://github.com/kevinPoncema/conversor_archivos",
+      "produccion": "https://file-converter.kevinponcedev.xyz/"
     }
   ],
   "experiencia": [
@@ -96,7 +104,7 @@
     "profesional": [
       {
         "titulo": "Técnico en Programación",
-        "fecha": "Enero de 2022 - Actual",
+        "fecha": "Enero de 2022 - Diciembre 2024",
         "institucion": "Instituto Tecnológico Excelencia Educativa",
         "lugar": "San Pedro Sula, Honduras"
       }
@@ -144,4 +152,3 @@
     }
   ]
 }
-

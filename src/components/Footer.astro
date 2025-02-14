@@ -5,6 +5,7 @@ const { contactos } = portafolio;
 
 const githubUrl = contactos[0].url;
 const gmailUrl = contactos[1].url;
+const linkedin = contactos[2].url;
 ---
 <!-- Este es el bloque de HTML con la lógica de Astro -->
 <footer class="bg-blue-800 py-3 w-full">
@@ -36,6 +37,9 @@ const gmailUrl = contactos[1].url;
       </a>
       <a href={gmailUrl} target="_blank" class="text-white hover:text-blue-300">
         <img src="icons/gemail.svg" alt="Gmail" class="w-6 h-6">
+      </a>
+       <a href={linkedin} target="_blank" class="text-white hover:text-blue-300">
+        <img src="/icons/linkedink.svg" alt="linkedink" class="w-6 h-6">
       </a>
     </div>
     <div class="text-white text-xl font-bold flex items-center mt-4 md:mt-0">

@@ -10,16 +10,16 @@
   "habilidades": {
     "tecnologias": [
       {
-        "nombre": "TypeScript",
-        "ruta": "/icons/typescript-svgrepo-com.svg"
+        "nombre": "Laravel",
+        "ruta": "/icons/laravel.svg"
       },
       {
         "nombre": "JavaScript",
         "ruta": "/icons/javascript.svg"
       },
       {
-        "nombre": "Tailwind CSS",
-        "ruta": "/icons/Tailwind-CSS.svg"
+        "nombre": "TypeScript",
+        "ruta": "/icons/typescript.svg"
       },
       {
         "nombre": "PHP",

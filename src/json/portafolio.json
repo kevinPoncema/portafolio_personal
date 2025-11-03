@@ -1,8 +1,8 @@
 {
   "sobre_mi": {
-    "titulo": "Desarrollador Web",
+    "titulo": "Desarrollador Backend & Freelance",
     "nombre": "Kevin D Ponce",
-    "descripcion": "Desarrollador web freelance especializado en backend con experiencia en la creación de APIs RESTful utilizando Node.js, Express y TypeScript. Tengo conocimientos sólidos en la gestión de bases de datos SQL, así como en el desarrollo frontend con Tailwind CSS para interfaces responsivas. Además, cuento con experiencia en la administración de servidores Linux y despliegue de aplicaciones en VPS, lo que me permite ofrecer soluciones completas y optimizadas desde el backend hasta la implementación en producción.",
+    "descripcion": "Desarrollador backend freelance especializado en la creación de APIs RESTful utilizando Node.js, Express y TypeScript. Tengo conocimientos sólidos en la gestión de bases de datos SQL, así como en el desarrollo frontend con Tailwind CSS para interfaces responsivas. Además, cuento con experiencia en la administración de servidores Linux y despliegue de aplicaciones en VPS, lo que me permite ofrecer soluciones completas y optimizadas desde el backend hasta la implementación en producción.",
     "github": "https://github.com/kevinPoncema/",
     "email": "https://github.com/kevinPoncema/",
     "img_src": "/images/foto_fea2.jpg"

@@ -1,8 +1,8 @@
 {
   "sobre_mi": {
-    "titulo": "Desarrollador Backend & Freelance",
-    "nombre": "Kevin D Ponce",
-    "descripcion": "Desarrollador backend freelance especializado en la creación de APIs RESTful utilizando Node.js, Express y TypeScript. Tengo conocimientos sólidos en la gestión de bases de datos SQL, así como en el desarrollo frontend con Tailwind CSS para interfaces responsivas. Además, cuento con experiencia en la administración de servidores Linux y despliegue de aplicaciones en VPS, lo que me permite ofrecer soluciones completas y optimizadas desde el backend hasta la implementación en producción.",
+    "titulo": "Desarrollador Web - Backend Focused",
+    "nombre": "Kevin Ponce",
+    "descripcion": "Desarrollador web especializado en backend con enfoque en  APIs RESTful. Actualmente estudio Ingeniería Informática y trabajo con tecnologías como Laravel y Node.js. Mi experiencia combina desarrollo robusto en el servidor con interfaces funcionales en el cliente, permitiéndome entregar soluciones completas y bien optimizadas. Apasionado por escribir código limpio y mantener buenas prácticas de desarrollo.",
     "github": "https://github.com/kevinPoncema/",
     "email": "https://github.com/kevinPoncema/",
     "img_src": "/images/foto_fea2.jpg"
@@ -78,9 +78,23 @@
       "tecnologias": ["JavaScript", "Express", "Swagger", "Vue 3","TailwindCSS","TypeScript"],
       "github": "https://github.com/kevinPoncema/conversor_archivos",
       "produccion": "https://file-converter.kevinponcedev.xyz/"
+    },
+    {
+      "titulo": "Link In Bio App",
+      "descripcion": "Un gestor integral de enlaces que permite a los usuarios crear y administrar múltiples perfiles personalizados. Los usuarios pueden agregar enlaces a sus redes sociales y sitios web favoritos, además de personalizar completamente la experiencia visual con temas dinámicos que incluyen colores y fondos personalizables. La aplicación genera una página única y compartible donde todos los enlaces están centralizados, facilitando el compartir la colección completa en redes sociales y otros canales con un único enlace.",
+      "imagen": "/images/projects/link-in-bio.png",
+      "tecnologias": ["Laravel", "PHP", "React", "Docker"],
+      "github": "https://github.com/kevinPoncema/link-in-bio-app",
+      "produccion": "https://link-in-bio.kevinponcedev.xyz/"
     }
   ],
   "experiencia": [
+    {
+      "date": "Febrero 2025 - Actualidad",
+      "title": "Desarrollador Backend",
+      "company": "Funiber",
+      "description": "Desempeño el rol de desarrollador backend en el equipo fenix de Funiber como parte del programa formativo PROFER. Trabajo con Laravel para el desarrollo y mantenimiento de aplicaciones backend, contribuyendo al crecimiento y mejora continua de los sistemas  de la institución."
+    },
     {
       "date": "Octubre 2024 - Diciembre 2024",
       "title": "Desarrollador de Software (Pasantía)",

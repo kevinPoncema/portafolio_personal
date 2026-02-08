@@ -56,9 +56,22 @@
   },
   "proyectos": [
     {
+      "titulo": "LoveLink",
+      "descripcion": "Plataforma web centrada en la personalización visual total, diseñada para crear desde landing pages conmemorativas hasta invitaciones interactivas virales (estilo 'Sí/No') para cualquier ocasión. Su principal fortaleza radica en la libertad creativa: los usuarios pueden transformar completamente la estética de ambos módulos, subiendo sus propias imágenes de fondo, definiendo paletas de colores y gestionando galerías multimedia personales. Gracias a una arquitectura sólida en Laravel y Vue con almacenamiento en la nube, el sistema asegura que cada invitación y cada historia sean visualmente únicas y estén optimizadas para compartir.",
+      "imagenes": [
+        "/images/projects/lovelink/lovlelink1.webp",
+        "/images/projects/lovelink/lovlink2.webp",
+        "/images/projects/lovelink/lovelink3.webp",
+        "/images/projects/lovelink/lovelink4.webp"
+      ],
+      "tecnologias": ["Laravel 12", "Vue 3", "Inertia.js", "Cloud Storage", "Docker"],
+      "github": "https://github.com/kevinPoncema/LoveLink/tree/develop",
+      "produccion": "https://lovelink.kevinponcedev.xyz/"
+    },
+    {
       "titulo": "Note App",
       "descripcion": "Este proyecto personal es una aplicación web diseñada para gestionar notas y listas de tareas de forma intuitiva y eficiente. Los usuarios pueden crear, editar y eliminar notas con títulos, contenido detallado y fechas, así como gestionar listas de tareas donde cada elemento puede marcarse como completado o pendiente. Además, ofrece la funcionalidad de crear categorías personalizadas, como «Trabajo», «Personal» o «Estudios», permitiendo organizar y filtrar fácilmente las notas y tareas según sus necesidades.",
-      "imagen": "/images/projects/notas.webp",
+      "imagenes": ["/images/projects/notas.webp"],
       "tecnologias": ["JavaScript", "Express", "patrón MVC", "EJS"],
       "github": "https://github.com/kevinPoncema/note-app",
       "produccion": "https://notas.kevinponcedev.xyz/"
@@ -66,23 +79,28 @@
     {
       "titulo": "Portafolio Personal",
       "descripcion": "Este portafolio personal es una ventana a mi trayectoria profesional, donde muestro mi experiencia laboral, habilidades y proyectos destacados. Cada sección está diseñada para resaltar mi formación, mis logros en el ámbito freelance y mis proyectos más representativos, demostrando mis capacidades como desarrollador. Con un diseño limpio y moderno, este portafolio tiene como objetivo transmitir mis habilidades técnicas y creativas de una manera atractiva y accesible.",
-      "imagen": "/images/projects/portafolio.webp",
-      "tecnologias": ["JavaScript", "Astro",  "Talwing"],
+      "imagenes": ["/images/projects/portafolio.webp"],
+      "tecnologias": ["JavaScript", "Astro", "Talwing"],
       "github": "https://github.com/kevinPoncema/portafolio_personal",
       "produccion": "https://kevinponcedev.xyz/"
     },
     {
       "titulo": "File Converter",
       "descripcion": "Este proyecto es una prueba técnica diseñada para demostrar mis habilidades en backend, mi área de especialización, y en frontend, donde, aunque no es mi fuerte, logré desarrollar una interfaz funcional y efectiva.El sistema permite la conversión de archivos entre múltiples formatos, utilizando una API robusta desarrollada en Node.js con librerías especializadas como Pandoc para conversiones avanzadas en entornos Linux. La API está documentada con Swagger para facilitar su exploración y pruebas.En el frontend, implementé una interfaz con Vue 3 y TypeScript, estilizada con TailwindCSS,",
-      "imagen": "/images/projects/file_converter.webp",
-      "tecnologias": ["JavaScript", "Express", "Swagger", "Vue 3","TailwindCSS","TypeScript"],
+      "imagenes": ["/images/projects/file_converter.webp"],
+      "tecnologias": ["JavaScript", "Express", "Swagger", "Vue 3", "TailwindCSS", "TypeScript"],
       "github": "https://github.com/kevinPoncema/conversor_archivos",
       "produccion": "https://file-converter.kevinponcedev.xyz/"
     },
     {
       "titulo": "Link In Bio App",
       "descripcion": "Un gestor integral de enlaces que permite a los usuarios crear y administrar múltiples perfiles personalizados. Los usuarios pueden agregar enlaces a sus redes sociales y sitios web favoritos, además de personalizar completamente la experiencia visual con temas dinámicos que incluyen colores y fondos personalizables. La aplicación genera una página única y compartible donde todos los enlaces están centralizados, facilitando el compartir la colección completa en redes sociales y otros canales con un único enlace.",
-      "imagen": "/images/projects/link_in_bio.webp",
+      "imagenes": [
+        "/images/projects/link-in-bio/link-in-bio.webp",
+        "/images/projects/link-in-bio/link-in-bio2.webp",
+        "/images/projects/link-in-bio/link-in-bio3.webp",
+        "/images/projects/link-in-bio/link-in-bio4.webp"
+      ],
       "tecnologias": ["Laravel", "PHP", "React", "Docker"],
       "github": "https://github.com/kevinPoncema/link-in-bio-app",
       "produccion": "https://link-in-bio.kevinponcedev.xyz/"

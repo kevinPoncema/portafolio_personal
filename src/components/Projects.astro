@@ -1,6 +1,7 @@
 ---
 // Archivo: src/components/Projects.astro
 import portafolio from '../json/portafolio.json';
+import ImageCarrusel from './ImageCarrusel.astro';
 ---
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
@@ -11,36 +12,44 @@ import portafolio from '../json/portafolio.json';
     <div class="flex flex-wrap justify-center">
       {portafolio.proyectos.map((proyecto) => (
         <div class="w-full sm:w-1/2 lg:w-1/3 p-4" key={proyecto.titulo}>
-          <div class="bg-white shadow-lg rounded-lg p-6">
-            <a href={proyecto.imagen} class="glightbox" data-gallery="gallery">
-              <img src={proyecto.imagen} alt={proyecto.titulo} class="w-full h-48 object-cover rounded-md mb-4 cursor-pointer hover:opacity-80 transition-opacity">
-            </a>
-            <h3 class="text-xl font-bold text-gray-800 mb-2">{proyecto.titulo}</h3>
-            <p class="text-gray-700 mb-4">{proyecto.descripcion}</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              {proyecto.tecnologias.map((tecnologia) => (
-                <span class="bg-blue-100 px-3 py-1 rounded-lg text-blue-800 font-bold text-xs" key={tecnologia}>
-                  {tecnologia.toUpperCase()}
-                </span>
-              ))}
+          <div class="project-card bg-white shadow-lg rounded-lg p-6 h-full flex flex-col">
+            <div class="mb-4 flex-shrink-0">
+              <ImageCarrusel imagenes={proyecto.imagenes} altText={proyecto.titulo} />
             </div>
-            <div class="border-t pt-4 flex justify-between items-center">
-              <a 
-                href={proyecto.github} 
-                target="_blank" 
-                class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 github-link" 
-                data-project-name={proyecto.titulo} 
-                data-link-type="GitHub">
-                <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6">
-              </a>
-              <a 
-                href={proyecto.produccion} 
-                target="_blank" 
-                class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 production-link" 
-                data-project-name={proyecto.titulo} 
-                data-link-type="Producción">
-                <img src="/icons/share.svg" alt="Producción" class="w-6 h-6">
-              </a>
+            <div class="flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">{proyecto.titulo}</h3>
+              <p class="text-gray-700 mb-4 flex-grow text-sm leading-relaxed description-text">{proyecto.descripcion}</p>
+              <button 
+                class="view-more-btn text-blue-600 hover:text-blue-800 text-sm font-medium mb-4 self-start transition-colors duration-200"
+                data-project={JSON.stringify(proyecto)}
+              >
+                Ver más detalles →
+              </button>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {proyecto.tecnologias.map((tecnologia) => (
+                  <span class="bg-blue-100 px-3 py-1 rounded-lg text-blue-800 font-bold text-xs" key={tecnologia}>
+                    {tecnologia.toUpperCase()}
+                  </span>
+                ))}
+              </div>
+              <div class="border-t pt-4 flex justify-between items-center mt-auto">
+                <a 
+                  href={proyecto.github} 
+                  target="_blank" 
+                  class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 github-link" 
+                  data-project-name={proyecto.titulo} 
+                  data-link-type="GitHub">
+                  <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6">
+                </a>
+                <a 
+                  href={proyecto.produccion} 
+                  target="_blank" 
+                  class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 production-link" 
+                  data-project-name={proyecto.titulo} 
+                  data-link-type="Producción">
+                  <img src="/icons/share.svg" alt="Producción" class="w-6 h-6">
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -49,36 +58,370 @@ import portafolio from '../json/portafolio.json';
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" is:inline></script>
+<!-- Modal para información completa del proyecto -->
+<div id="project-modal" class="project-modal-overlay fixed inset-0 z-[9997] hidden bg-black/80 backdrop-blur-sm">
+  <div class="project-modal-content flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+      <!-- Header del modal -->
+      <div class="flex justify-between items-center p-6 border-b">
+        <h3 id="project-modal-title" class="text-2xl font-bold text-gray-800"></h3>
+        <button 
+          id="close-project-modal"
+          class="text-gray-500 hover:text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+          aria-label="Cerrar modal"
+        >
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Contenido del modal -->
+      <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+        <!-- Carrusel de imágenes del proyecto -->
+        <div id="project-modal-carousel" class="mb-6">
+          <!-- El carrusel se insertará aquí dinámicamente -->
+        </div>
+        
+        <!-- Descripción completa -->
+        <div class="mb-6">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Descripción</h4>
+          <p id="project-modal-description" class="text-gray-700 leading-relaxed text-base"></p>
+        </div>
+        
+        <!-- Tecnologías -->
+        <div class="mb-6">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Tecnologías</h4>
+          <div id="project-modal-technologies" class="flex flex-wrap gap-2">
+            <!-- Las tecnologías se insertarán aquí -->
+          </div>
+        </div>
+        
+        <!-- Enlaces -->
+        <div class="flex gap-4 justify-center pt-4 border-t">
+          <a 
+            id="project-modal-github"
+            href="#"
+            target="_blank" 
+            class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg transition-colors duration-200">
+            <img src="/icons/github.svg" alt="GitHub" class="w-5 h-5 filter invert">
+            Ver en GitHub
+          </a>
+          <a 
+            id="project-modal-production"
+            href="#"
+            target="_blank" 
+            class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-200">
+            <img src="/icons/share.svg" alt="Producción" class="w-5 h-5 filter invert">
+            Ver Proyecto
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<script is:inline>
+<script>
   document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = GLightbox({
-      selector: '.glightbox',
-      touchNavigation: true,
-      loop: true
-    });
-
-    document.addEventListener('click', (event) => {
-      // Verifica si el clic es en un enlace con data-project-name
-      const target = event.target.closest('a[data-project-name]');
-      if (!target) return;
-
-      // Obtén los datos del enlace
-      const projectName = target.getAttribute('data-project-name');
-      const linkType = target.getAttribute('data-link-type');
-
-      // Envía el evento a Google Analytics
-      if (typeof gtag === 'function') {
-        gtag('event', 'click', {
-          'event_category': linkType,
-          'event_label': projectName
+    const projectModal = document.getElementById('project-modal');
+    const projectModalTitle = document.getElementById('project-modal-title');
+    const projectModalDescription = document.getElementById('project-modal-description');
+    const projectModalTechnologies = document.getElementById('project-modal-technologies');
+    const projectModalCarousel = document.getElementById('project-modal-carousel');
+    const projectModalGithub = document.getElementById('project-modal-github');
+    const projectModalProduction = document.getElementById('project-modal-production');
+    const closeProjectModal = document.getElementById('close-project-modal');
+    
+    console.log('Projects script loaded'); // Debug
+    
+    // Asegurarse de que el modal de proyecto esté oculto al inicio
+    if (projectModal) {
+      projectModal.classList.add('hidden');
+    }
+    
+    function openProjectModal(projectData) {
+      console.log('Opening project modal for:', projectData.titulo); // Debug
+      if (!projectModal) {
+        console.error('Project modal not found');
+        return;
+      }
+      
+      // Verificar si el modalManager está disponible, si no, usar fallback directo
+      if (window.modalManager && typeof window.modalManager.openModal === 'function') {
+        console.log('Using modal manager to open project modal'); // Debug
+        window.modalManager.openModal('project', () => {
+          setupModalContent();
+          projectModal.classList.remove('hidden');
+          console.log('Project modal should now be visible'); // Debug
+        });
+      } else {
+        console.log('Modal manager not available, using direct fallback'); // Debug
+        setupModalContent();
+        projectModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function setupModalContent() {
+        console.log('Setting up modal content for:', projectData.titulo); // Debug
+        // Actualizar contenido del modal
+        if (projectModalTitle) projectModalTitle.textContent = projectData.titulo;
+        if (projectModalDescription) projectModalDescription.textContent = projectData.descripcion;
+      
+      // Actualizar tecnologías
+      if (projectModalTechnologies) {
+        projectModalTechnologies.innerHTML = '';
+        projectData.tecnologias.forEach(tech => {
+          const span = document.createElement('span');
+          span.className = 'bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-bold text-sm';
+          span.textContent = tech.toUpperCase();
+          projectModalTechnologies.appendChild(span);
         });
       }
+      
+      // Crear carrusel de imágenes
+      if (projectModalCarousel) {
+        projectModalCarousel.innerHTML = '';
+        if (projectData.imagenes && projectData.imagenes.length > 0) {
+          const carouselContainer = document.createElement('div');
+          carouselContainer.className = 'relative';
+          
+          const carouselWrapper = document.createElement('div');
+          carouselWrapper.className = 'overflow-hidden rounded-lg';
+          
+          const carouselImages = document.createElement('div');
+          carouselImages.className = 'flex transition-transform duration-300 ease-in-out modal-project-carousel';
+          
+          projectData.imagenes.forEach((imagen, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'w-full flex-shrink-0';
+            
+            const img = document.createElement('img');
+            img.src = imagen;
+            img.alt = `${projectData.titulo} - Imagen ${index + 1}`;
+            img.className = 'w-full h-64 object-cover cursor-pointer hover:opacity-90';
+            
+            slide.appendChild(img);
+            carouselImages.appendChild(slide);
+          });
+          
+          carouselWrapper.appendChild(carouselImages);
+          carouselContainer.appendChild(carouselWrapper);
+          
+          // Agregar controles si hay más de una imagen
+          if (projectData.imagenes.length > 1) {
+            let currentIndex = 0;
+            
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md';
+            prevBtn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1 5 8l6 7"/></svg>`;
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md';
+            nextBtn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="m5 1 6 7-6 7"/></svg>`;
+            
+            const indicators = document.createElement('div');
+            indicators.className = 'flex justify-center space-x-2 mt-3';
+            
+            projectData.imagenes.forEach((_, index) => {
+              const dot = document.createElement('button');
+              dot.className = `w-2 h-2 rounded-full transition-colors ${
+                index === 0 ? 'bg-blue-500' : 'bg-gray-300'
+              }`;
+              
+              dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = index;
+                updateCarousel();
+              });
+              
+              indicators.appendChild(dot);
+            });
+            
+            function updateCarousel() {
+              const translateX = -currentIndex * 100;
+              carouselImages.style.transform = `translateX(${translateX}%)`;
+              
+              Array.from(indicators.children).forEach((dot, index) => {
+                dot.className = `w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'
+                }`;
+              });
+            }
+            
+            prevBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              currentIndex = (currentIndex - 1 + projectData.imagenes.length) % projectData.imagenes.length;
+              updateCarousel();
+            });
+            
+            nextBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              currentIndex = (currentIndex + 1) % projectData.imagenes.length;
+              updateCarousel();
+            });
+            
+            carouselWrapper.appendChild(prevBtn);
+            carouselWrapper.appendChild(nextBtn);
+            carouselContainer.appendChild(carouselWrapper);
+            carouselContainer.appendChild(indicators);
+            
+            // Initialize carousel
+            updateCarousel();
+          }
+          
+          projectModalCarousel.appendChild(carouselContainer);
+        }
+      }
+      
+        // Actualizar enlaces
+        if (projectModalGithub) projectModalGithub.href = projectData.github;
+        if (projectModalProduction) projectModalProduction.href = projectData.produccion;
+      }
+    }
 
-      // Para depuración
-      console.log(`Evento enviado: ${linkType} - ${projectName}`);
+    
+    function closeProjectModalFunc() {
+      console.log('Closing project modal'); // Debug
+      if (projectModal) {
+        projectModal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+    
+    // Registrar el modal de proyecto con el gestor global cuando esté disponible
+    function registerProjectModal() {
+      if (window.modalManager && typeof window.modalManager.registerModal === 'function') {
+        console.log('Registering project modal with modal manager'); // Debug
+        window.modalManager.registerModal('project', closeProjectModalFunc);
+        return true;
+      } else {
+        console.log('Modal manager not ready, retrying...'); // Debug
+        // Reintentar después de un breve delay si el gestor no está listo
+        setTimeout(registerProjectModal, 100);
+        return false;
+      }
+    }
+    
+    // Registrar el modal al cargar (con reintentos)
+    registerProjectModal();
+    
+    // Event listeners
+    if (closeProjectModal) {
+      closeProjectModal.addEventListener('click', () => {
+        console.log('Close button clicked'); // Debug
+        if (window.modalManager && typeof window.modalManager.closeActive === 'function') {
+          window.modalManager.closeActive();
+        } else {
+          closeProjectModalFunc();
+        }
+      });
+    }
+    
+    if (projectModal) {
+      projectModal.addEventListener('click', (e) => {
+        if (e.target === projectModal) {
+          console.log('Modal background clicked'); // Debug
+          if (window.modalManager && typeof window.modalManager.closeActive === 'function') {
+            window.modalManager.closeActive();
+          } else {
+            closeProjectModalFunc();
+          }
+        }
+      });
+    }
+    
+    // Event listener para Escape key como fallback
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModal && !projectModal.classList.contains('hidden')) {
+        console.log('Escape pressed on project modal'); // Debug
+        closeProjectModalFunc();
+      }
     });
+    
+    // Event listener principal con delegación
+    document.addEventListener('click', (event) => {
+      console.log('Click detected on:', event.target, 'Classes:', event.target.className); // Debug
+      
+      // Botón Ver más detalles
+      if (event.target.matches('.view-more-btn') || event.target.closest('.view-more-btn')) {
+        console.log('View more button clicked'); // Debug
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const btn = event.target.matches('.view-more-btn') ? event.target : event.target.closest('.view-more-btn');
+        const projectDataStr = btn?.getAttribute('data-project');
+        
+        console.log('Button found:', btn, 'Data attribute exists:', !!projectDataStr); // Debug
+        
+        if (projectDataStr) {
+          try {
+            const projectData = JSON.parse(projectDataStr);
+            console.log('Parsed project data:', projectData.titulo); // Debug
+            console.log('About to call openProjectModal'); // Debug
+            openProjectModal(projectData);
+          } catch (e) {
+            console.error('Error parsing project data:', e);
+          }
+        } else {
+          console.error('No project data found on button');
+        }
+        return;
+      }
+      
+      // Analytics para enlaces
+      const linkTarget = event.target.closest('a[data-project-name]');
+      if (linkTarget) {
+        const projectName = linkTarget.getAttribute('data-project-name');
+        const linkType = linkTarget.getAttribute('data-link-type');
+        
+        if (typeof gtag === 'function') {
+          gtag('event', 'click', {
+            'event_category': linkType,
+            'event_label': projectName
+          });
+        }
+        
+        console.log(`Analytics: ${linkType} - ${projectName}`);
+      }
+    });
+    
+    // Event listener adicional específico para botones "Ver más detalles" como backup
+    const viewMoreButtons = document.querySelectorAll('.view-more-btn');
+    console.log('Found view-more buttons:', viewMoreButtons.length); // Debug
+    
+    viewMoreButtons.forEach((button, index) => {
+      console.log(`Setting up button ${index}:`, button); // Debug
+      const projectDataStr = button.getAttribute('data-project');
+      console.log(`Button ${index} data-project:`, projectDataStr); // Debug
+      
+      button.addEventListener('click', (e) => {
+        console.log(`Direct button ${index} clicked`); // Debug
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const projectDataStr = button.getAttribute('data-project');
+        console.log(`Raw data from attribute:`, projectDataStr); // Debug
+        
+        if (projectDataStr) {
+          try {
+            const projectData = JSON.parse(projectDataStr);
+            console.log('Direct button - opening modal for:', projectData.titulo); // Debug
+            openProjectModal(projectData);
+          } catch (error) {
+            console.error('Direct button - error parsing data:', error);
+            console.error('Problematic data:', projectDataStr);
+          }
+        } else {
+          console.error('No data-project attribute found');
+        }
+      });
+    });
+    
+    // Verificación final de configuración
+    console.log('Projects script setup complete'); // Debug
+    console.log('Modal manager available:', !!window.modalManager); // Debug
+    console.log('Project modal element:', !!projectModal); // Debug
+    console.log('View more buttons found:', document.querySelectorAll('.view-more-btn').length); // Debug
   });
 </script>
 
@@ -93,14 +436,46 @@ import portafolio from '../json/portafolio.json';
   .flex-wrap {
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch; /* Para que todas las cards tengan la misma altura */
   }
   .p-4 {
     padding: 1rem;
+    display: flex; /* Para que la card ocupe toda la altura disponible */
   }
+  
+  .project-card {
+    min-height: 550px; /* Altura mínima para uniformidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .description-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Limita a 6 líneas máximo */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 8.5rem; /* Altura máxima para la descripción */
+    line-height: 1.4;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
   img {
     max-width: 100%;
     height: auto;
   }
+  
   span {
     padding: 0.25rem 0.75rem;
     border-radius: 0.5rem;
@@ -109,16 +484,90 @@ import portafolio from '../json/portafolio.json';
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+  
   .border-t {
     border-top: 1px solid #e5e7eb;
   }
+  
   a:hover img {
     transform: scale(1.1);
     transition: transform 0.3s ease;
   }
+  
+  .view-more-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .view-more-btn:hover {
+    text-decoration: none;
+  }
+  
+  /* Modal de proyecto */
+  .project-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(4px) !important;
+    z-index: 9997 !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .project-modal-overlay:not(.hidden) {
+    display: flex !important;
+  }
+  
+  .project-modal-overlay.hidden {
+    display: none !important;
+  }
+  
+  .project-modal-content {
+    animation: modalFadeIn 0.3s ease-out;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive design mejorado */
+  @media (max-width: 640px) {
+    .project-card {
+      min-height: 500px;
+    }
+    .description-text {
+      -webkit-line-clamp: 5;
+      max-height: 7rem;
+    }
+  }
+  
   @media (min-width: 1024px) {
-    .w-full.md\:w-1\/2.lg\:w-1\/3 {
+    .w-full.sm\:w-1\/2.lg\:w-1\/3 {
       width: 33.3333%;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .project-card {
+      min-height: 580px;
     }
   }
 </style>

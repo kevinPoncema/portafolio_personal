@@ -1,0 +1,209 @@
+---
+// Archivo: src/components/ImageCarrusel.astro
+export interface Props {
+  imagenes: string[];
+  altText: string;
+}
+
+const { imagenes, altText } = Astro.props;
+---
+
+<div class="image-carousel-container relative">
+  <div class="carousel-wrapper relative overflow-hidden rounded-md">
+    <div class="carousel-images flex transition-transform duration-300 ease-in-out">
+      {imagenes.map((imagen, index) => (
+        <div class="carousel-slide w-full flex-shrink-0" key={index}>
+          <img 
+            src={imagen} 
+            alt={`${altText} - Imagen ${index + 1}`} 
+            class="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
+            loading="lazy"
+            data-modal-img={imagen}
+            data-modal-alt={`${altText} - Imagen ${index + 1}`}
+          />
+        </div>
+      ))}
+    </div>
+    
+    <!-- Controles de navegación -->
+    {imagenes.length > 1 && (
+      <>
+        <button 
+          class="carousel-btn carousel-btn-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200"
+          aria-label="Imagen anterior"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        
+        <button 
+          class="carousel-btn carousel-btn-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200"
+          aria-label="Imagen siguiente"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </>
+    )}
+  </div>
+  
+  <!-- Indicadores -->
+  {imagenes.length > 1 && (
+    <div class="carousel-indicators flex justify-center space-x-2 mt-3">
+      {imagenes.map((_, index) => (
+        <button 
+          class="indicator-dot w-2 h-2 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors duration-200"
+          data-index={index}
+          aria-label={`Ir a imagen ${index + 1}`}
+          key={index}
+        />
+      ))}
+    </div>
+  )}
+</div>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.image-carousel-container');
+    
+    // Configurar carruseles
+    carousels.forEach((carouselContainer) => {
+      const images = carouselContainer.querySelector('.carousel-images');
+      const prevBtn = carouselContainer.querySelector('.carousel-btn-prev');
+      const nextBtn = carouselContainer.querySelector('.carousel-btn-next');
+      const indicators = carouselContainer.querySelectorAll('.indicator-dot');
+      const carouselImages = carouselContainer.querySelectorAll('img[data-modal-img]');
+      
+      if (!images || indicators.length === 0) return;
+      
+      let currentIndex = 0;
+      const totalImages = indicators.length;
+      
+      function updateCarousel() {
+        const translateX = -currentIndex * 100;
+        images.style.transform = `translateX(${translateX}%)`;
+        
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle('bg-blue-500', index === currentIndex);
+          indicator.classList.toggle('bg-gray-300', index !== currentIndex);
+        });
+      }
+      
+      function goToNext() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateCarousel();
+      }
+      
+      function goToPrev() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateCarousel();
+      }
+      
+      function goToIndex(index) {
+        currentIndex = index;
+        updateCarousel();
+      }
+      
+      // Event listeners para navegación del carrusel
+      nextBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToNext();
+      });
+      
+      prevBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToPrev();
+      });
+      
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', (e) => {
+          e.stopPropagation();
+          goToIndex(index);
+        });
+      });
+      
+      // Event listeners para abrir modal desde carrusel (dispatch custom event)
+      carouselImages.forEach((img, imgIndex) => {
+        img.addEventListener('click', (e) => {
+          e.stopPropagation();
+          
+          const projectCard = img.closest('.project-card');
+          const projectTitle = projectCard?.querySelector('h3')?.textContent || 'Proyecto';
+          
+          const projectImages = Array.from(carouselImages).map(image => 
+            image.getAttribute('data-modal-img')
+          ).filter(Boolean);
+          
+          // Dispatch custom event para comunicar con el componente padre
+          const event = new CustomEvent('openImageModal', {
+            detail: {
+              imageSrc: img.src,
+              imageAlt: img.alt,
+              projectImages: projectImages,
+              projectTitle: projectTitle,
+              startIndex: imgIndex
+            }
+          });
+          document.dispatchEvent(event);
+        });
+      });
+      
+      // Inicializar carrusel
+      updateCarousel();
+    });
+  });
+</script>
+
+<style>
+  .image-carousel-container {
+    width: 100%;
+  }
+  
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+  }
+  
+  .carousel-images {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-slide img {
+    height: 220px;
+  }
+  
+  .carousel-btn {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+  }
+  
+  .carousel-wrapper:hover .carousel-btn {
+    opacity: 1;
+  }
+  
+  .indicator-dot.bg-blue-500 {
+    background-color: #3b82f6;
+  }
+  
+  .indicator-dot:hover {
+    transform: scale(1.2);
+  }
+  
+  .carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+</style>

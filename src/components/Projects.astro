@@ -17,6 +17,12 @@ import ImageCarrusel from './ImageCarrusel.astro';
             <div class="flex flex-col flex-grow">
               <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">{proyecto.titulo}</h3>
               <p class="text-gray-700 mb-4 flex-grow text-sm leading-relaxed description-text">{proyecto.descripcion}</p>
+              <button 
+                class="view-more-btn text-blue-600 hover:text-blue-800 text-sm font-medium mb-4 self-start transition-colors duration-200"
+                data-project='{JSON.stringify(proyecto)}'
+              >
+                Ver más detalles →
+              </button>
               <div class="flex flex-wrap gap-2 mb-4">
                 {proyecto.tecnologias.map((tecnologia) => (
                   <span class="bg-blue-100 px-3 py-1 rounded-lg text-blue-800 font-bold text-xs" key={tecnologia}>
@@ -50,18 +56,317 @@ import ImageCarrusel from './ImageCarrusel.astro';
   </div>
 </section>
 
+<!-- Modal para información completa del proyecto -->
+<div id="project-modal" class="project-modal-overlay fixed inset-0 z-[9997] hidden bg-black/80 backdrop-blur-sm">
+  <div class="project-modal-content flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+      <!-- Header del modal -->
+      <div class="flex justify-between items-center p-6 border-b">
+        <h3 id="project-modal-title" class="text-2xl font-bold text-gray-800"></h3>
+        <button 
+          id="close-project-modal"
+          class="text-gray-500 hover:text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+          aria-label="Cerrar modal"
+        >
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Contenido del modal -->
+      <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+        <!-- Carrusel de imágenes del proyecto -->
+        <div id="project-modal-carousel" class="mb-6">
+          <!-- El carrusel se insertará aquí dinámicamente -->
+        </div>
+        
+        <!-- Descripción completa -->
+        <div class="mb-6">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Descripción</h4>
+          <p id="project-modal-description" class="text-gray-700 leading-relaxed text-base"></p>
+        </div>
+        
+        <!-- Tecnologías -->
+        <div class="mb-6">
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Tecnologías</h4>
+          <div id="project-modal-technologies" class="flex flex-wrap gap-2">
+            <!-- Las tecnologías se insertarán aquí -->
+          </div>
+        </div>
+        
+        <!-- Enlaces -->
+        <div class="flex gap-4 justify-center pt-4 border-t">
+          <a 
+            id="project-modal-github"
+            href="#"
+            target="_blank" 
+            class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg transition-colors duration-200">
+            <img src="/icons/github.svg" alt="GitHub" class="w-5 h-5 filter invert">
+            Ver en GitHub
+          </a>
+          <a 
+            id="project-modal-production"
+            href="#"
+            target="_blank" 
+            class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-200">
+            <img src="/icons/share.svg" alt="Producción" class="w-5 h-5 filter invert">
+            Ver Proyecto
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const projectModal = document.getElementById('project-modal');
+    const imageModal = document.getElementById('image-modal');
+    const projectModalTitle = document.getElementById('project-modal-title');
+    const projectModalDescription = document.getElementById('project-modal-description');
+    const projectModalTechnologies = document.getElementById('project-modal-technologies');
+    const projectModalCarousel = document.getElementById('project-modal-carousel');
+    const projectModalGithub = document.getElementById('project-modal-github');
+    const projectModalProduction = document.getElementById('project-modal-production');
+    const closeProjectModal = document.getElementById('close-project-modal');
+    
+    // Variable para controlar qué modal está abierto
+    let currentActiveModal = null;
+    
+    function openProjectModal(projectData) {
+      if (!projectModal) return;
+      
+      // Cerrar modal de imagen si está abierto
+      if (imageModal && !imageModal.classList.contains('hidden')) {
+        imageModal.classList.add('hidden');
+      }
+      
+      currentActiveModal = 'project';
+      
+      // Actualizar contenido del modal
+      if (projectModalTitle) projectModalTitle.textContent = projectData.titulo;
+      if (projectModalDescription) projectModalDescription.textContent = projectData.descripcion;
+      
+      // Actualizar tecnologías
+      if (projectModalTechnologies) {
+        projectModalTechnologies.innerHTML = '';
+        projectData.tecnologias.forEach(tech => {
+          const span = document.createElement('span');
+          span.className = 'bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-bold text-sm';
+          span.textContent = tech.toUpperCase();
+          projectModalTechnologies.appendChild(span);
+        });
+      }
+      
+      // Crear carrusel de imágenes
+      if (projectModalCarousel) {
+        projectModalCarousel.innerHTML = '';
+        if (projectData.imagenes && projectData.imagenes.length > 0) {
+          const carouselContainer = document.createElement('div');
+          carouselContainer.className = 'relative';
+          
+          const carouselWrapper = document.createElement('div');
+          carouselWrapper.className = 'overflow-hidden rounded-lg';
+          
+          const carouselImages = document.createElement('div');
+          carouselImages.className = 'flex transition-transform duration-300 ease-in-out modal-project-carousel';
+          
+          projectData.imagenes.forEach((imagen, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'w-full flex-shrink-0';
+            
+            const img = document.createElement('img');
+            img.src = imagen;
+            img.alt = `${projectData.titulo} - Imagen ${index + 1}`;
+            img.className = 'w-full h-64 object-cover cursor-pointer';
+            
+            // Agregar click para abrir modal de imagen
+            img.addEventListener('click', (e) => {
+              e.stopPropagation();
+              openImageModalFromProject(projectData.imagenes, projectData.titulo, index);
+            });
+            
+            slide.appendChild(img);
+            carouselImages.appendChild(slide);
+          });
+          
+          carouselWrapper.appendChild(carouselImages);
+          carouselContainer.appendChild(carouselWrapper);
+          
+          // Agregar controles si hay más de una imagen
+          if (projectData.imagenes.length > 1) {
+            let currentModalCarouselIndex = 0;
+            
+            // Botones de navegación
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200';
+            prevBtn.innerHTML = `
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+            `;
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200';
+            nextBtn.innerHTML = `
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            `;
+            
+            // Indicadores
+            const indicators = document.createElement('div');
+            indicators.className = 'flex justify-center space-x-2 mt-3';
+            
+            projectData.imagenes.forEach((_, index) => {
+              const dot = document.createElement('button');
+              dot.className = `w-2 h-2 rounded-full transition-colors duration-200 ${
+                index === 0 ? 'bg-blue-500' : 'bg-gray-300'
+              }`;
+              
+              dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentModalCarouselIndex = index;
+                updateModalCarousel();
+              });
+              
+              indicators.appendChild(dot);
+            });
+            
+            function updateModalCarousel() {
+              const translateX = -currentModalCarouselIndex * 100;
+              carouselImages.style.transform = `translateX(${translateX}%)`;
+              
+              // Actualizar indicadores
+              Array.from(indicators.children).forEach((dot, index) => {
+                dot.className = `w-2 h-2 rounded-full transition-colors duration-200 ${
+                  index === currentModalCarouselIndex ? 'bg-blue-500' : 'bg-gray-300'
+                }`;
+              });
+            }
+            
+            prevBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              currentModalCarouselIndex = (currentModalCarouselIndex - 1 + projectData.imagenes.length) % projectData.imagenes.length;
+              updateModalCarousel();
+            });
+            
+            nextBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              currentModalCarouselIndex = (currentModalCarouselIndex + 1) % projectData.imagenes.length;
+              updateModalCarousel();
+            });
+            
+            carouselContainer.appendChild(prevBtn);
+            carouselContainer.appendChild(nextBtn);
+            carouselContainer.appendChild(indicators);
+          }
+          
+          projectModalCarousel.appendChild(carouselContainer);
+        }
+      }
+      
+      // Actualizar enlaces
+      if (projectModalGithub) projectModalGithub.href = projectData.github;
+      if (projectModalProduction) projectModalProduction.href = projectData.produccion;
+      
+      // Mostrar modal
+      projectModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function openImageModalFromProject(images, title, startIndex) {
+      // Cerrar el modal de proyecto
+      if (projectModal) {
+        projectModal.classList.add('hidden');
+      }
+      
+      currentActiveModal = 'image';
+      
+      // Disparar evento personalizado para abrir el modal de imagen
+      const event = new CustomEvent('openImageModal', {
+        detail: {
+          images: images,
+          title: title,
+          startIndex: startIndex
+        }
+      });
+      window.dispatchEvent(event);
+    }
+    
+    function closeProjectModalFunc() {
+      if (projectModal) {
+        projectModal.classList.add('hidden');
+        document.body.style.overflow = '';
+        currentActiveModal = null;
+      }
+    }
+    
+    // Event listeners
+    if (closeProjectModal) {
+      closeProjectModal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeProjectModalFunc();
+      });
+    }
+    
+    if (projectModal) {
+      projectModal.addEventListener('click', (e) => {
+        if (e.target === projectModal) {
+          closeProjectModalFunc();
+        }
+      });
+    }
+    
+    // Event listeners globales
+    document.addEventListener('keydown', (e) => {
+      if (currentActiveModal === 'project' && !projectModal?.classList.contains('hidden') && e.key === 'Escape') {
+        closeProjectModalFunc();
+      }
+    });
+    
+    // Event listener para cerrar modal de proyecto cuando se abre modal de imagen
+    window.addEventListener('imageModalOpened', () => {
+      if (currentActiveModal === 'project') {
+        currentActiveModal = 'image';
+      }
+    });
+    
+    // Event listener para restaurar modal de proyecto cuando se cierra modal de imagen
+    window.addEventListener('imageModalClosed', () => {
+      if (currentActiveModal === 'image') {
+        currentActiveModal = null;
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Delegación de eventos para botones "Ver más" y enlaces
     document.addEventListener('click', (event) => {
-      // Verifica si el clic es en un enlace con data-project-name
+      // Botón Ver más detalles
+      if (event.target.classList.contains('view-more-btn')) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        try {
+          const projectDataStr = event.target.getAttribute('data-project');
+          if (projectDataStr) {
+            const projectData = JSON.parse(projectDataStr);
+            openProjectModal(projectData);
+          }
+        } catch (e) {
+          console.error('Error parsing project data:', e);
+        }
+        return;
+      }
+      
+      // Analytics para enlaces de proyectos
       const target = event.target.closest('a[data-project-name]');
       if (!target) return;
 
-      // Obtén los datos del enlace
       const projectName = target.getAttribute('data-project-name');
       const linkType = target.getAttribute('data-link-type');
 
-      // Envía el evento a Google Analytics
       if (typeof gtag === 'function') {
         gtag('event', 'click', {
           'event_category': linkType,
@@ -69,7 +374,6 @@ import ImageCarrusel from './ImageCarrusel.astro';
         });
       }
 
-      // Para depuración
       console.log(`Evento enviado: ${linkType} - ${projectName}`);
     });
   });
@@ -142,6 +446,48 @@ import ImageCarrusel from './ImageCarrusel.astro';
   a:hover img {
     transform: scale(1.1);
     transition: transform 0.3s ease;
+  }
+  
+  .view-more-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .view-more-btn:hover {
+    text-decoration: none;
+  }
+  
+  /* Modal de proyecto */
+  .project-modal-overlay {
+    backdrop-filter: blur(4px);
+    z-index: 9997 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+  
+  .project-modal-content {
+    animation: modalFadeIn 0.3s ease-out;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   
   /* Responsive design mejorado */

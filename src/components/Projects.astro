@@ -144,9 +144,26 @@ import ImageCarrusel from './ImageCarrusel.astro';
         return;
       }
       
-      // Actualizar contenido del modal
-      if (projectModalTitle) projectModalTitle.textContent = projectData.titulo;
-      if (projectModalDescription) projectModalDescription.textContent = projectData.descripcion;
+      // Verificar si el modalManager está disponible, si no, usar fallback directo
+      if (window.modalManager && typeof window.modalManager.openModal === 'function') {
+        console.log('Using modal manager to open project modal'); // Debug
+        window.modalManager.openModal('project', () => {
+          setupModalContent();
+          projectModal.classList.remove('hidden');
+          console.log('Project modal should now be visible'); // Debug
+        });
+      } else {
+        console.log('Modal manager not available, using direct fallback'); // Debug
+        setupModalContent();
+        projectModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function setupModalContent() {
+        console.log('Setting up modal content for:', projectData.titulo); // Debug
+        // Actualizar contenido del modal
+        if (projectModalTitle) projectModalTitle.textContent = projectData.titulo;
+        if (projectModalDescription) projectModalDescription.textContent = projectData.descripcion;
       
       // Actualizar tecnologías
       if (projectModalTechnologies) {
@@ -241,48 +258,56 @@ import ImageCarrusel from './ImageCarrusel.astro';
               updateCarousel();
             });
             
-            carouselContainer.appendChild(prevBtn);
-            carouselContainer.appendChild(nextBtn);
+            carouselWrapper.appendChild(prevBtn);
+            carouselWrapper.appendChild(nextBtn);
+            carouselContainer.appendChild(carouselWrapper);
             carouselContainer.appendChild(indicators);
+            
+            // Initialize carousel
+            updateCarousel();
           }
           
           projectModalCarousel.appendChild(carouselContainer);
         }
       }
       
-      // Actualizar enlaces
-      if (projectModalGithub) projectModalGithub.href = projectData.github;
-      if (projectModalProduction) projectModalProduction.href = projectData.produccion;
-      
-      // Mostrar modal
-      projectModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+        // Actualizar enlaces
+        if (projectModalGithub) projectModalGithub.href = projectData.github;
+        if (projectModalProduction) projectModalProduction.href = projectData.produccion;
+      }
     }
 
     
     function closeProjectModalFunc() {
+      console.log('Closing project modal'); // Debug
       if (projectModal) {
         projectModal.classList.add('hidden');
+        document.body.style.overflow = '';
       }
     }
     
     // Registrar el modal de proyecto con el gestor global cuando esté disponible
     function registerProjectModal() {
-      if (window.modalManager) {
+      if (window.modalManager && typeof window.modalManager.registerModal === 'function') {
+        console.log('Registering project modal with modal manager'); // Debug
         window.modalManager.registerModal('project', closeProjectModalFunc);
+        return true;
       } else {
+        console.log('Modal manager not ready, retrying...'); // Debug
         // Reintentar después de un breve delay si el gestor no está listo
         setTimeout(registerProjectModal, 100);
+        return false;
       }
     }
     
-    // Registrar el modal al cargar
+    // Registrar el modal al cargar (con reintentos)
     registerProjectModal();
     
     // Event listeners
     if (closeProjectModal) {
       closeProjectModal.addEventListener('click', () => {
-        if (window.modalManager) {
+        console.log('Close button clicked'); // Debug
+        if (window.modalManager && typeof window.modalManager.closeActive === 'function') {
           window.modalManager.closeActive();
         } else {
           closeProjectModalFunc();
@@ -293,7 +318,8 @@ import ImageCarrusel from './ImageCarrusel.astro';
     if (projectModal) {
       projectModal.addEventListener('click', (e) => {
         if (e.target === projectModal) {
-          if (window.modalManager) {
+          console.log('Modal background clicked'); // Debug
+          if (window.modalManager && typeof window.modalManager.closeActive === 'function') {
             window.modalManager.closeActive();
           } else {
             closeProjectModalFunc();
@@ -301,6 +327,14 @@ import ImageCarrusel from './ImageCarrusel.astro';
         }
       });
     }
+    
+    // Event listener para Escape key como fallback
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModal && !projectModal.classList.contains('hidden')) {
+        console.log('Escape pressed on project modal'); // Debug
+        closeProjectModalFunc();
+      }
+    });
     
     // Event listener principal con delegación
     document.addEventListener('click', (event) => {
@@ -315,12 +349,13 @@ import ImageCarrusel from './ImageCarrusel.astro';
         const btn = event.target.matches('.view-more-btn') ? event.target : event.target.closest('.view-more-btn');
         const projectDataStr = btn?.getAttribute('data-project');
         
-        console.log('Button found:', btn, 'Data:', projectDataStr); // Debug
+        console.log('Button found:', btn, 'Data attribute exists:', !!projectDataStr); // Debug
         
         if (projectDataStr) {
           try {
             const projectData = JSON.parse(projectDataStr);
-            console.log('Parsed project data:', projectData); // Debug
+            console.log('Parsed project data:', projectData.titulo); // Debug
+            console.log('About to call openProjectModal'); // Debug
             openProjectModal(projectData);
           } catch (e) {
             console.error('Error parsing project data:', e);
@@ -347,6 +382,36 @@ import ImageCarrusel from './ImageCarrusel.astro';
         console.log(`Analytics: ${linkType} - ${projectName}`);
       }
     });
+    
+    // Event listener adicional específico para botones "Ver más detalles" como backup
+    const viewMoreButtons = document.querySelectorAll('.view-more-btn');
+    console.log('Found view-more buttons:', viewMoreButtons.length); // Debug
+    
+    viewMoreButtons.forEach((button, index) => {
+      console.log(`Setting up button ${index}:`, button); // Debug
+      button.addEventListener('click', (e) => {
+        console.log(`Direct button ${index} clicked`); // Debug
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const projectDataStr = button.getAttribute('data-project');
+        if (projectDataStr) {
+          try {
+            const projectData = JSON.parse(projectDataStr);
+            console.log('Direct button - opening modal for:', projectData.titulo); // Debug
+            openProjectModal(projectData);
+          } catch (error) {
+            console.error('Direct button - error parsing data:', error);
+          }
+        }
+      });
+    });
+    
+    // Verificación final de configuración
+    console.log('Projects script setup complete'); // Debug
+    console.log('Modal manager available:', !!window.modalManager); // Debug
+    console.log('Project modal element:', !!projectModal); // Debug
+    console.log('View more buttons found:', document.querySelectorAll('.view-more-btn').length); // Debug
   });
 </script>
 

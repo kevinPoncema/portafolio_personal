@@ -95,7 +95,12 @@
     {
       "titulo": "Link In Bio App",
       "descripcion": "Un gestor integral de enlaces que permite a los usuarios crear y administrar múltiples perfiles personalizados. Los usuarios pueden agregar enlaces a sus redes sociales y sitios web favoritos, además de personalizar completamente la experiencia visual con temas dinámicos que incluyen colores y fondos personalizables. La aplicación genera una página única y compartible donde todos los enlaces están centralizados, facilitando el compartir la colección completa en redes sociales y otros canales con un único enlace.",
-      "imagenes": ["/images/projects/link-in-bio.png"],
+      "imagenes": [
+        "/images/projects/link-in-bio/link-in-bio.webp",
+        "/images/projects/link-in-bio/link-in-bio2.webp",
+        "/images/projects/link-in-bio/link-in-bio3.webp",
+        "/images/projects/link-in-bio/link-in-bio4.webp"
+      ],
       "tecnologias": ["Laravel", "PHP", "React", "Docker"],
       "github": "https://github.com/kevinPoncema/link-in-bio-app",
       "produccion": "https://link-in-bio.kevinponcedev.xyz/"

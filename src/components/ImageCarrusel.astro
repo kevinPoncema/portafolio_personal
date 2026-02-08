@@ -1,0 +1,177 @@
+---
+// Archivo: src/components/ImageCarrusel.astro
+export interface Props {
+  imagenes: string[];
+  altText: string;
+}
+
+const { imagenes, altText } = Astro.props;
+---
+
+<div class="image-carousel-container relative">
+  <div class="carousel-wrapper relative overflow-hidden rounded-md">
+    <div class="carousel-images flex transition-transform duration-300 ease-in-out">
+      {imagenes.map((imagen, index) => (
+        <div class="carousel-slide w-full flex-shrink-0" key={index}>
+          <img 
+            src={imagen} 
+            alt={`${altText} - Imagen ${index + 1}`} 
+            class="w-full h-48 object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+    
+    <!-- Controles de navegación -->
+    {imagenes.length > 1 && (
+      <>
+        <button 
+          class="carousel-btn carousel-btn-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200"
+          aria-label="Imagen anterior"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        
+        <button 
+          class="carousel-btn carousel-btn-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200"
+          aria-label="Imagen siguiente"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </>
+    )}
+  </div>
+  
+  <!-- Indicadores -->
+  {imagenes.length > 1 && (
+    <div class="carousel-indicators flex justify-center space-x-2 mt-3">
+      {imagenes.map((_, index) => (
+        <button 
+          class="indicator-dot w-2 h-2 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors duration-200"
+          data-index={index}
+          aria-label={`Ir a imagen ${index + 1}`}
+          key={index}
+        />
+      ))}
+    </div>
+  )}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.image-carousel-container');
+    
+    carousels.forEach((carouselContainer) => {
+      const images = carouselContainer.querySelector('.carousel-images');
+      const prevBtn = carouselContainer.querySelector('.carousel-btn-prev');
+      const nextBtn = carouselContainer.querySelector('.carousel-btn-next');
+      const indicators = carouselContainer.querySelectorAll('.indicator-dot');
+      
+      if (!images) return;
+      
+      let currentIndex = 0;
+      const totalImages = indicators.length;
+      
+      function updateCarousel() {
+        const translateX = -currentIndex * 100;
+        images.style.transform = `translateX(${translateX}%)`;
+        
+        // Actualizar indicadores
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle('bg-blue-500', index === currentIndex);
+          indicator.classList.toggle('bg-gray-300', index !== currentIndex);
+        });
+      }
+      
+      function goToNext() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateCarousel();
+      }
+      
+      function goToPrev() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateCarousel();
+      }
+      
+      function goToIndex(index) {
+        currentIndex = index;
+        updateCarousel();
+      }
+      
+      // Event listeners
+      if (nextBtn) {
+        nextBtn.addEventListener('click', goToNext);
+      }
+      
+      if (prevBtn) {
+        prevBtn.addEventListener('click', goToPrev);
+      }
+      
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => goToIndex(index));
+      });
+      
+      // Soporte para teclado
+      carouselContainer.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          goToPrev();
+        } else if (e.key === 'ArrowRight') {
+          goToNext();
+        }
+      });
+      
+      // Inicializar
+      updateCarousel();
+    });
+  });
+</script>
+
+<style>
+  .image-carousel-container {
+    width: 100%;
+  }
+  
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    height: 192px; /* h-48 equivalent */
+  }
+  
+  .carousel-images {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-btn {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+  }
+  
+  .carousel-wrapper:hover .carousel-btn {
+    opacity: 1;
+  }
+  
+  .indicator-dot.bg-blue-500 {
+    background-color: #3b82f6;
+  }
+  
+  .indicator-dot:hover {
+    transform: scale(1.2);
+  }
+  
+  .carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+</style>

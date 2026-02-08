@@ -19,7 +19,7 @@ import ImageCarrusel from './ImageCarrusel.astro';
               <p class="text-gray-700 mb-4 flex-grow text-sm leading-relaxed description-text">{proyecto.descripcion}</p>
               <button 
                 class="view-more-btn text-blue-600 hover:text-blue-800 text-sm font-medium mb-4 self-start transition-colors duration-200"
-                data-project='{JSON.stringify(proyecto)}'
+                data-project={JSON.stringify(proyecto)}
               >
                 Ver más detalles →
               </button>
@@ -389,12 +389,17 @@ import ImageCarrusel from './ImageCarrusel.astro';
     
     viewMoreButtons.forEach((button, index) => {
       console.log(`Setting up button ${index}:`, button); // Debug
+      const projectDataStr = button.getAttribute('data-project');
+      console.log(`Button ${index} data-project:`, projectDataStr); // Debug
+      
       button.addEventListener('click', (e) => {
         console.log(`Direct button ${index} clicked`); // Debug
         e.preventDefault();
         e.stopPropagation();
         
         const projectDataStr = button.getAttribute('data-project');
+        console.log(`Raw data from attribute:`, projectDataStr); // Debug
+        
         if (projectDataStr) {
           try {
             const projectData = JSON.parse(projectDataStr);
@@ -402,7 +407,10 @@ import ImageCarrusel from './ImageCarrusel.astro';
             openProjectModal(projectData);
           } catch (error) {
             console.error('Direct button - error parsing data:', error);
+            console.error('Problematic data:', projectDataStr);
           }
+        } else {
+          console.error('No data-project attribute found');
         }
       });
     });

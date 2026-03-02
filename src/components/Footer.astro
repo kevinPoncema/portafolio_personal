@@ -7,39 +7,50 @@ const githubUrl = contactos[0].url;
 const gmailUrl = contactos[1].url;
 const linkedin = contactos[2].url;
 ---
+
 <!-- Este es el bloque de HTML con la lógica de Astro -->
 <footer class="bg-blue-800 py-3 w-full">
-  <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-white">
-    <div class="flex flex-wrap justify-center text-center md:text-left mb-4 md:mb-0 space-x-4 md:space-x-6">
+  <div
+    class="container mx-auto flex flex-col md:flex-row justify-between items-center text-white"
+  >
+    <div
+      class="flex flex-wrap justify-center text-center md:text-left mb-4 md:mb-0 space-x-4 md:space-x-6"
+    >
       <div class="w-1/2 md:w-auto mb-2">
-        <a href="#inicio" class="hover:text-blue-300 block">Inicio</a>
+        <a href="/#inicio" class="hover:text-blue-300 block">Inicio</a>
       </div>
       <div class="w-1/2 md:w-auto mb-2">
-        <a href="#habilidades" class="hover:text-blue-300 block">Habilidades</a>
+        <a href="/#habilidades" class="hover:text-blue-300 block">Habilidades</a
+        >
       </div>
       <div class="w-1/2 md:w-auto mb-2">
-        <a href="#proyectos" class="hover:text-blue-300 block">Proyectos</a>
+        <a href="/#proyectos" class="hover:text-blue-300 block">Proyectos</a>
       </div>
       <div class="w-1/2 md:w-auto mb-2">
-        <a href="#experiencia" class="hover:text-blue-300 block">Experiencia</a>
+        <a href="/#experiencia" class="hover:text-blue-300 block">Experiencia</a
+        >
       </div>
       <div class="w-1/2 md:w-auto mb-2">
-        <a href="#formacion" class="hover:text-blue-300 block">Formación</a>
+        <a href="/#formacion" class="hover:text-blue-300 block">Formación</a>
       </div>
       <div class="w-1/2 md:w-auto mb-2">
-        <a href="#contacto" class="hover:text-blue-300 block">Contacto</a>
+        <a href="/#contacto" class="hover:text-blue-300 block">Contacto</a>
       </div>
     </div>
     <div class="flex items-center space-x-4">
       <!-- Uso de la variable `githubUrl` como propiedad `href` -->
-      <a href={githubUrl} target="_blank" class="text-white hover:text-blue-300">
-        <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6">
+      <a
+        href={githubUrl}
+        target="_blank"
+        class="text-white hover:text-blue-300"
+      >
+        <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6" />
       </a>
       <a href={gmailUrl} target="_blank" class="text-white hover:text-blue-300">
-        <img src="icons/gemail.svg" alt="Gmail" class="w-6 h-6">
+        <img src="icons/gemail.svg" alt="Gmail" class="w-6 h-6" />
       </a>
-       <a href={linkedin} target="_blank" class="text-white hover:text-blue-300">
-        <img src="/icons/linkedink.svg" alt="linkedink" class="w-6 h-6">
+      <a href={linkedin} target="_blank" class="text-white hover:text-blue-300">
+        <img src="/icons/linkedink.svg" alt="linkedink" class="w-6 h-6" />
       </a>
     </div>
     <div class="text-white text-xl font-bold flex items-center mt-4 md:mt-0">
@@ -48,29 +59,28 @@ const linkedin = contactos[2].url;
   </div>
 </footer>
 
-
 <style>
-footer {
-  background-color: #1e3a8a;
-  bottom: 0;
-  width: 100%;
-  padding: 1.5rem 0;
-}
-.container {
-  flex-direction: column;
-  align-items: center;
-}
-.flex-col {
-  display: flex;
-  flex-wrap: wrap;
-}
-.flex.items-center {
-  margin-top: 1rem;
-}
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-    justify-content: space-between;
+  footer {
+    background-color: #1e3a8a;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem 0;
   }
-}
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .flex-col {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .flex.items-center {
+    margin-top: 1rem;
+  }
+  @media (min-width: 768px) {
+    .container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 </style>

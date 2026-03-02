@@ -1,0 +1,242 @@
+---
+import { getCollection } from "astro:content";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = new Intl.DateTimeFormat("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+}).format(post.data.pubDate);
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={post.data.description} />
+        <title>{post.data.title} | Blog - KevinPonceDev</title>
+    </head>
+
+    <body class="bg-gray-50 min-h-screen">
+        <Header />
+
+        <main class="pt-20 pb-16">
+            <!-- Hero del post -->
+            <div class="bg-blue-800 text-white py-16">
+                <div class="container mx-auto px-4 max-w-3xl">
+                    <a
+                        href="/blog"
+                        class="inline-flex items-center gap-2 text-blue-200 hover:text-white transition-colors mb-8 text-sm font-medium"
+                    >
+                        <svg
+                            width="16"
+                            height="16"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Volver al Blog
+                    </a>
+
+                    <!-- Tags -->
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        {
+                            post.data.tags.map((tag) => (
+                                <span class="bg-blue-700 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full">
+                                    #{tag}
+                                </span>
+                            ))
+                        }
+                    </div>
+
+                    <h1
+                        class="text-3xl md:text-4xl font-bold leading-tight mb-4"
+                    >
+                        {post.data.title}
+                    </h1>
+                    <p class="text-blue-200 text-lg mb-6">
+                        {post.data.description}
+                    </p>
+
+                    <div class="flex items-center gap-3 text-sm text-blue-300">
+                        <span class="flex items-center gap-1">
+                            <svg
+                                width="14"
+                                height="14"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                            {formattedDate}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido del post -->
+            <article class="container mx-auto px-4 max-w-3xl py-12">
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12 prose-content"
+                >
+                    <Content />
+                </div>
+
+                <!-- Navegación inferior -->
+                <div class="mt-10 text-center">
+                    <a
+                        href="/blog"
+                        class="inline-flex items-center gap-2 bg-blue-800 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200"
+                    >
+                        <svg
+                            width="16"
+                            height="16"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Ver todos los posts
+                    </a>
+                </div>
+            </article>
+        </main>
+
+        <Footer />
+        <style>
+            /* Estilos para el contenido Markdown */
+            .prose-content :global(h2) {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #1e3a8a;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid #e0e7ff;
+            }
+
+            .prose-content :global(h3) {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #1e40af;
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .prose-content :global(p) {
+                color: #374151;
+                line-height: 1.8;
+                margin-bottom: 1.25rem;
+            }
+
+            .prose-content :global(ul),
+            .prose-content :global(ol) {
+                margin: 1rem 0 1.25rem 1.5rem;
+                color: #374151;
+                line-height: 1.8;
+            }
+
+            .prose-content :global(ul) {
+                list-style-type: disc;
+            }
+
+            .prose-content :global(ol) {
+                list-style-type: decimal;
+            }
+
+            .prose-content :global(li) {
+                margin-bottom: 0.4rem;
+            }
+
+            .prose-content :global(strong) {
+                color: #1e3a8a;
+                font-weight: 700;
+            }
+
+            .prose-content :global(em) {
+                color: #4b5563;
+            }
+
+            .prose-content :global(code) {
+                background: #f1f5f9;
+                color: #1e3a8a;
+                padding: 0.15rem 0.4rem;
+                border-radius: 0.3rem;
+                font-size: 0.875rem;
+                font-family: "Courier New", monospace;
+            }
+
+            .prose-content :global(pre) {
+                background: #1e293b;
+                color: #e2e8f0;
+                padding: 1.25rem;
+                border-radius: 0.75rem;
+                overflow-x: auto;
+                margin: 1.5rem 0;
+                font-size: 0.875rem;
+                line-height: 1.7;
+            }
+
+            .prose-content :global(pre code) {
+                background: transparent;
+                color: inherit;
+                padding: 0;
+            }
+
+            .prose-content :global(blockquote) {
+                border-left: 4px solid #3b82f6;
+                background: #eff6ff;
+                padding: 1rem 1.25rem;
+                border-radius: 0 0.5rem 0.5rem 0;
+                margin: 1.5rem 0;
+                color: #1e40af;
+                font-style: italic;
+            }
+
+            .prose-content :global(hr) {
+                border: none;
+                border-top: 2px solid #e5e7eb;
+                margin: 2.5rem 0;
+            }
+
+            .prose-content :global(a) {
+                color: #2563eb;
+                text-decoration: underline;
+            }
+
+            .prose-content :global(a:hover) {
+                color: #1d4ed8;
+            }
+        </style>
+    </body>
+</html>

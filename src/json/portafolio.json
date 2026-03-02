@@ -2,7 +2,7 @@
   "sobre_mi": {
     "titulo": "Desarrollador Web - Backend Focused",
     "nombre": "Kevin Ponce",
-    "descripcion": "Desarrollador web especializado en backend con enfoque en  APIs RESTful. Actualmente estudio Ingeniería Informática y trabajo con tecnologías como Laravel y Node.js. Mi experiencia combina desarrollo robusto en el servidor con interfaces funcionales en el cliente, permitiéndome entregar soluciones completas y bien optimizadas. Apasionado por escribir código limpio y mantener buenas prácticas de desarrollo.",
+    "descripcion": "Desarrollador web especializado en backend con enfoque en APIs RESTful. Actualmente curso Ingeniería Informática en la Universidad Europea del Atlántico y colaboro en el desarrollo de soluciones backend con Laravel y Node.js. Mi enfoque se centra en la arquitectura de servidores, la optimización de procesos y el desarrollo de APIs robustas. Apasionado por escribir código limpio y mantener buenas prácticas de desarrollo.",
     "github": "https://github.com/kevinPoncema/",
     "email": "https://github.com/kevinPoncema/",
     "img_src": "/images/foto_fea2.jpg"
@@ -109,27 +109,27 @@
   "experiencia": [
     {
       "date": "Febrero 2025 - Actualidad",
-      "title": "Desarrollador Backend",
+      "title": "Colaborador en Desarrollo Backend - Programa PROFER",
       "company": "Funiber",
-      "description": "Desempeño el rol de desarrollador backend en el equipo fenix de Funiber como parte del programa formativo PROFER. Trabajo con Laravel para el desarrollo y mantenimiento de aplicaciones backend, contribuyendo al crecimiento y mejora continua de los sistemas  de la institución."
+      "description": "Colaboro en el desarrollo de soluciones backend dentro del equipo Fénix de Funiber, como parte del Programa PROFER (Programa de Formación de la Universidad Europea del Atlántico). Participo en el desarrollo y mantenimiento de aplicaciones con Laravel, contribuyendo al crecimiento y mejora continua de los sistemas de la institución mientras completo mi formación académica."
     },
     {
       "date": "Octubre 2024 - Diciembre 2024",
-      "title": "Desarrollador de Software (Pasantía)",
+      "title": "Pasantía Técnica en Desarrollo de Software",
       "company": "Box HN",
-      "description": "Durante mi pasantía, desarrollé una API utilizando PHP y el framework CodeIgniter. La API tenía como objetivo estandarizar la gestión del uso de inteligencia artificial en los productos de la empresa, integrando varios modelos de IA gestionados mediante Ollama en un contenedor Docker. Me encargué de configurar el contenedor, crear la API para interactuar con Ollama e implementar un sistema de créditos para el uso de los modelos de IA."
+      "description": "Durante esta pasantía formativa, colaboré en el desarrollo de una API utilizando PHP y el framework CodeIgniter. El proyecto tenía como objetivo estandarizar la gestión del uso de inteligencia artificial en los productos de la empresa, integrando varios modelos de IA gestionados mediante Ollama en un contenedor Docker. Participé en la configuración del contenedor, creación de la API para interactuar con Ollama e implementación de un sistema de créditos para el uso de los modelos de IA."
     },
     {
       "date": "Marzo 2024 - Julio 2024",
-      "title": "Automatización de Cierre de Cajeros",
+      "title": "Proyecto Técnico de Automatización",
       "company": "Metrocinema Honduras",
-      "description": "Lideré el proyecto de automatización del proceso de cierre de cajeros, reduciendo el tiempo necesario para el cierre de caja y minimizando errores manuales. Implementé una solución basada en software que facilitó la conciliación diaria de las transacciones de los cajeros de las salas de cine."
+      "description": "Desarrollé un proyecto de automatización del proceso de cierre de cajeros, reduciendo el tiempo necesario para el cierre de caja y minimizando errores manuales. Implementé una solución basada en software que facilitó la conciliación diaria de las transacciones de los cajeros de las salas de cine."
     },
     {
       "date": "Diciembre 2022 - Enero 2023",
-      "title": "Desarrollador de Sistema de Inventario y Facturación",
+      "title": "Proyecto Técnico - Sistema de Inventario y Facturación",
       "company": "Depósito Ponce",
-      "description": "Desarrollé un sistema de facturación e inventario que permitió al negocio administrar de manera eficiente sus inventarios de bebidas y emitir recibos para sus clientes. El sistema también generaba reportes en PDF del stock de inventario, los productos más vendidos y las ganancias diarias y mensuales. Utilicé una arquitectura modular, dividiendo el proyecto en varios mini módulos independientes para mejorar la organización y mantenimiento del sistema."
+      "description": "Desarrollé como proyecto técnico un sistema de facturación e inventario que permitió al negocio administrar de manera eficiente sus inventarios de bebidas y emitir recibos para sus clientes. El sistema también generaba reportes en PDF del stock de inventario, los productos más vendidos y las ganancias diarias y mensuales. Utilicé una arquitectura modular, dividiendo el proyecto en varios mini módulos independientes para mejorar la organización y mantenimiento del sistema."
     }
   ],
   "formacion": {

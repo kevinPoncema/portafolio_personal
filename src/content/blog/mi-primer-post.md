@@ -1,7 +1,7 @@
 ---
 title: "Cómo empecé en el desarrollo web"
 description: "Un viaje personal desde cero líneas de código hasta construir aplicaciones completas. Cuento mi historia, los recursos que usé y los errores que más me enseñaron."
-pubDate: 2026-01-15
+pubDate: 2025-09-27
 tags: ["desarrollo web", "carrera", "frontend"]
 image: "/blog/post1.jpg"
 ---

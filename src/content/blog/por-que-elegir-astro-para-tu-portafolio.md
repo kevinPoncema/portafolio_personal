@@ -1,7 +1,7 @@
 ---
 title: "¿Por qué elegí Astro para mi portafolio?"
 description: "Astro es un framework moderno que genera sitios ultrarrápidos con cero JavaScript por defecto. Te cuento por qué lo elegí, qué ventajas tiene y cuándo tiene sentido usarlo."
-pubDate: 2026-02-20
+pubDate: 2025-10-20
 tags: ["astro", "frontend", "rendimiento"]
 image: "/blog/post3.jpg"
 ---

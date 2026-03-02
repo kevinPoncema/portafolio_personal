@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 const posts = await getCollection('blog');
 const latestPosts = posts
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 3);
+  .slice(0, 5);
 ---
 
 <section id="blog" class="w-full bg-gray-100 py-16">

@@ -64,31 +64,59 @@
         "/images/projects/lovelink/lovelink3.webp",
         "/images/projects/lovelink/lovelink4.webp"
       ],
-      "tecnologias": ["Laravel 12", "Vue 3", "Inertia.js", "Cloud Storage", "Docker"],
+      "tecnologias": [
+        "Laravel 12",
+        "Vue 3",
+        "Inertia.js",
+        "Cloud Storage",
+        "Docker"
+      ],
       "github": "https://github.com/kevinPoncema/LoveLink/tree/develop",
       "produccion": "https://lovelink.kevinponcedev.xyz/"
     },
     {
       "titulo": "Note App",
       "descripcion": "Este proyecto personal es una aplicación web diseñada para gestionar notas y listas de tareas de forma intuitiva y eficiente. Los usuarios pueden crear, editar y eliminar notas con títulos, contenido detallado y fechas, así como gestionar listas de tareas donde cada elemento puede marcarse como completado o pendiente. Además, ofrece la funcionalidad de crear categorías personalizadas, como «Trabajo», «Personal» o «Estudios», permitiendo organizar y filtrar fácilmente las notas y tareas según sus necesidades.",
-      "imagenes": ["/images/projects/notas.webp"],
-      "tecnologias": ["JavaScript", "Express", "patrón MVC", "EJS"],
+      "imagenes": [
+        "/images/projects/notas.webp"
+      ],
+      "tecnologias": [
+        "JavaScript",
+        "Express",
+        "patrón MVC",
+        "EJS"
+      ],
       "github": "https://github.com/kevinPoncema/note-app",
       "produccion": "https://notas.kevinponcedev.xyz/"
     },
     {
       "titulo": "Portafolio Personal",
       "descripcion": "Este portafolio personal es una ventana a mi trayectoria profesional, donde muestro mi experiencia laboral, habilidades y proyectos destacados. Cada sección está diseñada para resaltar mi formación, mis logros en el ámbito freelance y mis proyectos más representativos, demostrando mis capacidades como desarrollador. Con un diseño limpio y moderno, este portafolio tiene como objetivo transmitir mis habilidades técnicas y creativas de una manera atractiva y accesible.",
-      "imagenes": ["/images/projects/portafolio.webp"],
-      "tecnologias": ["JavaScript", "Astro", "Talwing"],
+      "imagenes": [
+        "/images/projects/portafolio.webp"
+      ],
+      "tecnologias": [
+        "JavaScript",
+        "Astro",
+        "Talwing"
+      ],
       "github": "https://github.com/kevinPoncema/portafolio_personal",
       "produccion": "https://kevinponcedev.xyz/"
     },
     {
       "titulo": "File Converter",
       "descripcion": "Este proyecto es una prueba técnica diseñada para demostrar mis habilidades en backend, mi área de especialización, y en frontend, donde, aunque no es mi fuerte, logré desarrollar una interfaz funcional y efectiva.El sistema permite la conversión de archivos entre múltiples formatos, utilizando una API robusta desarrollada en Node.js con librerías especializadas como Pandoc para conversiones avanzadas en entornos Linux. La API está documentada con Swagger para facilitar su exploración y pruebas.En el frontend, implementé una interfaz con Vue 3 y TypeScript, estilizada con TailwindCSS,",
-      "imagenes": ["/images/projects/file_converter.webp"],
-      "tecnologias": ["JavaScript", "Express", "Swagger", "Vue 3", "TailwindCSS", "TypeScript"],
+      "imagenes": [
+        "/images/projects/file_converter.webp"
+      ],
+      "tecnologias": [
+        "JavaScript",
+        "Express",
+        "Swagger",
+        "Vue 3",
+        "TailwindCSS",
+        "TypeScript"
+      ],
       "github": "https://github.com/kevinPoncema/conversor_archivos",
       "produccion": "https://file-converter.kevinponcedev.xyz/"
     },
@@ -101,14 +129,19 @@
         "/images/projects/link-in-bio/link-in-bio3.webp",
         "/images/projects/link-in-bio/link-in-bio4.webp"
       ],
-      "tecnologias": ["Laravel", "PHP", "React", "Docker"],
+      "tecnologias": [
+        "Laravel",
+        "PHP",
+        "React",
+        "Docker"
+      ],
       "github": "https://github.com/kevinPoncema/link-in-bio-app",
       "produccion": "https://link-in-bio.kevinponcedev.xyz/"
     }
   ],
   "experiencia": [
     {
-      "date": "Febrero 2025 - Actualidad",
+      "date": "Febrero 2025 - Junio 2026",
       "title": "Colaborador en Desarrollo Backend - Programa PROFER",
       "company": "Funiber",
       "description": "Colaboro en el desarrollo de soluciones backend dentro del equipo Fénix de Funiber, como parte del Programa PROFER (Programa de Formación de la Universidad Europea del Atlántico). Participo en el desarrollo y mantenimiento de aplicaciones con Laravel, contribuyendo al crecimiento y mejora continua de los sistemas de la institución mientras completo mi formación académica."

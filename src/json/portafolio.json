@@ -5,41 +5,41 @@
     "descripcion": "Desarrollador web especializado en backend con enfoque en APIs RESTful. Actualmente curso Ingeniería Informática en la Universidad Europea del Atlántico y colaboro en el desarrollo de soluciones backend con Laravel y Node.js. Mi enfoque se centra en la arquitectura de servidores, la optimización de procesos y el desarrollo de APIs robustas. Apasionado por escribir código limpio y mantener buenas prácticas de desarrollo.",
     "github": "https://github.com/kevinPoncema/",
     "email": "https://github.com/kevinPoncema/",
-    "img_src": "/images/foto_fea2.jpg"
+    "img_src": "images/foto_fea2.jpg"
   },
   "habilidades": {
     "tecnologias": [
       {
         "nombre": "Laravel",
-        "ruta": "/icons/laravel.svg"
+        "ruta": "icons/laravel.svg"
       },
       {
         "nombre": "JavaScript",
-        "ruta": "/icons/javascript.svg"
+        "ruta": "icons/javascript.svg"
       },
       {
         "nombre": "TypeScript",
-        "ruta": "/icons/typescript.svg"
+        "ruta": "icons/typescript.svg"
       },
       {
         "nombre": "PHP",
-        "ruta": "/icons/php.svg"
+        "ruta": "icons/php.svg"
       },
       {
         "nombre": "Express",
-        "ruta": "/icons/express.svg"
+        "ruta": "icons/express.svg"
       },
       {
         "nombre": "MySQL",
-        "ruta": "/icons/mysql.svg"
+        "ruta": "icons/mysql.svg"
       },
       {
         "nombre": "GitHub",
-        "ruta": "/icons/github.svg"
+        "ruta": "icons/github.svg"
       },
       {
         "nombre": "Python",
-        "ruta": "/icons/python.svg"
+        "ruta": "icons/python.svg"
       }
     ],
     "blandas": [
@@ -59,10 +59,10 @@
       "titulo": "LoveLink",
       "descripcion": "Plataforma web centrada en la personalización visual total, diseñada para crear desde landing pages conmemorativas hasta invitaciones interactivas virales (estilo 'Sí/No') para cualquier ocasión. Su principal fortaleza radica en la libertad creativa: los usuarios pueden transformar completamente la estética de ambos módulos, subiendo sus propias imágenes de fondo, definiendo paletas de colores y gestionando galerías multimedia personales. Gracias a una arquitectura sólida en Laravel y Vue con almacenamiento en la nube, el sistema asegura que cada invitación y cada historia sean visualmente únicas y estén optimizadas para compartir.",
       "imagenes": [
-        "/images/projects/lovelink/lovlelink1.webp",
-        "/images/projects/lovelink/lovlink2.webp",
-        "/images/projects/lovelink/lovelink3.webp",
-        "/images/projects/lovelink/lovelink4.webp"
+        "images/projects/lovelink/lovlelink1.webp",
+        "images/projects/lovelink/lovlink2.webp",
+        "images/projects/lovelink/lovelink3.webp",
+        "images/projects/lovelink/lovelink4.webp"
       ],
       "tecnologias": [
         "Laravel 12",
@@ -78,7 +78,7 @@
       "titulo": "Note App",
       "descripcion": "Este proyecto personal es una aplicación web diseñada para gestionar notas y listas de tareas de forma intuitiva y eficiente. Los usuarios pueden crear, editar y eliminar notas con títulos, contenido detallado y fechas, así como gestionar listas de tareas donde cada elemento puede marcarse como completado o pendiente. Además, ofrece la funcionalidad de crear categorías personalizadas, como «Trabajo», «Personal» o «Estudios», permitiendo organizar y filtrar fácilmente las notas y tareas según sus necesidades.",
       "imagenes": [
-        "/images/projects/notas.webp"
+        "images/projects/notas.webp"
       ],
       "tecnologias": [
         "JavaScript",
@@ -93,7 +93,7 @@
       "titulo": "Portafolio Personal",
       "descripcion": "Este portafolio personal es una ventana a mi trayectoria profesional, donde muestro mi experiencia laboral, habilidades y proyectos destacados. Cada sección está diseñada para resaltar mi formación, mis logros en el ámbito freelance y mis proyectos más representativos, demostrando mis capacidades como desarrollador. Con un diseño limpio y moderno, este portafolio tiene como objetivo transmitir mis habilidades técnicas y creativas de una manera atractiva y accesible.",
       "imagenes": [
-        "/images/projects/portafolio.webp"
+        "images/projects/portafolio.webp"
       ],
       "tecnologias": [
         "JavaScript",
@@ -107,7 +107,7 @@
       "titulo": "File Converter",
       "descripcion": "Este proyecto es una prueba técnica diseñada para demostrar mis habilidades en backend, mi área de especialización, y en frontend, donde, aunque no es mi fuerte, logré desarrollar una interfaz funcional y efectiva.El sistema permite la conversión de archivos entre múltiples formatos, utilizando una API robusta desarrollada en Node.js con librerías especializadas como Pandoc para conversiones avanzadas en entornos Linux. La API está documentada con Swagger para facilitar su exploración y pruebas.En el frontend, implementé una interfaz con Vue 3 y TypeScript, estilizada con TailwindCSS,",
       "imagenes": [
-        "/images/projects/file_converter.webp"
+        "images/projects/file_converter.webp"
       ],
       "tecnologias": [
         "JavaScript",
@@ -124,10 +124,10 @@
       "titulo": "Link In Bio App",
       "descripcion": "Un gestor integral de enlaces que permite a los usuarios crear y administrar múltiples perfiles personalizados. Los usuarios pueden agregar enlaces a sus redes sociales y sitios web favoritos, además de personalizar completamente la experiencia visual con temas dinámicos que incluyen colores y fondos personalizables. La aplicación genera una página única y compartible donde todos los enlaces están centralizados, facilitando el compartir la colección completa en redes sociales y otros canales con un único enlace.",
       "imagenes": [
-        "/images/projects/link-in-bio/link-in-bio.webp",
-        "/images/projects/link-in-bio/link-in-bio2.webp",
-        "/images/projects/link-in-bio/link-in-bio3.webp",
-        "/images/projects/link-in-bio/link-in-bio4.webp"
+        "images/projects/link-in-bio/link-in-bio.webp",
+        "images/projects/link-in-bio/link-in-bio2.webp",
+        "images/projects/link-in-bio/link-in-bio3.webp",
+        "images/projects/link-in-bio/link-in-bio4.webp"
       ],
       "tecnologias": [
         "Laravel",
@@ -184,7 +184,7 @@
       {
         "titulo": "Scrum",
         "plataforma": "Scrum Foundation",
-        "link": "/Scrum.pdf"
+        "link": "Scrum.pdf"
       },
       {
         "titulo": "Colaboración con Git",
@@ -210,15 +210,15 @@
   },
   "contactos": [
     {
-      "icon": "/icons/github.svg",
+      "icon": "icons/github.svg",
       "url": "https://github.com/kevinPoncema"
     },
     {
-      "icon": "/icons/gemail.svg",
+      "icon": "icons/gemail.svg",
       "url": "mailto:ps12kevin@gmail.com"
     },
     {
-      "icon": "/icons/linkedink.svg",
+      "icon": "icons/linkedink.svg",
       "url": "https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/"
     }
   ]

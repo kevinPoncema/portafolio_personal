@@ -75,21 +75,6 @@
       "produccion": "https://lovelink.kevinponcedev.xyz/"
     },
     {
-      "titulo": "Note App",
-      "descripcion": "Este proyecto personal es una aplicación web diseñada para gestionar notas y listas de tareas de forma intuitiva y eficiente. Los usuarios pueden crear, editar y eliminar notas con títulos, contenido detallado y fechas, así como gestionar listas de tareas donde cada elemento puede marcarse como completado o pendiente. Además, ofrece la funcionalidad de crear categorías personalizadas, como «Trabajo», «Personal» o «Estudios», permitiendo organizar y filtrar fácilmente las notas y tareas según sus necesidades.",
-      "imagenes": [
-        "images/projects/notas.webp"
-      ],
-      "tecnologias": [
-        "JavaScript",
-        "Express",
-        "patrón MVC",
-        "EJS"
-      ],
-      "github": "https://github.com/kevinPoncema/note-app",
-      "produccion": "https://notas.kevinponcedev.xyz/"
-    },
-    {
       "titulo": "Portafolio Personal",
       "descripcion": "Este portafolio personal es una ventana a mi trayectoria profesional, donde muestro mi experiencia laboral, habilidades y proyectos destacados. Cada sección está diseñada para resaltar mi formación, mis logros en el ámbito freelance y mis proyectos más representativos, demostrando mis capacidades como desarrollador. Con un diseño limpio y moderno, este portafolio tiene como objetivo transmitir mis habilidades técnicas y creativas de una manera atractiva y accesible.",
       "imagenes": [

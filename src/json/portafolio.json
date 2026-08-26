@@ -75,6 +75,26 @@
       "produccion": "https://lovelink.kevinponcedev.xyz/"
     },
     {
+      "titulo": "TicketRush",
+      "descripcion": "Motor de ticketing B2B multitenant con marca blanca, diseñado para gestionar alta concurrencia mediante colas en Redis, procesamiento de pagos con Stripe y emisión de tickets QR con firma criptográfica.",
+      "imagenes": [
+        "images/projects/ticketRush/desboard-principal.png",
+        "images/projects/ticketRush/tienda-evento.png",
+        "images/projects/ticketRush/payment-view.png",
+        "images/projects/ticketRush/payment-succes.png"
+      ],
+      "tecnologias": [
+        "NestJS",
+        "Vue 3",
+        "PostgreSQL",
+        "Redis (BullMQ)",
+        "Stripe",
+        "Docker"
+      ],
+      "github": "https://github.com/kevinPoncema/TicketRush",
+      "produccion": "https://vantage.kevinponcedev.xyz/"
+    },
+    {
       "titulo": "Portafolio Personal",
       "descripcion": "Este portafolio personal es una ventana a mi trayectoria profesional, donde muestro mi experiencia laboral, habilidades y proyectos destacados. Cada sección está diseñada para resaltar mi formación, mis logros en el ámbito freelance y mis proyectos más representativos, demostrando mis capacidades como desarrollador. Con un diseño limpio y moderno, este portafolio tiene como objetivo transmitir mis habilidades técnicas y creativas de una manera atractiva y accesible.",
       "imagenes": [

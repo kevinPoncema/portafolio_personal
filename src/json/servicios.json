@@ -1,32 +1,32 @@
 {
   "meta": {
-    "titulo": "Kevin Ponce | Desarrollo de Software, Automatizaciones y Presencia Digital para Empresas",
-    "descripcion": "Ingeniería de software a medida, automatización de procesos y desarrollo web ultrarrápido sin plantillas. Escalabilidad, seguridad y rentabilidad para tu negocio.",
+    "titulo": "Kevin Ponce | Páginas Web, Sistemas a Medida, Automatizaciones y Asesoría Informática",
+    "descripcion": "Creo páginas web rápidas y adaptadas a móviles, sistemas a medida y automatizaciones de tareas. Asesoría informática en software y hardware con trato directo y sin ataduras.",
     "og_image": "/images/foto_fea2.jpg"
   },
   "hero": {
-    "badge": "Desarrollo de Software & Consultoría Técnica",
-    "titulo_principal": "Construyo software y plataformas web que",
-    "titulo_destacado": "multiplican la rentabilidad de tu negocio",
-    "subtitulo": "Deja atrás las plantillas lentas y los procesos manuales. Desarrollo aplicaciones web de carga instantánea, automatizo flujos de trabajo e integro pasarelas de pago para que tu empresa opere con máxima eficiencia.",
-    "cta_whatsapp_texto": "Cotizar mi proyecto por WhatsApp",
-    "cta_tecnico_texto": "Explorar perfil técnico y proyectos",
+    "badge": "Desarrollo Web & Asesoría Tecnológica",
+    "titulo_principal": "Páginas web y sistemas a medida que",
+    "titulo_destacado": "hacen crecer tu negocio",
+    "subtitulo": "Creo páginas web rápidas, adaptadas a teléfonos móviles y fáciles de usar. Te ayudo a tener una presencia profesional en internet, conectar tus herramientas de trabajo y asesorarte en tecnología (software y hardware) sin complicaciones.",
+    "cta_whatsapp_texto": "Consultar mi proyecto por WhatsApp",
+    "cta_tecnico_texto": "Ver proyectos técnicos y código",
     "estadisticas": [
       {
-        "valor": "< 1s",
-        "etiqueta": "Tiempo de carga (Core Web Vitals)"
-      },
-      {
-        "valor": "95+",
-        "etiqueta": "Puntaje Google PageSpeed garantizado"
+        "valor": "Rápida",
+        "etiqueta": "Carga ágil en móviles y ordenadores"
       },
       {
         "valor": "100%",
-        "etiqueta": "Código propietario sin ataduras"
+        "etiqueta": "Tuyo: dominio y cuentas a tu nombre"
       },
       {
-        "valor": "0%",
-        "etiqueta": "Dependencias o plugins innecesarios"
+        "valor": "Cero",
+        "etiqueta": "Sin cuotas mensuales obligatorias"
+      },
+      {
+        "valor": "Directo",
+        "etiqueta": "Trato personal de principio a fin"
       }
     ]
   },
@@ -35,15 +35,15 @@
       "id": "presencia-digital",
       "icono": "globe",
       "popular": true,
-      "titulo": "Pack Presencia & Autoridad Digital",
-      "subtitulo": "Tu negocio visible, veloz y captando clientes en Google.",
-      "descripcion": "Diseño y desarrollo de sitios web institucionales ultrarrápidos construidos con tecnología moderna (Astro y TailwindCSS), sin las vulnerabilidades ni la lentitud de WordPress. Incluye configuración profesional de tu Perfil de Google Business para dominar las búsquedas locales en Google Maps.",
+      "titulo": "Página Web Profesional & Presencia en Google",
+      "subtitulo": "Haz que tus clientes te encuentren fácil en internet y Google Maps.",
+      "descripcion": "Diseño y creo una página web clara, moderna y rápida para tu negocio, adaptada para que se vea perfecta en cualquier teléfono móvil. Además, optimizo tu ficha en Google Maps para que los clientes locales de tu zona te encuentren y contacten rápidamente.",
       "puntos_clave": [
-        "Desarrollo web a medida con tiempos de carga instantáneos (Astro SSG)",
-        "Configuración, verificación y optimización de Google Business Profile",
-        "Estrategia de posicionamiento local (SEO Local y Google Maps)",
-        "Datos estructurados Schema.org para destacar en Google y motores de IA",
-        "Alojamiento de ultra velocidad en Cloudflare con certificado SSL"
+        "Página web moderna, clara y optimizada para teléfonos móviles",
+        "Configuración y optimización de tu negocio en Google Maps",
+        "Botón directo a tu WhatsApp y formulario de contacto para recibir clientes",
+        "Configuración del dominio web a tu nombre (el registro anual lo pagas directo al proveedor, sin sobrecostes)",
+        "Entrega completa: eres el dueño legal de tu web y de todos sus accesos"
       ],
       "servicio_form_val": "presencia-digital"
     },
@@ -51,15 +51,15 @@
       "id": "automatizaciones",
       "icono": "zap",
       "popular": false,
-      "titulo": "Automatizaciones & Integraciones de Negocio",
-      "subtitulo": "Elimina el trabajo manual repetitivo y los errores humanos.",
-      "descripcion": "Conecto tus sistemas entre sí para que tu negocio funcione en piloto automático. Desde la sincronización de inventario y pedidos hasta el procesamiento de pagos y notificaciones automáticas inmediatas a tus clientes por WhatsApp o correo.",
+      "titulo": "Automatización de Tareas & Procesos",
+      "subtitulo": "Elimina el trabajo manual repetitivo: cualquier flujo que necesites automatizar.",
+      "descripcion": "Conecto las herramientas y aplicaciones que usas a diario para automatizar prácticamente cualquier tarea repetitiva de tu negocio: desde sincronizar pedidos o citas en hojas de cálculo, hasta enviar avisos automáticos por WhatsApp o correo a tus clientes.",
       "puntos_clave": [
-        "Integración de pasarelas de pago seguras (Stripe, Redsys, PayPal, Bizum)",
-        "Sincronización automática de pedidos, facturación e inventario",
-        "Conexión de APIs de terceros y webhooks bidireccionales",
-        "Alertas y confirmaciones automáticas por WhatsApp y correo electrónico",
-        "Reducción de hasta un 70% en horas dedicadas a tareas administrativas"
+        "Avisos y mensajes automáticos por WhatsApp o correo cuando entra un nuevo cliente o solicitud",
+        "Sincronización automática de datos entre tus formularios, correo y hojas de cálculo (Google Sheets / Excel)",
+        "Alertas inmediatas a tu equipo para no dejar esperando a ningún cliente",
+        "Automatización a medida de cualquier tarea repetitiva que te quite tiempo cada día",
+        "Ahorro de horas de trabajo administrativo para que te concentres en atender a tus clientes"
       ],
       "servicio_form_val": "automatizaciones"
     },
@@ -67,15 +67,15 @@
       "id": "software-a-medida",
       "icono": "layers",
       "popular": false,
-      "titulo": "Sistemas & Plataformas Web a Medida",
-      "subtitulo": "Software adaptado exactamente a tus reglas de negocio.",
-      "descripcion": "Cuando las herramientas genéricas del mercado se quedan cortas, desarrollo plataformas a medida: paneles de control para gestionar operaciones, portales para tus clientes, o sistemas de citas y reservas sin pagar comisiones mensuales a plataformas externas.",
+      "titulo": "Sistemas & Aplicaciones Web a Medida",
+      "subtitulo": "Herramientas creadas exactamente para cómo funciona tu negocio.",
+      "descripcion": "Si los programas genéricos no se ajustan a lo que necesitas o te cobran mensualidades caras por cada usuario, desarrollo una solución personalizada: gestión de reservas, paneles para organizar tus clientes o plataformas de control interno.",
       "puntos_clave": [
-        "Dashboards administrativos y paneles de gestión operativa centralizada",
-        "Sistemas de citas, turnos y reservas sin intermediarios ni comisiones",
-        "Arquitectura backend robusta y escalable con Laravel y Node.js",
-        "Bases de datos relacionales seguras (PostgreSQL / MySQL)",
-        "Gestión de roles, permisos de empleados y trazabilidad de operaciones"
+        "Sistemas de citas, reservas o pedidos adaptados a tu forma de trabajar",
+        "Panel privado para administrar tu negocio desde cualquier dispositivo",
+        "Gestión de cuentas y accesos para empleados y encargados",
+        "Asesoría para elegir el servidor adecuado (el coste del alojamiento se paga directo al proveedor, a tu nombre y sin sorpresas)",
+        "Capacitación paso a paso para que tú y tu equipo aprendan a usarlo fácilmente"
       ],
       "servicio_form_val": "software-a-medida"
     },
@@ -83,113 +83,113 @@
       "id": "consultoria-tecnica",
       "icono": "shield",
       "popular": false,
-      "titulo": "Consultoría, Auditoría & Rescate Técnico",
-      "subtitulo": "Diagnóstico profesional para sistemas lentos o vulnerables.",
-      "descripcion": "¿Tienes una web que carga lenta, un sistema con errores constantes o dudas sobre qué tecnología elegir para escalar? Realizo auditorías profundas de rendimiento, seguridad y arquitectura para transformar sistemas deficientes en plataformas estables y rápidas.",
+      "titulo": "Asesoría Informática Integral (Software & Hardware)",
+      "subtitulo": "¿Dudas con la tecnología de tu negocio? Te asesoro tanto en programas como en equipos físicos.",
+      "descripcion": "Un asesor tecnológico de confianza al que puedes llamar o escribir cuando tengas cualquier duda técnica o problema: desde qué ordenadores, portátiles o componentes comprar para tu oficina sin gastar de más, hasta solucionar problemas con programas, webs lentas o copias de seguridad.",
       "puntos_clave": [
-        "Auditoría técnica de Core Web Vitals y optimización PageSpeed",
-        "Blindaje de seguridad, prevención de inyecciones y sanitización de datos",
-        "Migración de servidores y configuración de entornos en la nube",
-        "Modernización de código legacy y refactorización orientada a buenas prácticas",
-        "Informe ejecutivo claro con plan de acción prioritario sin tecnicismos vacíos"
+        "Asesoría en compra de hardware: te recomiendo los mejores ordenadores, pantallas o equipos según tu presupuesto real",
+        "Diagnóstico y solución de problemas en ordenadores lentos, fallos de sistema o programas bloqueados",
+        "Revisión, arreglos y mejoras para tu página web existente o recuperación de accesos perdidos",
+        "Copias de seguridad automáticas para proteger la información importante de tu negocio",
+        "Soporte cercano por llamada o WhatsApp: tu informático de confianza para resolver dudas en tu idioma"
       ],
       "servicio_form_val": "consultoria-tecnica"
     }
   ],
   "por_que_ingeniero": {
-    "titulo": "¿Por qué trabajar con un Ingeniero de Software?",
-    "subtitulo": "La diferencia entre un sitio que solo 'se ve bien' y una herramienta que genera dinero todos los días.",
+    "titulo": "¿Por qué trabajar conmigo?",
+    "subtitulo": "La diferencia entre un servicio con intermediarios y trabajar mano a mano con quien construye tu proyecto.",
     "comparativa": [
       {
-        "aspecto": "Velocidad y Rendimiento",
-        "ingeniero": "Sitios que cargan en menos de 1 segundo (PageSpeed 95-100). Cada décima de segundo ganada aumenta la conversión de ventas.",
-        "agencia_generica": "Plantillas pesadas de WordPress repletas de plugins que tardan más de 4 segundos en abrir y pierden el 50% del tráfico."
+        "aspecto": "Carga y Experiencia del Cliente",
+        "ingeniero": "Páginas ligeras que cargan con agilidad en cualquier teléfono o conexión, para que tus clientes no se cansen de esperar y se vayan a la competencia.",
+        "agencia_generica": "Páginas recargadas con complementos pesados que tardan en responder y hacen perder visitas y ventas."
       },
       {
-        "aspecto": "Propiedad del Código",
-        "ingeniero": "El código es 100% tuyo, limpio, versionado en Git y sin ataduras ni mensualidades forzadas de mantenimiento.",
-        "agencia_generica": "Dependencia absoluta de constructores visuales propietarios o cuotas cautivas para cualquier cambio mínimo."
+        "aspecto": "Costes Claros & Cuentas a tu Nombre",
+        "ingeniero": "Total transparencia: el dominio y las cuentas quedan a tu nombre. Los costes externos (como la renovación anual del dominio o el servidor) los pagas directo al proveedor a precio real, sin recargos ni cuotas mensuales obligatorias por mi parte.",
+        "agencia_generica": "Te atan con mensualidades obligatorias de 'mantenimiento' o retienen tu dominio y contraseñas para que no puedas cambiarte."
       },
       {
-        "aspecto": "Seguridad y Estabilidad",
-        "ingeniero": "Arquitectura modular, sanitización de datos y protección contra ataques automatizados a nivel perimetral.",
-        "agencia_generica": "Plugins desactualizados con puertas traseras y riesgo frecuente de hackeos o caídas del servidor."
+        "aspecto": "Cero Complicaciones Técnicas",
+        "ingeniero": "Te hablo claro y en tu idioma. Me encargo de la parte compleja y solo te informo de lo indispensable que tu negocio necesita saber para tomar decisiones con seguridad.",
+        "agencia_generica": "Usan tecnicismos y palabras raras para confundirte o justificar cobros adicionales innecesarios."
       },
       {
-        "aspecto": "Automatización Real",
-        "ingeniero": "Capacidad de conectar bases de datos, APIs de pago, ERPs y flujos de negocio complejos a la medida de tu empresa.",
-        "agencia_generica": "Limitado a lo que ofrezcan plugins prefabricados, sin posibilidad de resolver problemas de negocio profundos."
+        "aspecto": "Soluciones Reales a tu Medida",
+        "ingeniero": "Construyo lo que tu negocio necesita de verdad: automatizar tareas repetitivas, organizar turnos, asesorarte en equipos o crear tu web, adaptado a tu manera de operar.",
+        "agencia_generica": "Intentan forzar tu negocio a entrar en una plantilla genérica que no resuelve tus verdaderas necesidades."
       }
     ]
   },
   "metodologia": {
-    "titulo": "Un proceso transparente y sin sorpresas",
-    "subtitulo": "De la idea a la puesta en producción en 4 etapas claras.",
+    "titulo": "Un proceso simple, transparente y sin sorpresas",
+    "subtitulo": "De tu idea a la web funcionando en 4 pasos claros.",
     "pasos": [
       {
         "numero": "01",
-        "nombre": "Diagnóstico Inicial Gratuito",
-        "descripcion": "Analizamos tus metas comerciales, tus cuellos de botella actuales y definimos el alcance exacto de la solución que tu negocio necesita."
+        "nombre": "Conversación Inicial",
+        "descripcion": "Hablamos por WhatsApp o videollamada para conocer tu negocio, qué necesitas resolver y cuál es la solución más práctica y económica, sin compromiso."
       },
       {
         "numero": "02",
-        "nombre": "Propuesta & Arquitectura",
-        "descripcion": "Diseño la arquitectura técnica y funcional, con presupuesto cerrado y calendario de entregas garantizado sin costes ocultos."
+        "nombre": "Propuesta & Presupuesto Claro",
+        "descripcion": "Te presento un plan de trabajo sencillo con lo que se va a hacer, tiempos de entrega y el coste cerrado por mi trabajo de desarrollo, sin letra pequeña."
       },
       {
         "numero": "03",
-        "nombre": "Desarrollo Ágil & Pruebas",
-        "descripcion": "Construyo la plataforma con código limpio, pruebas de seguridad y revisiones periódicas contigo para que veas el avance en tiempo real."
+        "nombre": "Desarrollo & Revisiones Contigo",
+        "descripcion": "Construyo tu web o sistema paso a paso, mostrándote avances periódicos para que des tu visto bueno y comprobemos juntos que todo funciona como tú quieres antes de publicar."
       },
       {
         "numero": "04",
-        "nombre": "Despliegue & Capacitación",
-        "descripcion": "Puesta en producción en infraestructura Cloudflare de alta disponibilidad, entrega del código y capacitación para que tengas el control."
+        "nombre": "Lanzamiento, Entrega & Capacitación",
+        "descripcion": "Me encargo de desplegar tu plataforma en internet para que quede operativa y te enseño a usarla con calma. La entrega es 100% transparente: los accesos quedan a tu nombre y los costes de servicios externos indispensables (como el dominio anual o el servidor si el proyecto requiere alojamiento a medida) los cubres tú directamente con el proveedor, a precio de coste real y con mi asesoría para que no pagues de más."
       }
     ]
   },
   "garantias": {
-    "titulo": "Compromisos garantizados",
+    "titulo": "Mis compromisos contigo",
     "items": [
       {
-        "titulo": "Garantía de Velocidad",
-        "descripcion": "Si tu sitio no supera los 90 puntos en Google PageSpeed Insights, lo optimizo sin coste adicional."
+        "titulo": "Garantía de Calidad y Carga Ágil",
+        "descripcion": "Pruebo tu web a fondo en teléfonos móviles y ordenadores para asegurar una navegación rápida y fluida antes de publicarla."
       },
       {
-        "titulo": "Trato Directo sin Intermediarios",
-        "descripcion": "Hablas directamente con el ingeniero responsable de tu proyecto, sin comerciales que prometen lo que no se puede cumplir."
+        "titulo": "Trato Directo de Inicio a Fin",
+        "descripcion": "Hablas y trabajas directamente con quien programa tu proyecto. Sin comerciales que prometen cosas que no se pueden cumplir."
       },
       {
         "titulo": "Soporte Post-Lanzamiento",
-        "descripcion": "Acompañamiento técnico de 30 días posteriores al lanzamiento para resolver cualquier duda o ajuste necesario."
+        "descripcion": "Cuentas con mi acompañamiento durante las primeras semanas tras la entrega para resolver dudas, ayudarte con el manejo y asegurar que todo marche perfecto."
       }
     ]
   },
   "contacto_whatsapp": {
-    "titulo": "Hablemos de tu proyecto hoy",
-    "subtitulo": "Cuéntame qué necesitas y te responderé con un análisis preliminar y presupuesto orientativo en menos de 24 horas.",
+    "titulo": "¿Tienes una idea o proyecto en mente?",
+    "subtitulo": "Escríbeme sin compromiso. Te responderé en menos de 24 horas con una orientación clara y honesta para tu negocio.",
     "wa_usuario": "kevindponce",
-    "mensaje_directo": "Hola Kevin, estuve viendo tus servicios comerciales en tu sitio web y me gustaría cotizar una solución para mi negocio.",
+    "mensaje_directo": "Hola Kevin, estuve viendo tu página web y me gustaría consultar sobre una solución para mi negocio.",
     "select_opciones": [
       {
         "valor": "presencia-digital",
-        "texto": "Pack Presencia & Marca Digital (Web rápida + Google Maps)"
+        "texto": "Página Web Profesional & Presencia en Google"
       },
       {
         "valor": "automatizaciones",
-        "texto": "Automatizaciones de Procesos & Pagos"
+        "texto": "Automatización de Tareas & Procesos (WhatsApp, Hojas de Cálculo, etc.)"
       },
       {
         "valor": "software-a-medida",
-        "texto": "Desarrollo de Software / Plataforma a Medida"
+        "texto": "Sistema o Aplicación Web a Medida"
       },
       {
         "valor": "consultoria",
-        "texto": "Consultoría & Auditoría Técnica"
+        "texto": "Asesoría Informática (Software & Hardware) / Dudas y Soporte"
       },
       {
         "valor": "otro",
-        "texto": "Otro proyecto o consulta técnica"
+        "texto": "Otro proyecto o consulta tecnológica"
       }
     ]
   }

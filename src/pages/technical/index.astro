@@ -66,7 +66,7 @@ const schemaJson = {
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -97,8 +97,7 @@ const schemaJson = {
     <!-- Datos Estructurados JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFXW20TRRN"></script>
+    <!-- Google tag (gtag.js) - Carga Diferida para Mobile Performance & LCP -->
     <script is:inline>
       // @ts-nocheck
       window.dataLayer = window.dataLayer || [];
@@ -107,6 +106,26 @@ const schemaJson = {
       }
       gtag("js", new Date());
       gtag("config", "G-BFXW20TRRN");
+
+      // Carga asíncrona no bloqueante de gtag.js solo en tiempo ocioso o interacción del usuario
+      function loadGtag() {
+        if (window.__gtagLoaded) return;
+        window.__gtagLoaded = true;
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-BFXW20TRRN";
+        document.head.appendChild(script);
+      }
+
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => setTimeout(loadGtag, 2500), { timeout: 4000 });
+      } else {
+        setTimeout(loadGtag, 3000);
+      }
+
+      ["scroll", "touchstart", "click"].forEach((event) => {
+        window.addEventListener(event, loadGtag, { once: true, passive: true });
+      });
     </script>
   </head>
 
@@ -153,12 +172,12 @@ const schemaJson = {
     <!-- Modal global de imagen ampliada -->
     <div 
       id="image-modal" 
-      class="fixed inset-0 z-[9999] hidden bg-black/90" 
+      class="fixed inset-0 z-[9999] hidden bg-black/90 backdrop-blur-sm items-center justify-center flex-col" 
       role="dialog" 
       aria-modal="true" 
       aria-labelledby="modal-project-title"
     >
-      <div class="flex flex-col items-center justify-center min-h-screen p-4">
+      <div class="flex flex-col items-center justify-center min-h-screen p-4 w-full">
         <!-- Header del modal -->
         <div class="flex justify-between items-center w-full max-w-4xl mb-4">
           <h3 id="modal-project-title" class="text-white text-xl font-bold">
@@ -186,18 +205,18 @@ const schemaJson = {
         </div>
 
         <!-- Contenedor de imagen con carrusel -->
-        <div class="relative max-w-4xl max-h-[70vh] w-full">
+        <div class="relative max-w-4xl max-h-[70vh] w-full flex items-center justify-center">
           <img
             id="modal-image"
             src=""
             alt=""
-            class="w-full h-full object-contain rounded-lg shadow-2xl bg-white/5 backdrop-blur-sm"
+            class="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl bg-white/5 backdrop-blur-sm"
           />
 
           <!-- Controles del carrusel en modal -->
           <button
             id="modal-prev"
-            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white z-10"
             aria-label="Imagen anterior"
           >
             <svg
@@ -218,7 +237,7 @@ const schemaJson = {
 
           <button
             id="modal-next"
-            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white z-10"
             aria-label="Imagen siguiente"
           >
             <svg
@@ -318,6 +337,7 @@ const schemaJson = {
           updateModalContent();
           setupModalIndicators();
           modal.classList.remove("hidden");
+          modal.classList.add("flex");
 
           const hasMany = currentModalImages.length > 1;
           modalPrev?.classList.toggle("hidden", !hasMany);
@@ -369,6 +389,7 @@ const schemaJson = {
       function closeImageModal() {
         if (!modal) return;
         modal.classList.add("hidden");
+        modal.classList.remove("flex");
         modalPrev?.classList.add("hidden");
         modalNext?.classList.add("hidden");
         modalIndicators?.classList.add("hidden");
@@ -429,35 +450,5 @@ const schemaJson = {
 
       window.openImageModal = openImageModal;
     </script>
-
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      #image-modal {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background: rgba(0, 0, 0, 0.9) !important;
-        backdrop-filter: blur(4px) !important;
-        z-index: 9999 !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-direction: column !important;
-      }
-      #image-modal:not(.hidden) {
-        display: flex !important;
-      }
-      #image-modal.hidden {
-        display: none !important;
-      }
-      #modal-image {
-        max-width: 100%;
-        max-height: 70vh;
-        object-fit: contain;
-      }
-    </style>
   </body>
 </html>

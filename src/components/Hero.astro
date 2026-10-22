@@ -41,7 +41,7 @@ const emailUrl = sobre_mi.email && sobre_mi.email.includes('@')
             aria-label="Perfil de GitHub de Kevin Ponce"
             data-agent-action="github"
           >
-            <img src="/icons/github.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
+            <img src="/icons/github.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" loading="lazy" decoding="async" />
           </a>
         )}
         <a
@@ -51,24 +51,9 @@ const emailUrl = sobre_mi.email && sobre_mi.email.includes('@')
           aria-label="Enviar correo electrónico a Kevin Ponce"
           data-agent-action="email"
         >
-          <img src="/icons/gemail.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
+          <img src="/icons/gemail.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" loading="lazy" decoding="async" />
         </a>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  section {
-    padding: 3rem 0;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .rounded-full {
-    background-color: #e5e7eb;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-</style>

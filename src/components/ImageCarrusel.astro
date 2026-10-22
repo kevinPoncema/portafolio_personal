@@ -10,7 +10,8 @@ export interface Props {
 
 const { imagenes, altText } = Astro.props;
 
-const assetImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png,webp}');
+// Glob enfocado exclusivamente en proyectos para no cargar la foto de perfil del Hero
+const assetImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/projects/**/*.{jpeg,jpg,png,webp}');
 
 const resolvedImages = await Promise.all(
   (imagenes || []).map(async (imagen) => {
@@ -33,11 +34,11 @@ const resolvedImages = await Promise.all(
 );
 ---
 
-<div class="image-carousel-container relative">
-  <div class="carousel-wrapper relative overflow-hidden rounded-md">
-    <div class="carousel-images flex transition-transform duration-300 ease-in-out">
+<div class="image-carousel-container relative w-full">
+  <div class="carousel-wrapper group relative overflow-hidden rounded-md aspect-[16/9] sm:aspect-[400/220] w-full h-[220px]">
+    <div class="carousel-images flex transition-transform duration-300 ease-in-out w-full h-full">
       {resolvedImages.map((imgItem, index) => (
-        <div class="carousel-slide w-full flex-shrink-0" key={index}>
+        <div class="carousel-slide w-full min-w-full flex-shrink-0 h-full" key={index}>
           {imgItem.isOptimized ? (
             <Image
               src={imgItem.src as ImageMetadata}
@@ -49,7 +50,7 @@ const resolvedImages = await Promise.all(
               format="webp"
               loading="lazy"
               decoding="async"
-              class="w-full h-48 sm:h-52 object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
+              class="w-full h-[220px] object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
               data-modal-img={imgItem.originalUrl}
               data-modal-alt={`${altText} - Imagen ${index + 1}`}
             />
@@ -61,7 +62,7 @@ const resolvedImages = await Promise.all(
               height="220"
               loading="lazy"
               decoding="async"
-              class="w-full h-48 sm:h-52 object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
+              class="w-full h-[220px] object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
               data-modal-img={imgItem.originalUrl}
               data-modal-alt={`${altText} - Imagen ${index + 1}`}
             />
@@ -74,7 +75,8 @@ const resolvedImages = await Promise.all(
     {imagenes.length > 1 && (
       <>
         <button 
-          class="carousel-btn carousel-btn-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2.5 rounded-full shadow-md transition-opacity duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-600"
+          type="button"
+          class="carousel-btn carousel-btn-prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2.5 rounded-full shadow-md transition-opacity duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-600 z-10 opacity-0 group-hover:opacity-100 active:scale-95"
           aria-label={`Imagen anterior de ${altText}`}
         >
           <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -83,7 +85,8 @@ const resolvedImages = await Promise.all(
         </button>
         
         <button 
-          class="carousel-btn carousel-btn-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2.5 rounded-full shadow-md transition-opacity duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-600"
+          type="button"
+          class="carousel-btn carousel-btn-next absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2.5 rounded-full shadow-md transition-opacity duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-600 z-10 opacity-0 group-hover:opacity-100 active:scale-95"
           aria-label={`Imagen siguiente de ${altText}`}
         >
           <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -99,6 +102,7 @@ const resolvedImages = await Promise.all(
     <div class="carousel-indicators flex justify-center items-center gap-1 mt-3" role="tablist" aria-label={`Diapositivas de ${altText}`}>
       {imagenes.map((_, index) => (
         <button 
+          type="button"
           class="indicator-dot group flex items-center justify-center w-11 h-11 p-0 bg-transparent border-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-full"
           data-index={index}
           role="tab"
@@ -112,141 +116,3 @@ const resolvedImages = await Promise.all(
     </div>
   )}
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const carousels = document.querySelectorAll('.image-carousel-container');
-    
-    carousels.forEach((carouselContainer) => {
-      const images = carouselContainer.querySelector('.carousel-images') as HTMLElement | null;
-      const prevBtn = carouselContainer.querySelector('.carousel-btn-prev');
-      const nextBtn = carouselContainer.querySelector('.carousel-btn-next');
-      const indicators = carouselContainer.querySelectorAll('.indicator-dot');
-      const carouselImages = carouselContainer.querySelectorAll('img[data-modal-img]');
-      
-      if (!images || indicators.length === 0) return;
-      
-      let currentIndex = 0;
-      const totalImages = indicators.length;
-      
-      function updateCarousel() {
-        if (!images) return;
-        const translateX = -currentIndex * 100;
-        images.style.transform = `translateX(${translateX}%)`;
-        
-        indicators.forEach((indicator, index) => {
-          const isCurrent = index === currentIndex;
-          indicator.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
-          const inner = indicator.querySelector('.indicator-inner');
-          if (inner) {
-            if (isCurrent) {
-              inner.className = 'indicator-inner block w-3 h-3 rounded-full bg-blue-600 transition-all duration-200';
-            } else {
-              inner.className = 'indicator-inner block w-2.5 h-2.5 rounded-full bg-gray-400 group-hover:bg-gray-600 transition-all duration-200';
-            }
-          }
-        });
-      }
-      
-      function goToNext() {
-        currentIndex = (currentIndex + 1) % totalImages;
-        updateCarousel();
-      }
-      
-      function goToPrev() {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-        updateCarousel();
-      }
-      
-      function goToIndex(index: number) {
-        currentIndex = index;
-        updateCarousel();
-      }
-      
-      nextBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToNext();
-      });
-      
-      prevBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToPrev();
-      });
-      
-      indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', (e) => {
-          e.stopPropagation();
-          goToIndex(index);
-        });
-      });
-      
-      carouselImages.forEach((img, imgIndex) => {
-        img.addEventListener('click', (e) => {
-          e.stopPropagation();
-          
-          const target = img as HTMLImageElement;
-          const projectCard = target.closest('.project-card');
-          const projectTitle = projectCard?.querySelector('h3')?.textContent || 'Proyecto';
-          
-          const projectImages = Array.from(carouselImages).map(image => 
-            image.getAttribute('data-modal-img')
-          ).filter(Boolean);
-          
-          const event = new CustomEvent('openImageModal', {
-            detail: {
-              imageSrc: target.getAttribute('data-modal-img') || target.src,
-              imageAlt: target.alt,
-              projectImages: projectImages,
-              projectTitle: projectTitle,
-              startIndex: imgIndex
-            }
-          });
-          document.dispatchEvent(event);
-        });
-      });
-      
-      updateCarousel();
-    });
-  });
-</script>
-
-<style>
-  .image-carousel-container {
-    width: 100%;
-  }
-  
-  .carousel-wrapper {
-    position: relative;
-    width: 100%;
-    height: 220px;
-  }
-  
-  .carousel-images {
-    display: flex;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .carousel-slide {
-    min-width: 100%;
-    height: 100%;
-  }
-  
-  .carousel-slide img {
-    height: 220px;
-  }
-  
-  .carousel-btn {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-    z-index: 10;
-  }
-  
-  .carousel-wrapper:hover .carousel-btn {
-    opacity: 1;
-  }
-  
-  .carousel-btn:active {
-    transform: translateY(-50%) scale(0.95);
-  }
-</style>

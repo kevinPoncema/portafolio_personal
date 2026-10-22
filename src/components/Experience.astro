@@ -11,7 +11,7 @@ const { experiencia } = portafolio;
     <div class="timeline relative pl-6 sm:pl-10 text-left">
       <div class="absolute left-3 sm:left-5 top-0 bottom-0 w-0.5 bg-amber-500" aria-hidden="true"></div>
       {experiencia.map((trabajo, index) => (
-        <article key={index} class="timeline-item relative mb-10 pl-6 sm:pl-8">
+        <article key={index} class="timeline-item relative mb-10 last:mb-0 pl-6 sm:pl-8">
           <div class="timeline-icon absolute -left-1 sm:left-3 top-1.5 w-3.5 h-3.5 bg-amber-600 border-2 border-white rounded-full shadow-sm" aria-hidden="true"></div>
           <div class="timeline-content">
             <h3 class="puesto text-xl font-bold text-amber-800 mb-1">
@@ -26,9 +26,3 @@ const { experiencia } = portafolio;
     </div>
   </div>
 </section>
-
-<style>
-  .timeline-item:last-child {
-    margin-bottom: 0;
-  }
-</style>

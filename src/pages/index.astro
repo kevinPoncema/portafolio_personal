@@ -90,14 +90,33 @@ const schemaJson = {
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFXW20TRRN"></script>
+    <!-- Google Analytics - Carga Diferida para Mobile Performance & LCP -->
     <script is:inline>
       // @ts-nocheck
       window.dataLayer = window.dataLayer || [];
       function gtag() { window.dataLayer.push(arguments); }
       gtag("js", new Date());
       gtag("config", "G-BFXW20TRRN");
+
+      // Carga asíncrona no bloqueante de gtag.js solo en tiempo ocioso o interacción del usuario
+      function loadGtag() {
+        if (window.__gtagLoaded) return;
+        window.__gtagLoaded = true;
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-BFXW20TRRN";
+        document.head.appendChild(script);
+      }
+
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => setTimeout(loadGtag, 2500), { timeout: 4000 });
+      } else {
+        setTimeout(loadGtag, 3000);
+      }
+
+      ["scroll", "touchstart", "click"].forEach((event) => {
+        window.addEventListener(event, loadGtag, { once: true, passive: true });
+      });
     </script>
   </head>
 

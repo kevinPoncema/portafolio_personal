@@ -40,7 +40,13 @@ const schemaJson = {
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- AI & LLM Machine-Readable Context (llms.txt standard) -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs Context" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs Full Context" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

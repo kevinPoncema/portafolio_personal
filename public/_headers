@@ -16,27 +16,45 @@
 /*.pdf
   Cache-Control: public, max-age=604800
 
-# LLM and Agent indexing files
+# LLM and Agent indexing files (CORS abierto para asistentes de IA y agentes autónomos)
 /llms.txt
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
   Content-Type: text/plain; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Robots-Tag: all
 
 /llms-full.txt
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
   Content-Type: text/plain; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Robots-Tag: all
 
 /robots.txt
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
   Content-Type: text/plain; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Robots-Tag: all
 
 /sitemap.xml
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Robots-Tag: all
 
 /sitemap-index.xml
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Robots-Tag: all
 
-# HTML pages - revalidate to ensure immediate updates
+# HTML pages - revalidate to ensure immediate updates & accessible to crawlers
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Robots-Tag: all

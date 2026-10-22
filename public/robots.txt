@@ -2,42 +2,111 @@
 
 User-agent: *
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /sitemap.xml
+Allow: /sitemap-index.xml
 
-# AI crawlers and LLM search agents
+# OpenAI (ChatGPT, GPTBot, SearchGPT)
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
+# Anthropic (Claude)
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
+# Google & Gemini / Vertex AI
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: GoogleOther-Image
+Allow: /
+
+User-agent: GoogleOther-Video
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
+
+# Microsoft Bing & Copilot
+User-agent: bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
 User-agent: Applebot-Extended
 Allow: /
 
+# Meta AI (LLaMA / Facebook)
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Cohere AI
 User-agent: Cohere-ai
 Allow: /
 
+User-agent: cohere-training-data-crawler
+Allow: /
+
+# Otros rastreadores de IA y motores abiertos
 User-agent: Bytespider
 Allow: /
 
 User-agent: CCBot
 Allow: /
 
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: DeepSeekBot
+Allow: /
+
+User-agent: MistralBot
+Allow: /
+
 # Sitemaps
 Sitemap: https://kevinponcedev.xyz/sitemap-index.xml
 Sitemap: https://kevinponcedev.xyz/sitemap.xml
 
-# LLM indexing endpoints (GEO / WebMCP)
+# LLM indexing endpoints (GEO / WebMCP / llms.txt standard)
 # llms.txt: https://kevinponcedev.xyz/llms.txt
 # llms-full.txt: https://kevinponcedev.xyz/llms-full.txt

@@ -8,49 +8,118 @@ const gmailUrl = contactos[1]?.url || "mailto:ps12kevin@gmail.com";
 const linkedin = contactos[2]?.url || "https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/";
 ---
 
-<footer class="bg-blue-800 py-8 w-full text-white" role="contentinfo">
-  <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-    <nav class="flex flex-wrap justify-center text-center md:text-left gap-x-6 gap-y-2" aria-label="Navegación del pie de página">
-      <a href="/#inicio" class="hover:text-blue-200 transition-colors py-2 text-sm">Inicio</a>
-      <a href="/#habilidades" class="hover:text-blue-200 transition-colors py-2 text-sm">Habilidades</a>
-      <a href="/#proyectos" class="hover:text-blue-200 transition-colors py-2 text-sm">Proyectos</a>
-      <a href="/#experiencia" class="hover:text-blue-200 transition-colors py-2 text-sm">Experiencia</a>
-      <a href="/#formacion" class="hover:text-blue-200 transition-colors py-2 text-sm">Formación</a>
-      <a href="/blog" class="hover:text-blue-200 transition-colors py-2 text-sm">Blog</a>
-      <a href="/#contacto" class="hover:text-blue-200 transition-colors py-2 text-sm">Contacto</a>
-    </nav>
+<footer class="bg-blue-950 text-gray-300 pt-16 pb-12 border-t border-blue-900" role="contentinfo">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <!-- Columna 1: Marca y Propuesta -->
+      <div>
+        <div class="text-white text-xl font-bold flex items-center mb-4">
+          <span class="w-8 h-8 rounded-lg bg-blue-700 flex items-center justify-center mr-2.5 text-white font-mono text-sm font-bold border border-blue-600">KP</span>
+          <span>Kevin Ponce</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+          Ingeniero de software especializado en arquitecturas backend escalables, automatización de procesos de negocio y desarrollo web de ultra velocidad.
+        </p>
+        <div class="flex items-center space-x-2">
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-300 hover:text-white w-10 h-10 rounded-full flex items-center justify-center bg-blue-900/60 hover:bg-blue-800 transition-colors"
+            aria-label="Perfil de GitHub de Kevin Ponce"
+          >
+            <img src="/icons/github.svg" alt="" aria-hidden="true" class="w-5 h-5 filter invert" width="20" height="20" />
+          </a>
+          <a 
+            href={gmailUrl} 
+            class="text-gray-300 hover:text-white w-10 h-10 rounded-full flex items-center justify-center bg-blue-900/60 hover:bg-blue-800 transition-colors"
+            aria-label="Enviar correo electrónico a Kevin Ponce"
+          >
+            <img src="/icons/gemail.svg" alt="" aria-hidden="true" class="w-5 h-5 filter invert" width="20" height="20" />
+          </a>
+          <a 
+            href={linkedin} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-gray-300 hover:text-white w-10 h-10 rounded-full flex items-center justify-center bg-blue-900/60 hover:bg-blue-800 transition-colors"
+            aria-label="Perfil de LinkedIn de Kevin Ponce"
+          >
+            <img src="/icons/linkedink.svg" alt="" aria-hidden="true" class="w-5 h-5 filter invert" width="20" height="20" />
+          </a>
+        </div>
+      </div>
 
-    <div class="flex items-center space-x-2">
-      <a
-        href={githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-white hover:text-blue-200 w-11 h-11 rounded-full flex items-center justify-center hover:bg-blue-700/60 transition-colors"
-        aria-label="Perfil de GitHub de Kevin Ponce"
-      >
-        <img src="/icons/github.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
-      </a>
-      <a 
-        href={gmailUrl} 
-        class="text-white hover:text-blue-200 w-11 h-11 rounded-full flex items-center justify-center hover:bg-blue-700/60 transition-colors"
-        aria-label="Enviar correo electrónico a Kevin Ponce"
-      >
-        <img src="/icons/gemail.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
-      </a>
-      <a 
-        href={linkedin} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="text-white hover:text-blue-200 w-11 h-11 rounded-full flex items-center justify-center hover:bg-blue-700/60 transition-colors"
-        aria-label="Perfil de LinkedIn de Kevin Ponce"
-      >
-        <img src="/icons/linkedink.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
-      </a>
+      <!-- Columna 2: Servicios Comerciales -->
+      <div>
+        <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Servicios para Empresas</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Pack Presencia & Google Maps</a>
+          </li>
+          <li>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Automatizaciones & Pagos</a>
+          </li>
+          <li>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Software y Paneles a Medida</a>
+          </li>
+          <li>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Consultoría & Auditoría Web</a>
+          </li>
+          <li>
+            <a href="/#contacto" class="hover:text-amber-400 font-semibold transition-colors block py-1">Solicitar Presupuesto →</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Perfil Técnico & Blog -->
+      <div>
+        <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Perfil Técnico & I+D</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li>
+            <a href="/technical#proyectos" class="hover:text-white transition-colors block py-1">Proyectos de Código Abierto</a>
+          </li>
+          <li>
+            <a href="/technical#experiencia" class="hover:text-white transition-colors block py-1">Trayectoria Profesional</a>
+          </li>
+          <li>
+            <a href="/technical#habilidades" class="hover:text-white transition-colors block py-1">Stack Tecnológico</a>
+          </li>
+          <li>
+            <a href="/technical/blog" class="hover:text-white transition-colors block py-1">Blog de Ingeniería</a>
+          </li>
+          <li>
+            <a href="/llms.txt" class="hover:text-blue-300 transition-colors block py-1 font-mono text-xs">/llms.txt (AI Index)</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Contacto Rápido -->
+      <div>
+        <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Contacto Directo</h4>
+        <p class="text-gray-400 text-sm mb-4">
+          Respuesta asegurada en menos de 24 horas laborables.
+        </p>
+        <div class="space-y-3 text-sm">
+          <p class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="text-gray-300 font-medium">Disponible para nuevos proyectos</span>
+          </p>
+          <p class="text-gray-400 text-xs">
+            Ubicación: Santander, Cantabria, España (Proyectos remotos a nivel internacional).
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div class="text-white text-lg font-bold flex items-center">
-      <span class="text-white text-xl mr-2 font-mono" aria-hidden="true">&lt;/&gt;</span>
-      <span>KevinPonceDev</span>
+    <!-- Barra Inferior -->
+    <div class="pt-8 border-t border-blue-900/80 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-4">
+      <p>© {new Date().getFullYear()} Kevin Ponce. Todos los derechos reservados.</p>
+      <div class="flex items-center space-x-6">
+        <a href="/" class="hover:text-white transition-colors">Servicios</a>
+        <a href="/technical" class="hover:text-white transition-colors">Portafolio Técnico</a>
+        <a href="/technical/blog" class="hover:text-white transition-colors">Blog</a>
+        <a href="/sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
+      </div>
     </div>
   </div>
 </footer>

@@ -72,7 +72,8 @@
         "Docker"
       ],
       "github": "https://github.com/kevinPoncema/LoveLink/tree/develop",
-      "produccion": "https://lovelink.kevinponcedev.xyz/"
+      "produccion": "https://lovelink.kevinponcedev.xyz/",
+      "activo_produccion": true
     },
     {
       "titulo": "TicketRush",
@@ -92,7 +93,8 @@
         "Docker"
       ],
       "github": "https://github.com/kevinPoncema/TicketRush",
-      "produccion": "https://vantage.kevinponcedev.xyz/"
+      "produccion": "https://vantage.kevinponcedev.xyz/",
+      "activo_produccion": true
     },
     {
       "titulo": "Portafolio Personal",
@@ -106,7 +108,8 @@
         "TailwindCSS"
       ],
       "github": "https://github.com/kevinPoncema/portafolio_personal",
-      "produccion": "https://kevinponcedev.xyz/"
+      "produccion": "https://kevinponcedev.xyz/",
+      "activo_produccion": true
     },
     {
       "titulo": "File Converter",
@@ -123,7 +126,8 @@
         "TypeScript"
       ],
       "github": "https://github.com/kevinPoncema/conversor_archivos",
-      "produccion": "https://file-converter.kevinponcedev.xyz/"
+      "produccion": "https://file-converter.kevinponcedev.xyz/",
+      "activo_produccion": true
     },
     {
       "titulo": "Link In Bio App",
@@ -141,7 +145,8 @@
         "Docker"
       ],
       "github": "https://github.com/kevinPoncema/link-in-bio-app",
-      "produccion": "https://link-in-bio.kevinponcedev.xyz/"
+      "produccion": "https://link-in-bio.kevinponcedev.xyz/",
+      "activo_produccion": true
     }
   ],
   "experiencia": [

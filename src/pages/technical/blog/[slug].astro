@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -15,7 +15,7 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 
 const siteUrl = "https://kevinponcedev.xyz";
-const canonicalUrl = `${siteUrl}/blog/${post.slug}`;
+const canonicalUrl = `${siteUrl}/technical/blog/${post.slug}`;
 const pageTitle = `${post.data.title} | Blog - KevinPonceDev`;
 const pageDescription = post.data.description;
 const ogImage = post.data.image ? (post.data.image.startsWith('http') ? post.data.image : `${siteUrl}${post.data.image.startsWith('/') ? '' : '/'}${post.data.image}`) : `${siteUrl}/images/foto_fea2.jpg`;
@@ -37,12 +37,12 @@ const schemaJson = {
   "author": {
     "@type": "Person",
     "name": "Kevin David Ponce Machigua",
-    "url": siteUrl
+    "url": `${siteUrl}/technical`
   },
   "publisher": {
     "@type": "Person",
     "name": "Kevin David Ponce Machigua",
-    "url": siteUrl
+    "url": `${siteUrl}/technical`
   },
   "keywords": post.data.tags.join(", ")
 };
@@ -85,7 +85,7 @@ const schemaJson = {
         <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
     </head>
 
-    <body class="bg-gray-50 min-h-screen text-gray-900 antialiased">
+    <body class="bg-gray-50 min-h-screen text-gray-900 antialiased selection:bg-blue-600 selection:text-white">
         <a 
           href="#main-content" 
           class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-blue-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
@@ -93,14 +93,14 @@ const schemaJson = {
           Saltar al contenido principal
         </a>
 
-        <Header />
+        <Header context="technical" />
 
         <main id="main-content" class="pt-16 pb-16">
             <!-- Hero del post -->
             <div class="bg-blue-800 text-white py-16">
                 <div class="container mx-auto px-4 max-w-3xl">
                     <a
-                        href="/blog"
+                        href="/technical/blog"
                         class="inline-flex items-center gap-2 text-blue-100 hover:text-white transition-colors mb-8 text-sm font-semibold min-h-[44px]"
                     >
                         <svg
@@ -174,7 +174,7 @@ const schemaJson = {
                 <!-- Navegación inferior -->
                 <div class="mt-10 text-center">
                     <a
-                        href="/blog"
+                        href="/technical/blog"
                         class="inline-flex items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 min-h-[44px]"
                     >
                         <svg
@@ -191,7 +191,7 @@ const schemaJson = {
                                 stroke-width="2"
                                 d="M15 19l-7-7 7-7"></path>
                         </svg>
-                        Ver todos los posts
+                        Ver todos los artículos
                     </a>
                 </div>
             </article>

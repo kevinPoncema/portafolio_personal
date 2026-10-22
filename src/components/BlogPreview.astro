@@ -31,7 +31,7 @@ const latestPosts = posts
 
         return (
           <a
-            href={`/blog/${post.slug}`}
+            href={`/technical/blog/${post.slug}`}
             class="blog-preview-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group flex flex-col focus:outline-none focus:ring-2 focus:ring-blue-600"
             aria-label={`Leer artículo: ${post.data.title}`}
           >
@@ -82,7 +82,7 @@ const latestPosts = posts
     <!-- Botón ir al blog completo -->
     <div class="text-center mt-10">
       <a
-        href="/blog"
+        href="/technical/blog"
         id="btn-ver-blog"
         class="inline-flex items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 min-h-[44px]"
         data-agent-action="view-blog"

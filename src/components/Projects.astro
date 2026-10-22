@@ -51,18 +51,20 @@ import ImageCarrusel from './ImageCarrusel.astro';
                   >
                     <img src="/icons/github.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
                   </a>
-                  <a 
-                    href={proyecto.produccion} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="text-gray-700 hover:text-gray-900 transform transition-transform duration-300 hover:scale-110 production-link w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-100" 
-                    data-project-name={proyecto.titulo} 
-                    data-link-type="Producción"
-                    data-agent-action="view-demo"
-                    aria-label={`Ver proyecto ${proyecto.titulo} en producción`}
-                  >
-                    <img src="/icons/share.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
-                  </a>
+                  {proyecto.activo_produccion !== false && proyecto.produccion && (
+                    <a 
+                      href={proyecto.produccion} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="text-gray-700 hover:text-gray-900 transform transition-transform duration-300 hover:scale-110 production-link w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-100" 
+                      data-project-name={proyecto.titulo} 
+                      data-link-type="Producción"
+                      data-agent-action="view-demo"
+                      aria-label={`Ver proyecto ${proyecto.titulo} en producción`}
+                    >
+                      <img src="/icons/share.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
@@ -276,7 +278,15 @@ import ImageCarrusel from './ImageCarrusel.astro';
         }
         
         if (projectModalGithub) projectModalGithub.href = projectData.github;
-        if (projectModalProduction) projectModalProduction.href = projectData.produccion;
+        if (projectModalProduction) {
+          if (projectData.activo_produccion !== false && projectData.produccion) {
+            projectModalProduction.href = projectData.produccion;
+            projectModalProduction.classList.remove('hidden');
+          } else {
+            projectModalProduction.classList.add('hidden');
+            projectModalProduction.removeAttribute('href');
+          }
+        }
       };
 
       if ((window as any).modalManager && typeof (window as any).modalManager.openModal === 'function') {

@@ -4,24 +4,31 @@ import { getCollection } from 'astro:content';
 export const GET: APIRoute = async () => {
   const siteUrl = 'https://kevinponcedev.xyz';
   const posts = await getCollection('blog');
+  const today = new Date().toISOString().split('T')[0];
 
   const staticPages = [
     {
       url: `${siteUrl}/`,
-      lastmod: new Date().toISOString().split('T')[0],
+      lastmod: today,
       changefreq: 'weekly',
       priority: '1.0',
     },
     {
-      url: `${siteUrl}/blog`,
-      lastmod: new Date().toISOString().split('T')[0],
+      url: `${siteUrl}/technical`,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: '0.9',
+    },
+    {
+      url: `${siteUrl}/technical/blog`,
+      lastmod: today,
       changefreq: 'weekly',
       priority: '0.8',
     },
   ];
 
   const blogPages = posts.map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
+    url: `${siteUrl}/technical/blog/${post.slug}`,
     lastmod: post.data.pubDate.toISOString().split('T')[0],
     changefreq: 'monthly',
     priority: '0.7',

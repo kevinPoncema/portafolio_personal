@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort(
@@ -9,22 +9,22 @@ const sortedPosts = posts.sort(
 );
 
 const siteUrl = "https://kevinponcedev.xyz";
-const pageTitle = "Blog | KevinPonceDev";
+const pageTitle = "Blog de Ingeniería | KevinPonceDev";
 const pageDescription = "Artículos técnicos sobre desarrollo backend, APIs RESTful, arquitectura y herramientas modernas por Kevin Ponce.";
-const canonicalUrl = `${siteUrl}/blog`;
+const canonicalUrl = `${siteUrl}/technical/blog`;
 const ogImage = `${siteUrl}/images/foto_fea2.jpg`;
 
 const schemaJson = {
   "@context": "https://schema.org",
   "@type": "Blog",
   "@id": `${canonicalUrl}#blog`,
-  "name": "Blog de KevinPonceDev",
+  "name": "Blog de Ingeniería de KevinPonceDev",
   "description": pageDescription,
   "url": canonicalUrl,
   "author": {
     "@type": "Person",
     "name": "Kevin David Ponce Machigua",
-    "url": siteUrl
+    "url": `${siteUrl}/technical`
   }
 };
 ---
@@ -62,7 +62,7 @@ const schemaJson = {
     <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
   </head>
 
-  <body class="bg-gray-50 min-h-screen text-gray-900 antialiased">
+  <body class="bg-gray-50 min-h-screen text-gray-900 antialiased selection:bg-blue-600 selection:text-white">
     <a 
       href="#main-content" 
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-blue-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
@@ -70,15 +70,18 @@ const schemaJson = {
       Saltar al contenido principal
     </a>
 
-    <Header />
+    <Header context="technical" />
 
     <main id="main-content" class="pt-16 pb-16">
       <!-- Hero del blog -->
       <div class="bg-blue-800 text-white py-16 text-center">
         <div class="container mx-auto px-4">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">Blog</h1>
-          <p class="text-blue-100 text-lg max-w-xl mx-auto">
-            Artículos sobre desarrollo web, herramientas y cosas que aprendo en el camino.
+          <div class="inline-flex items-center gap-2 bg-blue-900/60 border border-blue-700/60 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+            <span>Engineering Blog & Insights</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Blog Técnico</h1>
+          <p class="text-blue-100 text-lg max-w-xl mx-auto leading-relaxed">
+            Artículos sobre arquitectura de software, backend, optimizaciones de rendimiento y reflexiones técnicas.
           </p>
         </div>
       </div>
@@ -95,7 +98,7 @@ const schemaJson = {
 
             return (
               <article class="blog-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <a href={`/blog/${post.slug}`} class="block p-8 focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-2xl" aria-label={`Leer artículo: ${post.data.title}`}>
+                <a href={`/technical/blog/${post.slug}`} class="block p-8 focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-2xl" aria-label={`Leer artículo: ${post.data.title}`}>
                   <!-- Tags -->
                   <div class="flex flex-wrap gap-2 mb-4">
                     {post.data.tags.map((tag) => (

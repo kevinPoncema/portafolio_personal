@@ -1,0 +1,463 @@
+---
+// Importaciones de los componentes para el portafolio técnico
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Hero from "../../components/Hero.astro";
+import Skils from "../../components/Skils.astro";
+import Projects from "../../components/Projects.astro";
+import Experience from "../../components/Experience.astro";
+import Formation from "../../components/Formation.astro";
+import Contact from "../../components/Contact.astro";
+import BlogPreview from "../../components/BlogPreview.astro";
+
+const siteUrl = "https://kevinponcedev.xyz";
+const pageUrl = `${siteUrl}/technical`;
+const pageTitle = "Kevin Ponce | Desarrollador Web Backend & APIs RESTful - Portafolio Técnico";
+const pageDescription = "Portafolio técnico y trayectoria de Kevin Ponce. Especialista en arquitectura backend con Laravel, Node.js, microservicios, bases de datos y APIs RESTful.";
+const ogImage = `${siteUrl}/images/foto_fea2.jpg`;
+
+const schemaJson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      "name": "Kevin David Ponce Machigua",
+      "alternateName": "Kevin Ponce",
+      "jobTitle": "Desarrollador Web Backend",
+      "description": "Desarrollador web especializado en backend, diseño de APIs RESTful y arquitectura de servidores con Laravel, Node.js y Vue.js.",
+      "url": pageUrl,
+      "image": ogImage,
+      "sameAs": [
+        "https://github.com/kevinPoncema",
+        "https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/"
+      ],
+      "knowsAbout": [
+        "Laravel",
+        "Node.js",
+        "PHP",
+        "TypeScript",
+        "JavaScript",
+        "Express",
+        "MySQL",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "REST APIs",
+        "Vue.js",
+        "Astro"
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Universidad Europea del Atlántico"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${pageUrl}#profilepage`,
+      "url": pageUrl,
+      "name": pageTitle,
+      "mainEntity": {
+        "@id": `${siteUrl}/#person`
+      }
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Técnico -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={pageUrl} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="KevinPonceDev" />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={pageUrl} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Datos Estructurados JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFXW20TRRN"></script>
+    <script is:inline>
+      // @ts-nocheck
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-BFXW20TRRN");
+    </script>
+  </head>
+
+  <body class="bg-gray-50 text-gray-900 antialiased selection:bg-blue-600 selection:text-white">
+    <!-- Enlace accesible de salto al contenido principal -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-blue-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+    >
+      Saltar al contenido principal
+    </a>
+
+    <div id="app">
+      <Header context="technical" />
+      
+      <!-- Landmark principal semántico con espaciado modernizado -->
+      <main id="main-content" class="w-full pt-16">
+        <section id="inicio" aria-label="Inicio">
+          <Hero />
+        </section>
+        <section id="habilidades" aria-label="Habilidades técnicas y blandas">
+          <Skils />
+        </section>
+        <section id="proyectos" aria-label="Proyectos destacados">
+          <Projects />
+        </section>
+        <section id="experiencia" aria-label="Experiencia laboral">
+          <Experience />
+        </section>
+        <section id="formacion" aria-label="Formación académica y cursos">
+          <Formation />
+        </section>
+        <section id="blog" aria-label="Últimas entradas del blog técnico">
+          <BlogPreview />
+        </section>
+        <section id="contacto" aria-label="Información de contacto">
+          <Contact />
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+
+    <!-- Modal global de imagen ampliada -->
+    <div 
+      id="image-modal" 
+      class="fixed inset-0 z-[9999] hidden bg-black/90" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="modal-project-title"
+    >
+      <div class="flex flex-col items-center justify-center min-h-screen p-4">
+        <!-- Header del modal -->
+        <div class="flex justify-between items-center w-full max-w-4xl mb-4">
+          <h3 id="modal-project-title" class="text-white text-xl font-bold">
+          </h3>
+          <button
+            id="close-modal"
+            class="bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-colors duration-200 backdrop-blur-sm min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
+            aria-label="Cerrar vista de imagen"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Contenedor de imagen con carrusel -->
+        <div class="relative max-w-4xl max-h-[70vh] w-full">
+          <img
+            id="modal-image"
+            src=""
+            alt=""
+            class="w-full h-full object-contain rounded-lg shadow-2xl bg-white/5 backdrop-blur-sm"
+          />
+
+          <!-- Controles del carrusel en modal -->
+          <button
+            id="modal-prev"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
+            aria-label="Imagen anterior"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <button
+            id="modal-next"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
+            aria-label="Imagen siguiente"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Indicadores del modal con touch targets accesibles -->
+        <div
+          id="modal-indicators"
+          class="flex justify-center items-center gap-1 mt-4 hidden"
+        >
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      // @ts-nocheck
+      class ModalManager {
+        constructor() {
+          this.activeModal = null;
+          this.modals = {
+            image: { element: null, closeCallback: null },
+            project: { element: null, closeCallback: null },
+          };
+          this.init();
+        }
+
+        init() {
+          this.modals.image.element = document.getElementById("image-modal");
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && this.activeModal) this.closeActive();
+          });
+        }
+
+        openModal(type, openCallback) {
+          this.closeActive();
+          this.activeModal = type;
+          if (openCallback) openCallback();
+          document.body.style.overflow = "hidden";
+        }
+
+        closeActive() {
+          if (!this.activeModal) return;
+          const entry = this.modals[this.activeModal];
+          if (entry && entry.closeCallback) entry.closeCallback();
+          this.activeModal = null;
+          document.body.style.overflow = "";
+        }
+
+        registerModal(type, closeCallback) {
+          if (this.modals[type])
+            this.modals[type].closeCallback = closeCallback;
+        }
+
+        isActive(type) {
+          return this.activeModal === type;
+        }
+      }
+
+      const modalManager = new ModalManager();
+      window.modalManager = modalManager;
+
+      let currentModalImages = [];
+      let currentModalIndex = 0;
+      let currentProjectTitle = "";
+
+      const modal = document.getElementById("image-modal");
+      const modalImage = document.getElementById("modal-image");
+      const modalTitle = document.getElementById("modal-project-title");
+      const modalIndicators = document.getElementById("modal-indicators");
+      const closeModalBtn = document.getElementById("close-modal");
+      const modalPrev = document.getElementById("modal-prev");
+      const modalNext = document.getElementById("modal-next");
+
+      function openImageModal(imageSrc, imageAlt, projectImages, projectTitle, startIndex) {
+        startIndex = startIndex || 0;
+        if (!modal || !modalImage) return;
+
+        modalManager.openModal("image", () => {
+          currentModalImages = projectImages;
+          currentModalIndex = startIndex;
+          currentProjectTitle = projectTitle;
+
+          updateModalContent();
+          setupModalIndicators();
+          modal.classList.remove("hidden");
+
+          const hasMany = currentModalImages.length > 1;
+          modalPrev?.classList.toggle("hidden", !hasMany);
+          modalNext?.classList.toggle("hidden", !hasMany);
+          modalIndicators?.classList.toggle("hidden", !hasMany);
+          if (hasMany) {
+            modalPrev?.classList.add("flex");
+            modalNext?.classList.add("flex");
+          }
+        });
+      }
+
+      function updateModalContent() {
+        if (modalImage && modalTitle) {
+          const rawSrc = currentModalImages[currentModalIndex];
+          modalImage.src = rawSrc.startsWith('/') ? rawSrc : '/' + rawSrc;
+          modalImage.alt = currentProjectTitle + " - Imagen " + (currentModalIndex + 1);
+          modalTitle.textContent = currentProjectTitle;
+        }
+        modalIndicators?.querySelectorAll(".modal-dot-inner").forEach((dot, i) => {
+          if (i === currentModalIndex) {
+            dot.className = "modal-dot-inner block w-3 h-3 rounded-full bg-white transition-all";
+          } else {
+            dot.className = "modal-dot-inner block w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white/60 transition-all";
+          }
+        });
+      }
+
+      function setupModalIndicators() {
+        if (!modalIndicators || currentModalImages.length <= 1) return;
+        modalIndicators.innerHTML = "";
+        currentModalImages.forEach((_, i) => {
+          const btn = document.createElement("button");
+          btn.className = "modal-dot w-11 h-11 p-0 flex items-center justify-center bg-transparent border-0 cursor-pointer rounded-full";
+          btn.setAttribute("aria-label", "Ir a imagen " + (i + 1));
+          
+          const dot = document.createElement("span");
+          dot.className = "modal-dot-inner block " + (i === currentModalIndex ? "w-3 h-3 bg-white" : "w-2.5 h-2.5 bg-white/40 hover:bg-white/60") + " rounded-full transition-all";
+          
+          btn.appendChild(dot);
+          btn.addEventListener("click", () => {
+            currentModalIndex = i;
+            updateModalContent();
+          });
+          modalIndicators.appendChild(btn);
+        });
+      }
+
+      function closeImageModal() {
+        if (!modal) return;
+        modal.classList.add("hidden");
+        modalPrev?.classList.add("hidden");
+        modalNext?.classList.add("hidden");
+        modalIndicators?.classList.add("hidden");
+        currentModalImages = [];
+        currentModalIndex = 0;
+        currentProjectTitle = "";
+      }
+
+      function goToModalNext() {
+        if (currentModalImages.length > 1) {
+          currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+          updateModalContent();
+        }
+      }
+
+      function goToModalPrev() {
+        if (currentModalImages.length > 1) {
+          currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+          updateModalContent();
+        }
+      }
+
+      modalManager.registerModal("image", closeImageModal);
+
+      closeModalBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        modalManager.closeActive();
+      });
+      modalPrev?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        goToModalPrev();
+      });
+      modalNext?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        goToModalNext();
+      });
+      modal?.addEventListener("click", (e) => {
+        if (e.target === modal) modalManager.closeActive();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (modalManager.isActive("image")) {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goToModalPrev();
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goToModalNext();
+          }
+        }
+      });
+
+      document.addEventListener("openImageModal", (e) => {
+        const { imageSrc, imageAlt, projectImages, projectTitle, startIndex } = e.detail;
+        openImageModal(imageSrc, imageAlt, projectImages, projectTitle, startIndex);
+      });
+
+      window.openImageModal = openImageModal;
+    </script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      #image-modal {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+        backdrop-filter: blur(4px) !important;
+        z-index: 9999 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+      }
+      #image-modal:not(.hidden) {
+        display: flex !important;
+      }
+      #image-modal.hidden {
+        display: none !important;
+      }
+      #modal-image {
+        max-width: 100%;
+        max-height: 70vh;
+        object-fit: contain;
+      }
+    </style>
+  </body>
+</html>

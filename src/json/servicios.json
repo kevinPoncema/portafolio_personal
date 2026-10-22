@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "titulo": "Kevin Ponce | Desarrollo de Software, Automatizaciones y Presencia Digital para Empresas",
+    "descripcion": "Ingeniería de software a medida, automatización de procesos y desarrollo web ultrarrápido sin plantillas. Escalabilidad, seguridad y rentabilidad para tu negocio.",
+    "og_image": "/images/foto_fea2.jpg"
+  },
+  "hero": {
+    "badge": "Desarrollo de Software & Consultoría Técnica",
+    "titulo_principal": "Construyo software y plataformas web que",
+    "titulo_destacado": "multiplican la rentabilidad de tu negocio",
+    "subtitulo": "Deja atrás las plantillas lentas y los procesos manuales. Desarrollo aplicaciones web de carga instantánea, automatizo flujos de trabajo e integro pasarelas de pago para que tu empresa opere con máxima eficiencia.",
+    "cta_whatsapp_texto": "Cotizar mi proyecto por WhatsApp",
+    "cta_tecnico_texto": "Explorar perfil técnico y proyectos",
+    "estadisticas": [
+      {
+        "valor": "< 1s",
+        "etiqueta": "Tiempo de carga (Core Web Vitals)"
+      },
+      {
+        "valor": "95+",
+        "etiqueta": "Puntaje Google PageSpeed garantizado"
+      },
+      {
+        "valor": "100%",
+        "etiqueta": "Código propietario sin ataduras"
+      },
+      {
+        "valor": "0%",
+        "etiqueta": "Dependencias o plugins innecesarios"
+      }
+    ]
+  },
+  "servicios": [
+    {
+      "id": "presencia-digital",
+      "icono": "globe",
+      "popular": true,
+      "titulo": "Pack Presencia & Autoridad Digital",
+      "subtitulo": "Tu negocio visible, veloz y captando clientes en Google.",
+      "descripcion": "Diseño y desarrollo de sitios web institucionales ultrarrápidos construidos con tecnología moderna (Astro y TailwindCSS), sin las vulnerabilidades ni la lentitud de WordPress. Incluye configuración profesional de tu Perfil de Google Business para dominar las búsquedas locales en Google Maps.",
+      "puntos_clave": [
+        "Desarrollo web a medida con tiempos de carga instantáneos (Astro SSG)",
+        "Configuración, verificación y optimización de Google Business Profile",
+        "Estrategia de posicionamiento local (SEO Local y Google Maps)",
+        "Datos estructurados Schema.org para destacar en Google y motores de IA",
+        "Alojamiento de ultra velocidad en Cloudflare con certificado SSL"
+      ],
+      "servicio_form_val": "presencia-digital"
+    },
+    {
+      "id": "automatizaciones",
+      "icono": "zap",
+      "popular": false,
+      "titulo": "Automatizaciones & Integraciones de Negocio",
+      "subtitulo": "Elimina el trabajo manual repetitivo y los errores humanos.",
+      "descripcion": "Conecto tus sistemas entre sí para que tu negocio funcione en piloto automático. Desde la sincronización de inventario y pedidos hasta el procesamiento de pagos y notificaciones automáticas inmediatas a tus clientes por WhatsApp o correo.",
+      "puntos_clave": [
+        "Integración de pasarelas de pago seguras (Stripe, Redsys, PayPal, Bizum)",
+        "Sincronización automática de pedidos, facturación e inventario",
+        "Conexión de APIs de terceros y webhooks bidireccionales",
+        "Alertas y confirmaciones automáticas por WhatsApp y correo electrónico",
+        "Reducción de hasta un 70% en horas dedicadas a tareas administrativas"
+      ],
+      "servicio_form_val": "automatizaciones"
+    },
+    {
+      "id": "software-a-medida",
+      "icono": "layers",
+      "popular": false,
+      "titulo": "Sistemas & Plataformas Web a Medida",
+      "subtitulo": "Software adaptado exactamente a tus reglas de negocio.",
+      "descripcion": "Cuando las herramientas genéricas del mercado se quedan cortas, desarrollo plataformas a medida: paneles de control para gestionar operaciones, portales para tus clientes, o sistemas de citas y reservas sin pagar comisiones mensuales a plataformas externas.",
+      "puntos_clave": [
+        "Dashboards administrativos y paneles de gestión operativa centralizada",
+        "Sistemas de citas, turnos y reservas sin intermediarios ni comisiones",
+        "Arquitectura backend robusta y escalable con Laravel y Node.js",
+        "Bases de datos relacionales seguras (PostgreSQL / MySQL)",
+        "Gestión de roles, permisos de empleados y trazabilidad de operaciones"
+      ],
+      "servicio_form_val": "software-a-medida"
+    },
+    {
+      "id": "consultoria-tecnica",
+      "icono": "shield",
+      "popular": false,
+      "titulo": "Consultoría, Auditoría & Rescate Técnico",
+      "subtitulo": "Diagnóstico profesional para sistemas lentos o vulnerables.",
+      "descripcion": "¿Tienes una web que carga lenta, un sistema con errores constantes o dudas sobre qué tecnología elegir para escalar? Realizo auditorías profundas de rendimiento, seguridad y arquitectura para transformar sistemas deficientes en plataformas estables y rápidas.",
+      "puntos_clave": [
+        "Auditoría técnica de Core Web Vitals y optimización PageSpeed",
+        "Blindaje de seguridad, prevención de inyecciones y sanitización de datos",
+        "Migración de servidores y configuración de entornos en la nube",
+        "Modernización de código legacy y refactorización orientada a buenas prácticas",
+        "Informe ejecutivo claro con plan de acción prioritario sin tecnicismos vacíos"
+      ],
+      "servicio_form_val": "consultoria-tecnica"
+    }
+  ],
+  "por_que_ingeniero": {
+    "titulo": "¿Por qué trabajar con un Ingeniero de Software?",
+    "subtitulo": "La diferencia entre un sitio que solo 'se ve bien' y una herramienta que genera dinero todos los días.",
+    "comparativa": [
+      {
+        "aspecto": "Velocidad y Rendimiento",
+        "ingeniero": "Sitios que cargan en menos de 1 segundo (PageSpeed 95-100). Cada décima de segundo ganada aumenta la conversión de ventas.",
+        "agencia_generica": "Plantillas pesadas de WordPress repletas de plugins que tardan más de 4 segundos en abrir y pierden el 50% del tráfico."
+      },
+      {
+        "aspecto": "Propiedad del Código",
+        "ingeniero": "El código es 100% tuyo, limpio, versionado en Git y sin ataduras ni mensualidades forzadas de mantenimiento.",
+        "agencia_generica": "Dependencia absoluta de constructores visuales propietarios o cuotas cautivas para cualquier cambio mínimo."
+      },
+      {
+        "aspecto": "Seguridad y Estabilidad",
+        "ingeniero": "Arquitectura modular, sanitización de datos y protección contra ataques automatizados a nivel perimetral.",
+        "agencia_generica": "Plugins desactualizados con puertas traseras y riesgo frecuente de hackeos o caídas del servidor."
+      },
+      {
+        "aspecto": "Automatización Real",
+        "ingeniero": "Capacidad de conectar bases de datos, APIs de pago, ERPs y flujos de negocio complejos a la medida de tu empresa.",
+        "agencia_generica": "Limitado a lo que ofrezcan plugins prefabricados, sin posibilidad de resolver problemas de negocio profundos."
+      }
+    ]
+  },
+  "metodologia": {
+    "titulo": "Un proceso transparente y sin sorpresas",
+    "subtitulo": "De la idea a la puesta en producción en 4 etapas claras.",
+    "pasos": [
+      {
+        "numero": "01",
+        "nombre": "Diagnóstico Inicial Gratuito",
+        "descripcion": "Analizamos tus metas comerciales, tus cuellos de botella actuales y definimos el alcance exacto de la solución que tu negocio necesita."
+      },
+      {
+        "numero": "02",
+        "nombre": "Propuesta & Arquitectura",
+        "descripcion": "Diseño la arquitectura técnica y funcional, con presupuesto cerrado y calendario de entregas garantizado sin costes ocultos."
+      },
+      {
+        "numero": "03",
+        "nombre": "Desarrollo Ágil & Pruebas",
+        "descripcion": "Construyo la plataforma con código limpio, pruebas de seguridad y revisiones periódicas contigo para que veas el avance en tiempo real."
+      },
+      {
+        "numero": "04",
+        "nombre": "Despliegue & Capacitación",
+        "descripcion": "Puesta en producción en infraestructura Cloudflare de alta disponibilidad, entrega del código y capacitación para que tengas el control."
+      }
+    ]
+  },
+  "garantias": {
+    "titulo": "Compromisos garantizados",
+    "items": [
+      {
+        "titulo": "Garantía de Velocidad",
+        "descripcion": "Si tu sitio no supera los 90 puntos en Google PageSpeed Insights, lo optimizo sin coste adicional."
+      },
+      {
+        "titulo": "Trato Directo sin Intermediarios",
+        "descripcion": "Hablas directamente con el ingeniero responsable de tu proyecto, sin comerciales que prometen lo que no se puede cumplir."
+      },
+      {
+        "titulo": "Soporte Post-Lanzamiento",
+        "descripcion": "Acompañamiento técnico de 30 días posteriores al lanzamiento para resolver cualquier duda o ajuste necesario."
+      }
+    ]
+  },
+  "contacto_whatsapp": {
+    "titulo": "Hablemos de tu proyecto hoy",
+    "subtitulo": "Cuéntame qué necesitas y te responderé con un análisis preliminar y presupuesto orientativo en menos de 24 horas.",
+    "wa_usuario": "kevindponce",
+    "mensaje_directo": "Hola Kevin, estuve viendo tus servicios comerciales en tu sitio web y me gustaría cotizar una solución para mi negocio.",
+    "select_opciones": [
+      {
+        "valor": "presencia-digital",
+        "texto": "Pack Presencia & Marca Digital (Web rápida + Google Maps)"
+      },
+      {
+        "valor": "automatizaciones",
+        "texto": "Automatizaciones de Procesos & Pagos"
+      },
+      {
+        "valor": "software-a-medida",
+        "texto": "Desarrollo de Software / Plataforma a Medida"
+      },
+      {
+        "valor": "consultoria",
+        "texto": "Consultoría & Auditoría Técnica"
+      },
+      {
+        "valor": "otro",
+        "texto": "Otro proyecto o consulta técnica"
+      }
+    ]
+  }
+}

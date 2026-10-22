@@ -1,78 +1,58 @@
 ---
-// Importaciones de los componentes
+// Archivo: src/pages/index.astro (Landing Comercial para Negocios y Empresas)
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
-import Skils from "../components/Skils.astro";
-import Projects from "../components/Projects.astro";
-import Experience from "../components/Experience.astro";
-import Formation from "../components/Formation.astro";
-import Contact from "../components/Contact.astro";
-import BlogPreview from "../components/BlogPreview.astro";
+import serviciosData from "../json/servicios.json";
 
 const siteUrl = "https://kevinponcedev.xyz";
-const pageTitle = "Kevin Ponce | Desarrollador Web Backend & APIs RESTful";
-const pageDescription = "Portafolio de Kevin Ponce, Desarrollador Web Backend especializado en APIs RESTful, microservicios y arquitecturas robustas con Laravel, Node.js y TypeScript.";
-const ogImage = `${siteUrl}/images/foto_fea2.jpg`;
+const { meta, hero, servicios, por_que_ingeniero, metodologia, garantias, contacto_whatsapp } = serviciosData;
 
 const schemaJson = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": `${siteUrl}/#person`,
-      "name": "Kevin David Ponce Machigua",
-      "alternateName": "Kevin Ponce",
-      "jobTitle": "Desarrollador Web Backend",
-      "description": "Desarrollador web especializado en backend, diseño de APIs RESTful y arquitectura de servidores con Laravel, Node.js y Vue.js.",
-      "url": siteUrl,
-      "image": ogImage,
-      "sameAs": [
-        "https://github.com/kevinPoncema",
-        "https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/"
-      ],
-      "knowsAbout": [
-        "Laravel",
-        "Node.js",
-        "PHP",
-        "TypeScript",
-        "JavaScript",
-        "Express",
-        "MySQL",
-        "PostgreSQL",
-        "Redis",
-        "Docker",
-        "REST APIs",
-        "Vue.js",
-        "Astro"
-      ],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Universidad Europea del Atlántico"
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#service`,
+      "name": "Kevin Ponce — Ingeniería de Software, Presencia Digital & Automatizaciones",
+      "url": `${siteUrl}/`,
+      "image": `${siteUrl}${meta.og_image}`,
+      "description": meta.descripcion,
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santander",
+        "addressRegion": "Cantabria",
+        "addressCountry": "ES"
+      },
+      "areaServed": ["España", "Latinoamérica", "Remoto Internacional"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de Software y Automatización",
+        "itemListElement": servicios.map((serv, index) => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": serv.titulo,
+            "description": serv.descripcion
+          }
+        }))
+      },
+      "founder": {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        "name": "Kevin David Ponce Machigua",
+        "jobTitle": "Ingeniero de Software & Consultor Técnico"
       }
     },
     {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       "url": `${siteUrl}/`,
-      "name": "KevinPonceDev - Portafolio Profesional",
-      "description": "Portafolio profesional y blog de desarrollo web de Kevin Ponce.",
+      "name": "Kevin Ponce | Soluciones de Software y Presencia Digital",
       "publisher": {
-        "@id": `${siteUrl}/#person`
+        "@id": `${siteUrl}/#service`
       },
       "inLanguage": "es"
-    },
-    {
-      "@type": "ProfilePage",
-      "@id": `${siteUrl}/#profilepage`,
-      "url": `${siteUrl}/`,
-      "name": pageTitle,
-      "isPartOf": {
-        "@id": `${siteUrl}/#website`
-      },
-      "mainEntity": {
-        "@id": `${siteUrl}/#person`
-      }
     }
   ]
 };
@@ -85,421 +65,543 @@ const schemaJson = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- SEO Básico -->
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
+    <!-- SEO Meta Tags Comerciales -->
+    <title>{meta.titulo}</title>
+    <meta name="description" content={meta.descripcion} />
     <link rel="canonical" href={`${siteUrl}/`} />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="profile" />
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:type" content="website" />
     <meta property="og:url" content={`${siteUrl}/`} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="KevinPonceDev" />
+    <meta property="og:title" content={meta.titulo} />
+    <meta property="og:description" content={meta.descripcion} />
+    <meta property="og:image" content={`${siteUrl}${meta.og_image}`} />
+    <meta property="og:site_name" content="Kevin Ponce — Software & Automatizaciones" />
     <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={`${siteUrl}/`} />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={pageDescription} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:title" content={meta.titulo} />
+    <meta name="twitter:description" content={meta.descripcion} />
+    <meta name="twitter:image" content={`${siteUrl}${meta.og_image}`} />
 
-    <!-- Datos Estructurados JSON-LD -->
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFXW20TRRN"></script>
     <script is:inline>
       // @ts-nocheck
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        window.dataLayer.push(arguments);
-      }
+      function gtag() { window.dataLayer.push(arguments); }
       gtag("js", new Date());
       gtag("config", "G-BFXW20TRRN");
     </script>
   </head>
 
-  <body class="bg-gray-50 text-gray-900 antialiased">
-    <!-- Enlace accesible de salto al contenido principal -->
+  <body class="bg-gray-50 text-gray-900 antialiased selection:bg-blue-600 selection:text-white">
+    <!-- Skip to main content -->
     <a 
       href="#main-content" 
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-blue-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
     >
-      Saltar al contenido principal
+      Saltar al contenido comercial
     </a>
 
-    <div id="app">
-      <Header />
-      
-      <!-- Landmark principal semántico -->
-      <main id="main-content" class="w-full pt-16">
-        <section id="inicio" aria-label="Inicio">
-          <Hero />
+    <div id="app" class="flex flex-col min-h-screen">
+      <Header context="commercial" />
+
+      <main id="main-content" class="w-full flex-grow pt-16">
+        
+        <!-- ─── HERO SECTION ────────────────────────────────────────────────── -->
+        <section id="hero" class="relative overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 text-white py-20 lg:py-28" data-agent-section="hero">
+          <!-- Decoración geométrica sutil -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" aria-hidden="true">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-400 blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-amber-400 blur-3xl"></div>
+          </div>
+
+          <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+              
+              <!-- Badge de Confianza -->
+              <div class="inline-flex items-center gap-2 bg-blue-950/60 border border-blue-500/40 text-blue-200 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>{hero.badge}</span>
+              </div>
+
+              <!-- Título de Alto Impacto -->
+              <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 text-white">
+                {hero.titulo_principal}{" "}
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-200 to-yellow-400">
+                  {hero.titulo_destacado}
+                </span>
+              </h1>
+
+              <!-- Subtítulo -->
+              <p class="text-base sm:text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+                {hero.subtitulo}
+              </p>
+
+              <!-- CTAs Principales -->
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <!-- Botón WhatsApp Ofuscado -->
+                <button
+                  type="button"
+                  id="hero-wa-btn"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-7 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 min-h-[48px] text-base group cursor-pointer"
+                  aria-label={hero.cta_whatsapp_texto}
+                  data-agent-action="whatsapp-direct"
+                >
+                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.534 1.768.814 2.801.815 3.179 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.768-5.773-5.768zm3.364 8.163c-.14.393-.812.728-1.127.776-.309.047-.712.063-1.144-.078-.276-.089-.63-.223-1.077-.417-1.905-.826-3.14-2.766-3.235-2.893-.095-.127-.775-1.03-.775-1.964s.489-1.394.663-1.585c.174-.191.38-.239.507-.239.127 0 .253.001.364.007.118.006.276-.045.432.329.16.386.547 1.332.595 1.43.048.098.079.213.016.341-.063.127-.095.206-.19.317-.095.111-.2.248-.286.333-.095.095-.195.198-.084.389.111.19.494.814 1.059 1.318.729.649 1.344.85 1.534.945.19.095.301.079.412-.048.111-.127.476-.555.603-.745.127-.19.254-.159.428-.095.174.063 1.11.523 1.3.618.19.095.317.143.364.222.048.079.048.46-.095.853z"/>
+                  </svg>
+                  <span>{hero.cta_whatsapp_texto}</span>
+                </button>
+
+                <!-- Botón Perfil Técnico -->
+                <a
+                  href="/technical"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-950/70 hover:bg-blue-950 text-white font-semibold px-6 py-4 rounded-xl border border-blue-500/50 hover:border-blue-400 transition-all duration-200 min-h-[48px] text-base"
+                >
+                  <span>{hero.cta_tecnico_texto}</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Métricas Clave / Social Proof -->
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 border-t border-blue-700/60">
+                {hero.estadisticas.map((stat) => (
+                  <div class="p-3 text-center">
+                    <p class="text-2xl sm:text-3xl font-black text-amber-300 font-mono mb-1">{stat.valor}</p>
+                    <p class="text-xs sm:text-sm text-blue-200 leading-tight">{stat.etiqueta}</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </div>
         </section>
-        <section id="habilidades" aria-label="Habilidades técnicas y blandas">
-          <Skils />
+
+        <!-- ─── PAQUETES Y SERVICIOS ────────────────────────────────────────── -->
+        <section id="servicios" class="py-20 bg-gray-100" data-agent-section="services">
+          <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+              <span class="text-blue-800 font-bold text-xs uppercase tracking-widest bg-blue-100 px-3 py-1 rounded-full">
+                Soluciones Integrales
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+                Servicios diseñados para generar resultados
+              </h2>
+              <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                Sin tecnicismos innecesarios: software robusto, páginas web que posicionan y automatizaciones que te ahorran horas de trabajo cada semana.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {servicios.map((servicio) => (
+                <article 
+                  id={servicio.id} 
+                  class={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border flex flex-col justify-between relative overflow-hidden ${
+                    servicio.popular ? 'border-blue-600 ring-2 ring-blue-600/20' : 'border-gray-200'
+                  }`}
+                >
+                  {servicio.popular && (
+                    <div class="absolute top-0 right-0 bg-blue-700 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider">
+                      Más Solicitado
+                    </div>
+                  )}
+
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">{servicio.titulo}</h3>
+                    <p class="text-blue-800 font-semibold text-sm mb-4">{servicio.subtitulo}</p>
+                    <p class="text-gray-600 text-base leading-relaxed mb-6">
+                      {servicio.descripcion}
+                    </p>
+
+                    <!-- Lista de Beneficios -->
+                    <ul class="space-y-3 mb-8" aria-label={`Características de ${servicio.titulo}`}>
+                      {servicio.puntos_clave.map((punto) => (
+                        <li class="flex items-start gap-3 text-sm text-gray-700 leading-snug">
+                          <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                          </svg>
+                          <span>{punto}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Botón prellenado hacia el formulario -->
+                  <div class="pt-6 border-t border-gray-100 mt-auto">
+                    <button
+                      type="button"
+                      class="select-service-btn w-full inline-flex items-center justify-center gap-2 bg-gray-50 hover:bg-blue-800 hover:text-white text-blue-900 font-bold py-3.5 px-6 rounded-xl border border-gray-200 hover:border-blue-800 transition-all duration-200 min-h-[44px] cursor-pointer"
+                      data-service-val={servicio.servicio_form_val}
+                      data-service-name={servicio.titulo}
+                    >
+                      <span>Cotizar este paquete</span>
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
-        <section id="proyectos" aria-label="Proyectos destacados">
-          <Projects />
+
+        <!-- ─── POR QUÉ TRABAJAR CON UN INGENIERO ──────────────────────────── -->
+        <section id="por-que-ingeniero" class="py-20 bg-white" data-agent-section="comparison">
+          <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+              <span class="text-amber-700 font-bold text-xs uppercase tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
+                Ventaja Competitiva
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+                {por_que_ingeniero.titulo}
+              </h2>
+              <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                {por_que_ingeniero.subtitulo}
+              </p>
+            </div>
+
+            <!-- Tabla Comparativa / Cards -->
+            <div class="grid grid-cols-1 gap-6">
+              {por_que_ingeniero.comparativa.map((item) => (
+                <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                  <div class="md:col-span-4">
+                    <h3 class="text-xl font-bold text-gray-900">{item.aspecto}</h3>
+                  </div>
+                  <div class="md:col-span-4 p-4 bg-emerald-50/70 border border-emerald-200 rounded-xl">
+                    <p class="text-xs font-bold text-emerald-800 uppercase tracking-wide mb-1 flex items-center gap-1.5">
+                      <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                      </svg>
+                      Conmigo (Ingeniería Directa)
+                    </p>
+                    <p class="text-sm text-gray-800 leading-relaxed font-medium">{item.ingeniero}</p>
+                  </div>
+                  <div class="md:col-span-4 p-4 bg-red-50/50 border border-red-100 rounded-xl">
+                    <p class="text-xs font-bold text-red-700 uppercase tracking-wide mb-1 flex items-center gap-1.5">
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                      </svg>
+                      Agencia Genérica / Plantillas
+                    </p>
+                    <p class="text-sm text-gray-600 leading-relaxed">{item.agencia_generica}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
-        <section id="experiencia" aria-label="Experiencia laboral">
-          <Experience />
+
+        <!-- ─── METODOLOGÍA / PROCESO ──────────────────────────────────────── -->
+        <section id="proceso" class="py-20 bg-gray-100" data-agent-section="process">
+          <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+              <span class="text-blue-800 font-bold text-xs uppercase tracking-widest bg-blue-100 px-3 py-1 rounded-full">
+                Flujo de Trabajo
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+                {metodologia.titulo}
+              </h2>
+              <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                {metodologia.subtitulo}
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {metodologia.pasos.map((paso) => (
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex flex-col justify-between">
+                  <div>
+                    <span class="text-3xl font-black text-blue-800/20 font-mono block mb-2">{paso.numero}</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">{paso.nombre}</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">{paso.descripcion}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Garantías Destacadas -->
+            <div class="mt-16 bg-blue-900 text-white rounded-2xl p-8 sm:p-10 shadow-xl">
+              <h3 class="text-2xl font-bold text-center mb-8 text-amber-300">
+                {garantias.titulo}
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {garantias.items.map((g) => (
+                  <div class="bg-blue-950/60 p-5 rounded-xl border border-blue-700/60">
+                    <h4 class="font-bold text-base text-white mb-2">{g.titulo}</h4>
+                    <p class="text-blue-100 text-sm leading-relaxed">{g.descripcion}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
-        <section id="formacion" aria-label="Formación académica y cursos">
-          <Formation />
+
+        <!-- ─── SECCIÓN DE CONTACTO DOBLE CANAL ANTI-SPAM ──────────────────── -->
+        <section id="contacto" class="py-20 bg-white" data-agent-section="contact">
+          <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+              <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+                Hablemos de tu Proyecto
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+                {contacto_whatsapp.titulo}
+              </h2>
+              <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                {contacto_whatsapp.subtitulo}
+              </p>
+            </div>
+
+            <!-- Card del Formulario y Canales -->
+            <div class="bg-gray-50 rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-lg">
+              
+              <!-- Canal 1: Acceso Directo por WhatsApp Ofuscado -->
+              <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4 text-center sm:text-left">
+                  <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center flex-shrink-0 shadow-md">
+                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.534 1.768.814 2.801.815 3.179 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.768-5.773-5.768zm3.364 8.163c-.14.393-.812.728-1.127.776-.309.047-.712.063-1.144-.078-.276-.089-.63-.223-1.077-.417-1.905-.826-3.14-2.766-3.235-2.893-.095-.127-.775-1.03-.775-1.964s.489-1.394.663-1.585c.174-.191.38-.239.507-.239.127 0 .253.001.364.007.118.006.276-.045.432.329.16.386.547 1.332.595 1.43.048.098.079.213.016.341-.063.127-.095.206-.19.317-.095.111-.2.248-.286.333-.095.095-.195.198-.084.389.111.19.494.814 1.059 1.318.729.649 1.344.85 1.534.945.19.095.301.079.412-.048.111-.127.476-.555.603-.745.127-.19.254-.159.428-.095.174.063 1.11.523 1.3.618.19.095.317.143.364.222.048.079.048.46-.095.853z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-gray-900 text-base">¿Prefieres chatear de inmediato?</h3>
+                    <p class="text-sm text-gray-600">Escríbeme un mensaje directo a WhatsApp sin intermediarios.</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  id="direct-wa-chat-btn"
+                  class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md min-h-[44px] flex-shrink-0 cursor-pointer text-sm"
+                >
+                  Abrir WhatsApp Directo
+                </button>
+              </div>
+
+              <!-- Separador -->
+              <div class="relative my-8 text-center">
+                <hr class="border-gray-200" />
+                <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-50 px-4 text-xs font-semibold text-gray-600 uppercase">
+                  O describe tu proyecto a continuación
+                </span>
+              </div>
+
+              <!-- Canal 2: Formulario Interactivo con Honeypot Anti-Bot -->
+              <form id="contact-form" class="space-y-6" novalidate>
+                <!-- CAMPO HONEYPOT INVISIBLE PARA BOTS -->
+                <div class="hidden" style="display:none !important;" aria-hidden="true">
+                  <label for="b_field">No llenar este campo:</label>
+                  <input type="text" id="b_field" name="b_field" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <!-- Nombre -->
+                  <div>
+                    <label for="user_name" class="block text-sm font-semibold text-gray-800 mb-2">
+                      Tu Nombre <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="user_name"
+                      name="user_name"
+                      required
+                      placeholder="Ej. Carlos Martínez"
+                      class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 bg-white text-gray-900 text-sm outline-none transition-all"
+                    />
+                  </div>
+
+                  <!-- Empresa / Negocio -->
+                  <div>
+                    <label for="business_name" class="block text-sm font-semibold text-gray-800 mb-2">
+                      Nombre de tu Negocio o Proyecto
+                    </label>
+                    <input
+                      type="text"
+                      id="business_name"
+                      name="business_name"
+                      placeholder="Ej. Clínica Dental Norte / Startup X"
+                      class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 bg-white text-gray-900 text-sm outline-none transition-all"
+                    />
+                  </div>
+                </div>
+
+                <!-- Selección de Servicio -->
+                <div>
+                  <label for="service_select" class="block text-sm font-semibold text-gray-800 mb-2">
+                    Servicio de Interés <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="service_select"
+                    name="service_select"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 bg-white text-gray-900 text-sm outline-none transition-all cursor-pointer"
+                  >
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    {contacto_whatsapp.select_opciones.map((opt) => (
+                      <option value={opt.valor}>{opt.texto}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <!-- Mensaje Breve -->
+                <div>
+                  <label for="user_message" class="block text-sm font-semibold text-gray-800 mb-2">
+                    Detalles o requerimientos principales <span class="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="user_message"
+                    name="user_message"
+                    rows="4"
+                    required
+                    placeholder="Cuéntame brevemente qué necesitas resolver, si tienes fecha límite o si ya cuentas con un sistema previo..."
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 bg-white text-gray-900 text-sm outline-none transition-all"
+                  ></textarea>
+                </div>
+
+                <!-- Estado / Error de Validación -->
+                <div id="form-error" class="hidden p-3 bg-red-100 border border-red-300 text-red-800 rounded-xl text-sm font-medium"></div>
+
+                <!-- Botón de Envío vía WhatsApp -->
+                <button
+                  type="submit"
+                  id="submit-form-btn"
+                  class="w-full inline-flex items-center justify-center gap-2.5 bg-blue-800 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 min-h-[48px] text-base cursor-pointer"
+                >
+                  <svg class="w-5 h-5 fill-current text-emerald-400" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.534 1.768.814 2.801.815 3.179 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.768-5.773-5.768zm3.364 8.163c-.14.393-.812.728-1.127.776-.309.047-.712.063-1.144-.078-.276-.089-.63-.223-1.077-.417-1.905-.826-3.14-2.766-3.235-2.893-.095-.127-.775-1.03-.775-1.964s.489-1.394.663-1.585c.174-.191.38-.239.507-.239.127 0 .253.001.364.007.118.006.276-.045.432.329.16.386.547 1.332.595 1.43.048.098.079.213.016.341-.063.127-.095.206-.19.317-.095.111-.2.248-.286.333-.095.095-.195.198-.084.389.111.19.494.814 1.059 1.318.729.649 1.344.85 1.534.945.19.095.301.079.412-.048.111-.127.476-.555.603-.745.127-.19.254-.159.428-.095.174.063 1.11.523 1.3.618.19.095.317.143.364.222.048.079.048.46-.095.853z"/>
+                  </svg>
+                  <span>Enviar requerimiento por WhatsApp</span>
+                </button>
+
+                <p class="text-xs text-gray-500 text-center">
+                  Tus datos se transmiten de forma cifrada directamente a través de WhatsApp. Sin spam ni almacenamiento invasivo.
+                </p>
+              </form>
+            </div>
+          </div>
         </section>
-        <section id="blog" aria-label="Últimas entradas del blog">
-          <BlogPreview />
-        </section>
-        <section id="contacto" aria-label="Información de contacto">
-          <Contact />
-        </section>
+
       </main>
 
       <Footer />
     </div>
 
-    <!-- Modal global de imagen ampliada -->
-    <div 
-      id="image-modal" 
-      class="fixed inset-0 z-[9999] hidden bg-black/90" 
-      role="dialog" 
-      aria-modal="true" 
-      aria-labelledby="modal-project-title"
-    >
-      <div class="flex flex-col items-center justify-center min-h-screen p-4">
-        <!-- Header del modal con título y botón cerrar -->
-        <div class="flex justify-between items-center w-full max-w-4xl mb-4">
-          <h3 id="modal-project-title" class="text-white text-xl font-bold">
-          </h3>
-          <button
-            id="close-modal"
-            class="bg-white/20 hover:bg-white/30 text-white rounded-full p-3 transition-colors duration-200 backdrop-blur-sm min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
-            aria-label="Cerrar vista de imagen"
-          >
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Contenedor de imagen con carrusel -->
-        <div class="relative max-w-4xl max-h-[70vh] w-full">
-          <!-- Imagen principal -->
-          <img
-            id="modal-image"
-            src=""
-            alt=""
-            class="w-full h-full object-contain rounded-lg shadow-2xl bg-white/5 backdrop-blur-sm"
-          />
-
-          <!-- Controles del carrusel en modal con touch targets de 44px -->
-          <button
-            id="modal-prev"
-            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
-            aria-label="Imagen anterior"
-          >
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"></path>
-            </svg>
-          </button>
-
-          <button
-            id="modal-next"
-            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-11 h-11 rounded-full transition-all duration-200 hidden backdrop-blur-sm items-center justify-center focus:outline-none focus:ring-2 focus:ring-white"
-            aria-label="Imagen siguiente"
-          >
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Indicadores del modal con touch targets accesibles -->
-        <div
-          id="modal-indicators"
-          class="flex justify-center items-center gap-1 mt-4 hidden"
-        >
-        </div>
-      </div>
-    </div>
-
+    <!-- ─── SCRIPT DE OFUSCACIÓN DE WHATSAPP Y HONEYPOT ANTI-BOT ─────────── -->
     <script is:inline>
       // @ts-nocheck
-      // ─── ModalManager ──────────────────────────────────────────────────────────
-      class ModalManager {
-        constructor() {
-          this.activeModal = null;
-          this.modals = {
-            image: { element: null, closeCallback: null },
-            project: { element: null, closeCallback: null },
-          };
-          this.init();
+      document.addEventListener("DOMContentLoaded", () => {
+        // Tokens ofuscados en Base64 para construir el endpoint de WhatsApp
+        // Evita que scrapers o rastreadores capturen datos en texto plano
+        const _k = ["aHR0cHM6", "Ly93YS5tZQ==", "L3FyLw==", "a2V2aW5kcG9uY2U="];
+        
+        function resolveWhatsAppBase() {
+          try {
+            const prefix = atob(_k[0]);
+            const domain = atob(_k[1]);
+            const user = atob(_k[3]);
+            // Endpoint estándar de WhatsApp para usuario kevindponce
+            return prefix + domain + "/" + user;
+          } catch (e) {
+            return "https://wa.me/kevindponce";
+          }
         }
 
-        init() {
-          this.modals.image.element = document.getElementById("image-modal");
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && this.activeModal) this.closeActive();
+        function openWhatsApp(customText) {
+          const baseUrl = resolveWhatsAppBase();
+          const cleanText = encodeURIComponent(customText || "Hola Kevin, estuve viendo tus servicios en tu web y me gustaría cotizar un proyecto.");
+          const targetUrl = baseUrl + "?text=" + cleanText;
+          window.open(targetUrl, "_blank", "noopener,noreferrer");
+        }
+
+        // 1. Botón Hero WhatsApp
+        const heroWaBtn = document.getElementById("hero-wa-btn");
+        if (heroWaBtn) {
+          heroWaBtn.addEventListener("click", () => {
+            openWhatsApp("Hola Kevin, vi tus servicios en tu sitio web y me gustaría cotizar una solución para mi negocio.");
           });
         }
 
-        openModal(type, openCallback) {
-          this.closeActive();
-          this.activeModal = type;
-          if (openCallback) openCallback();
-          document.body.style.overflow = "hidden";
+        // 2. Botón Directo en Sección de Contacto
+        const directWaBtn = document.getElementById("direct-wa-chat-btn");
+        if (directWaBtn) {
+          directWaBtn.addEventListener("click", () => {
+            openWhatsApp("Hola Kevin, me gustaría hacerte una consulta directa sobre desarrollo y automatizaciones.");
+          });
         }
 
-        closeActive() {
-          if (!this.activeModal) return;
-          const entry = this.modals[this.activeModal];
-          if (entry && entry.closeCallback) entry.closeCallback();
-          this.activeModal = null;
-          document.body.style.overflow = "";
-        }
+        // 3. Botones de "Cotizar este paquete" en las Cards de Servicios
+        const selectButtons = document.querySelectorAll(".select-service-btn");
+        const serviceSelect = document.getElementById("service_select");
+        const contactSection = document.getElementById("contacto");
 
-        registerModal(type, closeCallback) {
-          if (this.modals[type])
-            this.modals[type].closeCallback = closeCallback;
-        }
-
-        isActive(type) {
-          return this.activeModal === type;
-        }
-      }
-
-      // Instancia global
-      const modalManager = new ModalManager();
-      window.modalManager = modalManager;
-
-      // ─── Lógica del modal de imagen ──────────────────────────────────────────
-      let currentModalImages = [];
-      let currentModalIndex = 0;
-      let currentProjectTitle = "";
-
-      const modal = document.getElementById("image-modal");
-      const modalImage = document.getElementById("modal-image");
-      const modalTitle = document.getElementById("modal-project-title");
-      const modalIndicators = document.getElementById("modal-indicators");
-      const closeModalBtn = document.getElementById("close-modal");
-      const modalPrev = document.getElementById("modal-prev");
-      const modalNext = document.getElementById("modal-next");
-
-      function openImageModal(
-        imageSrc,
-        imageAlt,
-        projectImages,
-        projectTitle,
-        startIndex
-      ) {
-        startIndex = startIndex || 0;
-        if (!modal || !modalImage) {
-          console.error("Modal elements not found");
-          return;
-        }
-
-        modalManager.openModal("image", () => {
-          currentModalImages = projectImages;
-          currentModalIndex = startIndex;
-          currentProjectTitle = projectTitle;
-
-          updateModalContent();
-          setupModalIndicators();
-          modal.classList.remove("hidden");
-
-          const hasMany = currentModalImages.length > 1;
-          modalPrev?.classList.toggle("hidden", !hasMany);
-          modalNext?.classList.toggle("hidden", !hasMany);
-          modalIndicators?.classList.toggle("hidden", !hasMany);
-          if (hasMany) {
-            modalPrev?.classList.add("flex");
-            modalNext?.classList.add("flex");
-          }
-        });
-      }
-
-      function updateModalContent() {
-        if (modalImage && modalTitle) {
-          const rawSrc = currentModalImages[currentModalIndex];
-          modalImage.src = rawSrc.startsWith('/') ? rawSrc : '/' + rawSrc;
-          modalImage.alt =
-            currentProjectTitle + " - Imagen " + (currentModalIndex + 1);
-          modalTitle.textContent = currentProjectTitle;
-        }
-        modalIndicators?.querySelectorAll(".modal-dot-inner").forEach((dot, i) => {
-          if (i === currentModalIndex) {
-            dot.className = "modal-dot-inner block w-3 h-3 rounded-full bg-white transition-all";
-          } else {
-            dot.className = "modal-dot-inner block w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white/60 transition-all";
-          }
-        });
-      }
-
-      function setupModalIndicators() {
-        if (!modalIndicators || currentModalImages.length <= 1) return;
-        modalIndicators.innerHTML = "";
-        currentModalImages.forEach((_, i) => {
-          const btn = document.createElement("button");
-          btn.className = "modal-dot w-11 h-11 p-0 flex items-center justify-center bg-transparent border-0 cursor-pointer rounded-full";
-          btn.setAttribute("aria-label", "Ir a imagen " + (i + 1));
-          
-          const dot = document.createElement("span");
-          dot.className = "modal-dot-inner block " + (i === currentModalIndex ? "w-3 h-3 bg-white" : "w-2.5 h-2.5 bg-white/40 hover:bg-white/60") + " rounded-full transition-all";
-          
-          btn.appendChild(dot);
+        selectButtons.forEach((btn) => {
           btn.addEventListener("click", () => {
-            currentModalIndex = i;
-            updateModalContent();
+            const val = btn.getAttribute("data-service-val");
+            if (serviceSelect && val) {
+              serviceSelect.value = val;
+            }
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: "smooth" });
+              const messageField = document.getElementById("user_message");
+              messageField?.focus();
+            }
           });
-          modalIndicators.appendChild(btn);
         });
-      }
 
-      function closeImageModal() {
-        if (!modal) return;
-        modal.classList.add("hidden");
-        modalPrev?.classList.add("hidden");
-        modalNext?.classList.add("hidden");
-        modalIndicators?.classList.add("hidden");
-        currentModalImages = [];
-        currentModalIndex = 0;
-        currentProjectTitle = "";
-      }
+        // 4. Formulario de Contacto Interactivo con Protección Honeypot Anti-Bot
+        const form = document.getElementById("contact-form");
+        const honeypot = document.getElementById("b_field");
+        const formError = document.getElementById("form-error");
 
-      function goToModalNext() {
-        if (currentModalImages.length > 1) {
-          currentModalIndex =
-            (currentModalIndex + 1) % currentModalImages.length;
-          updateModalContent();
-        }
-      }
-
-      function goToModalPrev() {
-        if (currentModalImages.length > 1) {
-          currentModalIndex =
-            (currentModalIndex - 1 + currentModalImages.length) %
-            currentModalImages.length;
-          updateModalContent();
-        }
-      }
-
-      modalManager.registerModal("image", closeImageModal);
-
-      closeModalBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        modalManager.closeActive();
-      });
-      modalPrev?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        goToModalPrev();
-      });
-      modalNext?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        goToModalNext();
-      });
-      modal?.addEventListener("click", (e) => {
-        if (e.target === modal) modalManager.closeActive();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (modalManager.isActive("image")) {
-          if (e.key === "ArrowLeft") {
+        if (form) {
+          form.addEventListener("submit", (e) => {
             e.preventDefault();
-            goToModalPrev();
-          }
-          if (e.key === "ArrowRight") {
-            e.preventDefault();
-            goToModalNext();
-          }
+
+            // Verificación Honeypot: si el bot llenó el campo oculto, descartar en silencio
+            if (honeypot && honeypot.value.trim() !== "") {
+              console.warn("Bot detectado y neutralizado por Honeypot.");
+              return;
+            }
+
+            const userName = document.getElementById("user_name")?.value.trim() || "";
+            const businessName = document.getElementById("business_name")?.value.trim() || "No especificado";
+            const serviceVal = serviceSelect?.value || "";
+            const serviceText = serviceSelect?.options[serviceSelect.selectedIndex]?.text || serviceVal;
+            const message = document.getElementById("user_message")?.value.trim() || "";
+
+            // Validación en el cliente
+            if (!userName || !serviceVal || !message) {
+              if (formError) {
+                formError.textContent = "Por favor completa tu nombre, el servicio requerido y un breve detalle de lo que necesitas.";
+                formError.classList.remove("hidden");
+              }
+              return;
+            }
+
+            if (formError) {
+              formError.classList.add("hidden");
+            }
+
+            // Estructuración del mensaje limpio y profesional
+            const formattedMessage = 
+              `¡Hola Kevin! Me comunico desde tu sitio web:\n\n` +
+              `• Nombre: ${userName}\n` +
+              `• Negocio/Proyecto: ${businessName}\n` +
+              `• Servicio de interés: ${serviceText}\n` +
+              `• Requerimientos: ${message}`;
+
+            openWhatsApp(formattedMessage);
+          });
         }
       });
-
-      document.addEventListener("openImageModal", (e) => {
-        const { imageSrc, imageAlt, projectImages, projectTitle, startIndex } =
-          e.detail;
-        openImageModal(
-          imageSrc,
-          imageAlt,
-          projectImages,
-          projectTitle,
-          startIndex
-        );
-      });
-
-      window.openImageModal = openImageModal;
     </script>
-
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Estilos para el modal de imagen */
-      #image-modal {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background: rgba(0, 0, 0, 0.9) !important;
-        backdrop-filter: blur(4px) !important;
-        z-index: 9999 !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-direction: column !important;
-      }
-
-      #image-modal:not(.hidden) {
-        display: flex !important;
-      }
-
-      #image-modal.hidden {
-        display: none !important;
-      }
-
-      #modal-image {
-        max-width: 100%;
-        max-height: 70vh;
-        object-fit: contain;
-      }
-    </style>
   </body>
 </html>

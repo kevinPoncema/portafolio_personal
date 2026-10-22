@@ -1,18 +1,38 @@
 ---
 // Archivo: src/components/Header.astro
+export interface Props {
+  context?: "commercial" | "technical";
+}
+
+const { context = "commercial" } = Astro.props;
+const isCommercial = context === "commercial";
 ---
 
-<header class="bg-blue-800 fixed top-0 left-0 w-full z-50 shadow-sm" role="banner">
-  <div class="container mx-auto flex justify-between items-center py-2 px-4">
+<header class="bg-blue-800 fixed top-0 left-0 w-full z-50 shadow-md backdrop-blur-md bg-opacity-95" role="banner">
+  <div class="container mx-auto flex justify-between items-center py-2.5 px-4 sm:px-6">
+    <!-- Brand / Logo -->
     <a
-      href="/"
+      href={isCommercial ? "/" : "/technical"}
       id="logo"
-      class="text-white text-xl font-bold flex items-center min-h-[44px]"
-      aria-label="KevinPonceDev - Inicio"
+      class="text-white text-xl font-bold flex items-center min-h-[44px] group"
+      aria-label={isCommercial ? "Kevin Ponce - Servicios de Software" : "KevinPonceDev - Portafolio Técnico"}
     >
-      <span class="text-white text-2xl mr-2 font-mono" aria-hidden="true">&lt;/&gt;</span>
-      <span>KevinPonceDev</span>
+      {!isCommercial ? (
+        <span class="text-white text-2xl mr-2 font-mono" aria-hidden="true">&lt;/&gt;</span>
+      ) : (
+        <span class="w-8 h-8 rounded-lg bg-blue-700 flex items-center justify-center mr-2.5 text-white font-mono text-sm font-bold border border-blue-600">
+          KP
+        </span>
+      )}
+      <span class="tracking-tight">{isCommercial ? "Kevin Ponce" : "KevinPonceDev"}</span>
+      {isCommercial && (
+        <span class="hidden sm:inline-block text-xs bg-blue-900/80 text-blue-200 border border-blue-700 font-semibold px-2.5 py-0.5 rounded-full ml-2.5">
+          Freelance & Consultoría
+        </span>
+      )}
     </a>
+
+    <!-- Mobile menu button -->
     <button
       id="menu-toggle"
       class="text-white text-3xl md:hidden focus:outline-none w-11 h-11 flex items-center justify-center rounded-lg hover:bg-blue-700/60 transition-colors"
@@ -22,34 +42,80 @@
     >
       <span aria-hidden="true">&#9776;</span>
     </button>
+
+    <!-- Navigation links -->
     <nav
       id="menu"
-      class="hidden md:block bg-blue-800 md:bg-transparent absolute md:static top-14 left-0 w-full md:w-auto shadow-md md:shadow-none"
+      class="hidden md:flex md:items-center bg-blue-800 md:bg-transparent absolute md:static top-14 left-0 w-full md:w-auto shadow-lg md:shadow-none p-4 md:p-0"
       aria-label="Navegación principal"
     >
-      <ul class="flex flex-col md:flex-row md:space-x-2 text-white">
-        <li>
-          <a href="/#inicio" class="hover:text-blue-200 block py-3 md:py-2 px-4 rounded-md transition-colors min-h-[44px] flex items-center">Inicio</a>
-        </li>
-        <li>
-          <a href="/#habilidades" class="hover:text-blue-200 block py-3 md:py-2 px-4 rounded-md transition-colors min-h-[44px] flex items-center">Habilidades</a>
-        </li>
-        <li>
-          <a href="/#proyectos" class="hover:text-blue-200 block py-3 md:py-2 px-4 rounded-md transition-colors min-h-[44px] flex items-center">Proyectos</a>
-        </li>
-        <li>
-          <a href="/#experiencia" class="hover:text-blue-200 block py-3 md:py-2 px-4 rounded-md transition-colors min-h-[44px] flex items-center">Experiencia</a>
-        </li>
-        <li>
-          <a href="/#formacion" class="hover:text-blue-200 block py-3 md:py-2 px-4 rounded-md transition-colors min-h-[44px] flex items-center">Formación</a>
-        </li>
-        <li>
-          <a href="/blog" class="hover:text-blue-200 block py-3 md:py-2 px-4 rounded-md transition-colors min-h-[44px] flex items-center">Blog</a>
-        </li>
-        <li>
-          <a href="/#contacto" class="hover:text-blue-200 block py-3 md:py-2 px-4 rounded-md transition-colors min-h-[44px] flex items-center">Contacto</a>
-        </li>
+      <ul class="flex flex-col md:flex-row md:items-center md:space-x-1 lg:space-x-2 text-white">
+        {isCommercial ? (
+          <>
+            <li>
+              <a href="#servicios" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3.5 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Servicios</a>
+            </li>
+            <li>
+              <a href="#por-que-ingeniero" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3.5 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">¿Por qué trabajar conmigo?</a>
+            </li>
+            <li>
+              <a href="#proceso" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3.5 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Metodología</a>
+            </li>
+            <li>
+              <a href="#contacto" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3.5 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Contacto</a>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <a href="/technical#inicio" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Inicio</a>
+            </li>
+            <li>
+              <a href="/technical#habilidades" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Habilidades</a>
+            </li>
+            <li>
+              <a href="/technical#proyectos" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Proyectos</a>
+            </li>
+            <li>
+              <a href="/technical#experiencia" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Experiencia</a>
+            </li>
+            <li>
+              <a href="/technical#formacion" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Formación</a>
+            </li>
+            <li>
+              <a href="/technical/blog" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Blog</a>
+            </li>
+            <li>
+              <a href="/technical#contacto" class="hover:text-blue-200 hover:bg-blue-700/40 block py-3 md:py-2 px-3 rounded-lg transition-colors min-h-[44px] flex items-center text-sm font-medium">Contacto</a>
+            </li>
+          </>
+        )}
       </ul>
+
+      <!-- Botón de Navegación Cruzada Destacado -->
+      <div class="mt-4 md:mt-0 md:ml-4 pt-3 md:pt-0 border-t md:border-t-0 border-blue-700/60">
+        {isCommercial ? (
+          <a
+            href="/technical"
+            class="inline-flex items-center justify-center gap-1.5 bg-blue-900 hover:bg-blue-950 text-white border border-blue-600/80 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 hover:shadow-md min-h-[44px] w-full md:w-auto"
+          >
+            <span>Perfil Técnico & Proyectos</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        ) : (
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 hover:shadow-md min-h-[44px] w-full md:w-auto shadow-sm"
+          >
+            <span>Servicios para Empresas</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        )}
+      </div>
     </nav>
   </div>
 </header>
@@ -69,7 +135,6 @@
       );
     });
 
-    // Cerrar menú al hacer clic en un enlace (móviles)
     menu.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         if (window.innerWidth < 768) {

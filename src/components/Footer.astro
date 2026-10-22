@@ -13,9 +13,18 @@ const linkedin = contactos[2]?.url || "https://www.linkedin.com/in/kevin-david-p
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
       <!-- Columna 1: Marca y Propuesta -->
       <div>
-        <div class="text-white text-xl font-bold flex items-center mb-4">
-          <span class="w-8 h-8 rounded-lg bg-blue-700 flex items-center justify-center mr-2.5 text-white font-mono text-sm font-bold border border-blue-600">KP</span>
-          <span>Kevin Ponce</span>
+        <div class="text-white flex items-center mb-4 gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-blue-900/80 border border-blue-500/40 flex items-center justify-center text-white shadow-inner" aria-hidden="true">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+              <path d="M9 4H4v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15 20h5v-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="12" cy="12" r="2.2" class="fill-amber-300" />
+            </svg>
+          </span>
+          <div class="flex items-baseline gap-1.5">
+            <span class="text-lg font-semibold tracking-tight text-white">kevin ponce</span>
+            <span class="text-xs font-mono text-blue-300/80">/ software</span>
+          </div>
         </div>
         <p class="text-gray-400 text-sm leading-relaxed mb-6">
           Ingeniero de software especializado en arquitecturas backend escalables, automatización de procesos de negocio y desarrollo web de ultra velocidad.
@@ -54,19 +63,19 @@ const linkedin = contactos[2]?.url || "https://www.linkedin.com/in/kevin-david-p
         <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4">Servicios para Empresas</h4>
         <ul class="space-y-2.5 text-sm">
           <li>
-            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Pack Presencia & Google Maps</a>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Página Web & Presencia en Google</a>
           </li>
           <li>
-            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Automatizaciones & Pagos</a>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Automatización de Procesos</a>
           </li>
           <li>
-            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Software y Paneles a Medida</a>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Sistemas & Aplicaciones a Medida</a>
           </li>
           <li>
-            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Consultoría & Auditoría Web</a>
+            <a href="/#servicios" class="hover:text-white transition-colors block py-1">Asesoría (Software & Hardware)</a>
           </li>
           <li>
-            <a href="/#contacto" class="hover:text-amber-400 font-semibold transition-colors block py-1">Solicitar Presupuesto →</a>
+            <a href="/#contacto" class="hover:text-amber-400 font-semibold transition-colors block py-1">Contactar por WhatsApp →</a>
           </li>
         </ul>
       </div>

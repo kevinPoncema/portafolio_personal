@@ -67,7 +67,7 @@
       "id": "software-a-medida",
       "icono": "layers",
       "popular": false,
-      "titulo": "Sistemas & Aplicaciones Web a Medida",
+      "titulo": "Sistemas & Aplicaciones a Medida",
       "subtitulo": "Herramientas creadas exactamente para cómo funciona tu negocio.",
       "descripcion": "Si los programas genéricos no se ajustan a lo que necesitas o te cobran mensualidades caras por cada usuario, desarrollo una solución personalizada: gestión de reservas, paneles para organizar tus clientes o plataformas de control interno.",
       "puntos_clave": [
@@ -181,7 +181,7 @@
       },
       {
         "valor": "software-a-medida",
-        "texto": "Sistema o Aplicación Web a Medida"
+        "texto": "Sistema o Aplicación a Medida"
       },
       {
         "valor": "consultoria",

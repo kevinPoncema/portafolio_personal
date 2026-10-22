@@ -1,4 +1,5 @@
 ---
+// Archivo: src/components/BlogPreview.astro
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
@@ -7,14 +8,14 @@ const latestPosts = posts
   .slice(0, 5);
 ---
 
-<section id="blog" class="w-full bg-gray-100 py-16">
+<section id="blog-preview-section" class="w-full bg-gray-100 py-16" data-agent-section="blog">
   <div class="container mx-auto px-4">
     <!-- Encabezado de la sección -->
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-800 mb-3">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">
         Últimas entradas del <span class="text-blue-800">Blog</span>
       </h2>
-      <p class="text-gray-500 max-w-lg mx-auto">
+      <p class="text-gray-700 max-w-lg mx-auto">
         Artículos sobre desarrollo web, herramientas y buenas prácticas que voy aprendiendo en el camino.
       </p>
     </div>
@@ -31,42 +32,43 @@ const latestPosts = posts
         return (
           <a
             href={`/blog/${post.slug}`}
-            class="blog-preview-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group flex flex-col"
+            class="blog-preview-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group flex flex-col focus:outline-none focus:ring-2 focus:ring-blue-600"
+            aria-label={`Leer artículo: ${post.data.title}`}
           >
             <!-- Barra de color superior -->
-            <div class="h-1.5 bg-blue-800 w-full"></div>
+            <div class="h-1.5 bg-blue-800 w-full" aria-hidden="true"></div>
 
             <div class="p-6 flex flex-col flex-1">
               <!-- Tags -->
               <div class="flex flex-wrap gap-1.5 mb-3">
                 {post.data.tags.slice(0, 2).map((tag) => (
-                  <span class="bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                  <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
                     #{tag}
                   </span>
                 ))}
               </div>
 
               <!-- Título -->
-              <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors leading-snug flex-1">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors leading-snug flex-1">
                 {post.data.title}
               </h3>
 
               <!-- Descripción corta -->
-              <p class="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
+              <p class="text-gray-600 text-sm line-clamp-2 mb-4 leading-relaxed">
                 {post.data.description}
               </p>
 
               <!-- Footer -->
               <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                <span class="text-xs text-gray-400 flex items-center gap-1">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span class="text-xs text-gray-600 font-medium flex items-center gap-1">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   {formattedDate}
                 </span>
-                <span class="text-blue-700 text-xs font-semibold flex items-center gap-1">
+                <span class="text-blue-800 text-xs font-bold flex items-center gap-1 group-hover:text-blue-900">
                   Leer
-                  <svg class="transform group-hover:translate-x-1 transition-transform" width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="transform group-hover:translate-x-1 transition-transform" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
                 </span>
@@ -82,10 +84,11 @@ const latestPosts = posts
       <a
         href="/blog"
         id="btn-ver-blog"
-        class="inline-flex items-center gap-2 bg-blue-800 hover:bg-blue-700 text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+        class="inline-flex items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 min-h-[44px]"
+        data-agent-action="view-blog"
       >
         Ver todos los artículos
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </a>
@@ -107,5 +110,6 @@ const latestPosts = posts
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>

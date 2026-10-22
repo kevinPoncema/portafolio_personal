@@ -1,0 +1,69 @@
+# Kevin Ponce - Desarrollador Web Backend & Especialista en APIs
+
+> Desarrollador web especializado en arquitectura backend, APIs RESTful, microservicios y optimización de sistemas. Actualmente cursando el grado de Ingeniería Informática en la Universidad Europea del Atlántico (Santander, España) y colaborando en el desarrollo de soluciones backend de alta escalabilidad con Laravel, Node.js y Vue.js.
+
+## Información de Contacto y Perfiles
+- **Sitio Web:** https://kevinponcedev.xyz/
+- **GitHub:** https://github.com/kevinPoncema
+- **LinkedIn:** https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/
+- **Correo Electrónico:** ps12kevin@gmail.com
+- **Ubicación:** Santander, Cantabria, España
+
+## Stack Tecnológico Principal
+- **Backend:** Laravel (PHP 8+), NestJS, Node.js, Express.js, CodeIgniter, Python.
+- **Frontend:** Vue.js (Vue 3, Composition API), TypeScript, JavaScript (ESNext), Astro, TailwindCSS, Inertia.js.
+- **Bases de Datos & Caché:** PostgreSQL, MySQL, Redis (BullMQ para colas de trabajo y control de concurrencia).
+- **Arquitectura & DevOps:** Docker, Contenedores, Git, Swagger / OpenAPI, APIs RESTful, Autenticación y Criptografía (QR tokens, JWT), Cloudflare Pages.
+- **IA Local & Herramientas:** Integración de LLMs locales con Ollama en entornos Dockerizados.
+
+## Proyectos Destacados
+
+### 1. LoveLink
+- **Descripción:** Plataforma web enfocada en la personalización visual total para crear landing pages conmemorativas e invitaciones interactivas virales (sistema interactivo 'Sí/No') con galerías multimedia en tiempo real y almacenamiento en la nube.
+- **Stack:** Laravel 12, Vue 3, Inertia.js, Cloud Storage, Docker, TailwindCSS.
+- **Producción:** https://lovelink.kevinponcedev.xyz/
+- **Repositorio:** https://github.com/kevinPoncema/LoveLink/tree/develop
+
+### 2. TicketRush
+- **Descripción:** Motor de ticketing B2B multitenant con marca blanca concebido para absorber alta concurrencia mediante colas de procesamiento asíncrono en Redis (BullMQ), integración de pasarela de pagos Stripe y generación segura de tickets con códigos QR firmados criptográficamente.
+- **Stack:** NestJS, Vue 3, PostgreSQL, Redis (BullMQ), Stripe API, Docker.
+- **Producción:** https://vantage.kevinponcedev.xyz/
+- **Repositorio:** https://github.com/kevinPoncema/TicketRush
+
+### 3. Portafolio Personal (Este sitio)
+- **Descripción:** Portafolio profesional de alto rendimiento desarrollado con Astro y TailwindCSS, optimizado para Core Web Vitals (PageSpeed 100), accesibilidad WCAG AA, SEO técnico, Schema.org y Generative Engine Optimization (GEO).
+- **Stack:** Astro, TailwindCSS, TypeScript, Cloudflare Pages.
+- **Producción:** https://kevinponcedev.xyz/
+- **Repositorio:** https://github.com/kevinPoncema/portafolio_personal
+
+### 4. File Converter
+- **Descripción:** Servicio backend y API RESTful para la conversión de archivos multiformato en entornos Linux mediante integración con Pandoc y librerías especializadas, documentado con Swagger UI y con frontend reactivo en Vue 3 y TypeScript.
+- **Stack:** Node.js, Express, Swagger, Pandoc, Vue 3, TypeScript, TailwindCSS.
+- **Producción:** https://file-converter.kevinponcedev.xyz/
+- **Repositorio:** https://github.com/kevinPoncema/conversor_archivos
+
+### 5. Link In Bio App
+- **Descripción:** Aplicación web integral para la creación y gestión de perfiles dinámicos centralizados de enlaces (estilo Linktree) con personalización de temas visuales, colores y backgrounds.
+- **Stack:** Laravel, PHP, React, Docker, TailwindCSS.
+- **Producción:** https://link-in-bio.kevinponcedev.xyz/
+- **Repositorio:** https://github.com/kevinPoncema/link-in-bio-app
+
+## Trayectoria Profesional y Experiencia
+
+- **Colaborador en Desarrollo Backend — Funiber (Programa PROFER)** *(Febrero 2025 - Junio 2026 | Santander, España)*:
+  Colaboración activa en el desarrollo de soluciones backend dentro del equipo Fénix de Funiber como parte del Programa de Formación de la Universidad Europea del Atlántico. Mantenimiento y desarrollo de arquitecturas en Laravel, optimización de consultas y microservicios institucionales.
+- **Pasantía Técnica en Desarrollo de Software — Box HN** *(Octubre 2024 - Diciembre 2024)*:
+  Diseño y construcción de API REST en PHP (CodeIgniter) para estandarizar la interacción con modelos de inteligencia artificial gestionados localmente mediante Ollama dentro de contenedores Docker. Implementación de control de créditos y cuotas de uso de IA.
+- **Proyecto Técnico de Automatización — Metrocinema Honduras** *(Marzo 2024 - Julio 2024)*:
+  Automatización del proceso de cierre y conciliación diaria de cajeros de salas de cine, reduciendo errores manuales y tiempos operativos.
+- **Proyecto Técnico Sistema de Inventario y Facturación — Depósito Ponce** *(Diciembre 2022 - Enero 2023)*:
+  Sistema modular de facturación, control de stock y generación de reportes analíticos de ventas en PDF.
+
+## Educación y Formación
+- **Grado en Ingeniería Informática** — Universidad Europea del Atlántico (Santander, España | 2025 - Actualidad).
+- **Técnico en Programación** — Instituto Tecnológico Excelencia Educativa (San Pedro Sula, Honduras | 2022 - 2024).
+- **Certificaciones:** Scrum Foundation, Colaboración con Git (Microsoft Learn), GitHub Copilot para empresas (Microsoft Learn), Python Essentials 1 (Cisco Networking Academy).
+
+## Documentación Completa para Modelos de IA
+- Para un desglose técnico exhaustivo de arquitecturas, casos de estudio y código, consulta: https://kevinponcedev.xyz/llms-full.txt
+- Artículos del blog técnico: https://kevinponcedev.xyz/blog

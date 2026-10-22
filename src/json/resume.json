@@ -1,0 +1,152 @@
+{
+    "basics": {
+        "name": "Kevin D. Ponce",
+        "label": "Desarrollador Backend",
+        "image": "",
+        "email": "ps12kevin@gmail.com",
+        "phone": "+34607251998",
+        "url": "https://linkedin.com/in/kevin-david-ponce-machigua-75971a320/",
+        "summary": "Desarrollador web enfocado en backend, especializado en la creación de servidores y APIs RESTful robustas. Con experiencia en optimización de bases de datos e integración fluida de sistemas. Apasionado por escribir código limpio, aplicar principios de Diseño Guiado por el Dominio (DDD) y resolver desafíos complejos de migración de datos.",
+        "location": {
+            "address": "",
+            "postalCode": "",
+            "city": "Santander",
+            "countryCode": "ES",
+            "region": "Cantabria"
+        },
+        "profiles": [
+            {
+                "network": "GitHub",
+                "username": "kevinPoncema",
+                "url": "https://github.com/kevinPoncema"
+            },
+            {
+                "network": "LinkedIn",
+                "username": "kevin-david-ponce-machigua",
+                "url": "https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320"
+            }
+        ]
+    },
+    "work": [
+        {
+            "name": "Funiber",
+            "company": "Funiber",
+            "position": "Desarrollador Backend | Funiber",
+            "url": "",
+            "startDate": "2025-02-01",
+            "endDate": "2026-07-01",
+            "summary": "",
+            "highlights": [
+                "Desarrollo y mantenimiento de aplicaciones backend con Laravel dentro del equipo Fénix.",
+                "Colaboración en el diseño y ejecución de procesos complejos de migración de datos entre sistemas legados y arquitecturas modernas.",
+                "Implementación del patrón ETL (Extracción, Transformación y Carga) mediante comandos de Laravel para la sincronización de bases de datos distribuidas a través de múltiples conexiones."
+            ]
+        },
+        {
+            "name": "Box HN",
+            "company": "Box HN",
+            "position": "Desarrollador de Software | Box HN",
+            "url": "",
+            "startDate": "2024-09-01",
+            "endDate": "2024-12-01",
+            "summary": "",
+            "highlights": [
+                "Liderazgo en el desarrollo de una API con PHP y CodeIgniter para estandarizar la integración de Inteligencia Artificial en productos corporativos.",
+                "Configuración y orquestación de modelos locales de IA utilizando Ollama y contenedores Docker.",
+                "Creación e implementación de un sistema de créditos para controlar la administración y límites de consumo de los modelos integrados."
+            ]
+        },
+        {
+            "name": "Metrocinema Honduras",
+            "company": "Metrocinema Honduras",
+            "position": "Desarrollador de software| Metrocinema Honduras",
+            "url": "",
+            "startDate": "2024-03-01",
+            "endDate": "2024-07-01",
+            "summary": "",
+            "highlights": [
+                "Desarrollo de un sistema de automatización para agilizar el corte y cierre de caja en múltiples salas de cine.",
+                "Reducción significativa del tiempo operativo y minimización de errores manuales durante la conciliación diaria de transacciones."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Universidad Europea del Atlántico",
+            "url": "",
+            "area": "Ingeniería Informática",
+            "studyType": "Grado",
+            "startDate": "2025-02-01",
+            "endDate": "",
+            "score": "",
+            "courses": [
+                "Diseño avanzado de bases de datos relacionales y NoSQL.",
+                "Aplicación práctica de principios de Diseño Guiado por el Dominio (DDD) en microservicios y backend."
+            ]
+        },
+        {
+            "institution": "Instituto Tecnológico Excelencia Educativa",
+            "url": "",
+            "area": "Técnico en Programación",
+            "studyType": "Técnico",
+            "startDate": "2022-01-01",
+            "endDate": "2024-12-01",
+            "score": "",
+            "courses": [
+                "Algoritmos, estructuras de datos y resolución lógica de problemas.",
+                "Fundamentos de ingeniería de software orientados a desarrollo server-side."
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "name": "Lenguajes",
+            "level": "",
+            "keywords": [
+                "PHP",
+                "JavaScript",
+                "TypeScript",
+                "Python"
+            ]
+        },
+        {
+            "name": "Frameworks y Entornos",
+            "level": "",
+            "keywords": [
+                "Laravel",
+                "NestJS",
+                "Express",
+                "CodeIgniter",
+                "Node.js"
+            ]
+        },
+        {
+            "name": "Bases de Datos",
+            "level": "",
+            "keywords": [
+                "MySQL",
+                "PostgreSQL",
+                "Redis"
+            ]
+        },
+        {
+            "name": "Infraestructura y Herramientas",
+            "level": "",
+            "keywords": [
+                "Docker",
+                "Git",
+                "GitHub"
+            ]
+        },
+        {
+            "name": "Metodologías",
+            "level": "",
+            "keywords": [
+                "Scrum",
+                "Diseño Guiado por el Dominio (DDD)",
+                "Arquitectura RESTful",
+                "Patrón ETL"
+            ]
+        }
+    ]
+}

@@ -1,47 +1,92 @@
 ---
 // Archivo: src/components/ImageCarrusel.astro
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
 export interface Props {
   imagenes: string[];
   altText: string;
 }
 
 const { imagenes, altText } = Astro.props;
+
+const assetImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png,webp}');
+
+const resolvedImages = await Promise.all(
+  (imagenes || []).map(async (imagen) => {
+    const cleanPath = imagen.replace(/^\//, '');
+    const key = `/src/assets/${cleanPath}`;
+    if (assetImages[key]) {
+      const mod = await assetImages[key]();
+      return {
+        isOptimized: true,
+        src: mod.default,
+        originalUrl: '/' + cleanPath,
+      };
+    }
+    return {
+      isOptimized: false,
+      src: '/' + cleanPath,
+      originalUrl: '/' + cleanPath,
+    };
+  })
+);
 ---
 
 <div class="image-carousel-container relative">
   <div class="carousel-wrapper relative overflow-hidden rounded-md">
     <div class="carousel-images flex transition-transform duration-300 ease-in-out">
-      {imagenes.map((imagen, index) => (
+      {resolvedImages.map((imgItem, index) => (
         <div class="carousel-slide w-full flex-shrink-0" key={index}>
-          <img 
-            src={imagen} 
-            alt={`${altText} - Imagen ${index + 1}`} 
-            class="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
-            loading="lazy"
-            data-modal-img={imagen}
-            data-modal-alt={`${altText} - Imagen ${index + 1}`}
-          />
+          {imgItem.isOptimized ? (
+            <Image
+              src={imgItem.src as ImageMetadata}
+              alt={`${altText} - Imagen ${index + 1}`}
+              width={400}
+              height={220}
+              widths={[320, 400, 640]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+              format="webp"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-48 sm:h-52 object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
+              data-modal-img={imgItem.originalUrl}
+              data-modal-alt={`${altText} - Imagen ${index + 1}`}
+            />
+          ) : (
+            <img
+              src={imgItem.src as string}
+              alt={`${altText} - Imagen ${index + 1}`}
+              width="400"
+              height="220"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-48 sm:h-52 object-cover cursor-pointer hover:opacity-90 transition-opacity duration-200"
+              data-modal-img={imgItem.originalUrl}
+              data-modal-alt={`${altText} - Imagen ${index + 1}`}
+            />
+          )}
         </div>
       ))}
     </div>
     
-    <!-- Controles de navegación -->
+    <!-- Controles de navegación con área táctil accesible (mínimo 44x44px) -->
     {imagenes.length > 1 && (
       <>
         <button 
-          class="carousel-btn carousel-btn-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200"
-          aria-label="Imagen anterior"
+          class="carousel-btn carousel-btn-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2.5 rounded-full shadow-md transition-opacity duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-600"
+          aria-label={`Imagen anterior de ${altText}`}
         >
-          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
           </svg>
         </button>
         
         <button 
-          class="carousel-btn carousel-btn-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md transition-opacity duration-200"
-          aria-label="Imagen siguiente"
+          class="carousel-btn carousel-btn-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2.5 rounded-full shadow-md transition-opacity duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-600"
+          aria-label={`Imagen siguiente de ${altText}`}
         >
-          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
           </svg>
         </button>
@@ -49,30 +94,31 @@ const { imagenes, altText } = Astro.props;
     )}
   </div>
   
-  <!-- Indicadores -->
+  <!-- Indicadores con área táctil accesible de 44x44px -->
   {imagenes.length > 1 && (
-    <div class="carousel-indicators flex justify-center space-x-2 mt-3">
+    <div class="carousel-indicators flex justify-center items-center gap-1 mt-3" role="tablist" aria-label={`Diapositivas de ${altText}`}>
       {imagenes.map((_, index) => (
         <button 
-          class="indicator-dot w-2 h-2 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors duration-200"
+          class="indicator-dot group flex items-center justify-center w-11 h-11 p-0 bg-transparent border-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-full"
           data-index={index}
-          aria-label={`Ir a imagen ${index + 1}`}
+          role="tab"
+          aria-selected={index === 0 ? "true" : "false"}
+          aria-label={`Ir a imagen ${index + 1} de ${imagenes.length}`}
           key={index}
-        />
+        >
+          <span class={`indicator-inner block rounded-full transition-all duration-200 ${index === 0 ? 'w-3 h-3 bg-blue-600' : 'w-2.5 h-2.5 bg-gray-400 group-hover:bg-gray-600'}`} />
+        </button>
       ))}
     </div>
   )}
 </div>
 
-
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const carousels = document.querySelectorAll('.image-carousel-container');
     
-    // Configurar carruseles
     carousels.forEach((carouselContainer) => {
-      const images = carouselContainer.querySelector('.carousel-images');
+      const images = carouselContainer.querySelector('.carousel-images') as HTMLElement | null;
       const prevBtn = carouselContainer.querySelector('.carousel-btn-prev');
       const nextBtn = carouselContainer.querySelector('.carousel-btn-next');
       const indicators = carouselContainer.querySelectorAll('.indicator-dot');
@@ -84,12 +130,21 @@ const { imagenes, altText } = Astro.props;
       const totalImages = indicators.length;
       
       function updateCarousel() {
+        if (!images) return;
         const translateX = -currentIndex * 100;
         images.style.transform = `translateX(${translateX}%)`;
         
         indicators.forEach((indicator, index) => {
-          indicator.classList.toggle('bg-blue-500', index === currentIndex);
-          indicator.classList.toggle('bg-gray-300', index !== currentIndex);
+          const isCurrent = index === currentIndex;
+          indicator.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+          const inner = indicator.querySelector('.indicator-inner');
+          if (inner) {
+            if (isCurrent) {
+              inner.className = 'indicator-inner block w-3 h-3 rounded-full bg-blue-600 transition-all duration-200';
+            } else {
+              inner.className = 'indicator-inner block w-2.5 h-2.5 rounded-full bg-gray-400 group-hover:bg-gray-600 transition-all duration-200';
+            }
+          }
         });
       }
       
@@ -103,12 +158,11 @@ const { imagenes, altText } = Astro.props;
         updateCarousel();
       }
       
-      function goToIndex(index) {
+      function goToIndex(index: number) {
         currentIndex = index;
         updateCarousel();
       }
       
-      // Event listeners para navegación del carrusel
       nextBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         goToNext();
@@ -126,23 +180,22 @@ const { imagenes, altText } = Astro.props;
         });
       });
       
-      // Event listeners para abrir modal desde carrusel (dispatch custom event)
       carouselImages.forEach((img, imgIndex) => {
         img.addEventListener('click', (e) => {
           e.stopPropagation();
           
-          const projectCard = img.closest('.project-card');
+          const target = img as HTMLImageElement;
+          const projectCard = target.closest('.project-card');
           const projectTitle = projectCard?.querySelector('h3')?.textContent || 'Proyecto';
           
           const projectImages = Array.from(carouselImages).map(image => 
             image.getAttribute('data-modal-img')
           ).filter(Boolean);
           
-          // Dispatch custom event para comunicar con el componente padre
           const event = new CustomEvent('openImageModal', {
             detail: {
-              imageSrc: img.src,
-              imageAlt: img.alt,
+              imageSrc: target.getAttribute('data-modal-img') || target.src,
+              imageAlt: target.alt,
               projectImages: projectImages,
               projectTitle: projectTitle,
               startIndex: imgIndex
@@ -152,7 +205,6 @@ const { imagenes, altText } = Astro.props;
         });
       });
       
-      // Inicializar carrusel
       updateCarousel();
     });
   });
@@ -194,16 +246,7 @@ const { imagenes, altText } = Astro.props;
     opacity: 1;
   }
   
-  .indicator-dot.bg-blue-500 {
-    background-color: #3b82f6;
-  }
-  
-  .indicator-dot:hover {
-    transform: scale(1.2);
-  }
-  
   .carousel-btn:active {
     transform: translateY(-50%) scale(0.95);
   }
-
 </style>

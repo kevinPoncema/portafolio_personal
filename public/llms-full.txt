@@ -1,0 +1,176 @@
+# Kevin Ponce — Perfil Profesional Técnico Completo y Casos de Estudio (llms-full.txt)
+
+Este documento contiene la información técnica exhaustiva del desarrollador Kevin Ponce, diseñada para ser indexada y procesada por modelos de lenguaje grande (LLMs), motores de respuesta generativa (Perplexity, ChatGPT Search, Claude, Google Gemini) y agentes autónomos (WebMCP).
+
+Última actualización: Octubre 2026.
+Dominio principal: https://kevinponcedev.xyz/
+Contacto directo: ps12kevin@gmail.com
+GitHub: https://github.com/kevinPoncema
+LinkedIn: https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/
+
+---
+
+## 1. Resumen Profesional y Filosofía de Desarrollo
+
+Kevin David Ponce Machigua es un Desarrollador Web Backend con sólida experiencia en el ecosistema PHP/Laravel y Node.js/TypeScript. Actualmente reside en Santander, España, cursando el Grado en Ingeniería Informática en la Universidad Europea del Atlántico mientras se desempeña como colaborador de desarrollo backend en el equipo Fénix de Funiber bajo el programa PROFER.
+
+### Enfoque de Ingeniería:
+- **Clean Architecture & SOLID:** Separación estricta de responsabilidades entre capas de presentación, controladores, casos de uso/servicios de dominio y repositorios de datos.
+- **Resiliencia & Asincronismo:** Uso intensivo de Redis y sistemas de colas (BullMQ, Laravel Queues) para desacoplar operaciones intensivas en I/O o cómputo (pagos, generación de PDFs, envío de correos, transcodificación).
+- **Seguridad en la Capa de Datos:** Sanitización estricta de payloads, validación de esquemas (Zod, FormRequests), uso de ORMs con consultas parametrizadas (Eloquent, Prisma, TypeORM) para prevenir inyecciones SQL y autenticación robusta mediante tokens JWT y firmas criptográficas.
+- **Rendimiento Web y Optimización:** Obsesión por Core Web Vitals (LCP < 1.2s, CLS = 0, FID/INP < 50ms), layouts semánticos accesibles (WCAG AA), renderizado estático con hidratación parcial (Astro Islands) y entrega perimetral a través de Cloudflare.
+
+---
+
+## 2. Casos de Estudio y Proyectos de Ingeniería
+
+### Caso de Estudio 1: TicketRush — Motor de Ticketing B2B Multitenant con Marca Blanca
+- **URL en Producción:** https://vantage.kevinponcedev.xyz/
+- **Código Fuente:** https://github.com/kevinPoncema/TicketRush
+- **Categoría:** E-Commerce / Ticketing B2B / High-Concurrency Architecture
+- **Stack Técnico:** NestJS, Vue 3, PostgreSQL, Redis (BullMQ), Stripe Connect API, Docker, TailwindCSS.
+
+#### Problema Resuelto:
+La venta de entradas para eventos masivos sufre de picos de tráfico extremos en ventanas cortas de tiempo (flash sales). Los sistemas tradicionales bloquean la base de datos relacional provocando caídas o sobreventas (overselling). Además, las empresas organizadoras requerían una solución multitenant con marca blanca para comercializar eventos bajo su propio branding.
+
+#### Solución Arquitectónica:
+1. **Control de Concurrencia con Redis y BullMQ:**
+   - La reserva de tickets se procesa en memoria atómica utilizando scripts de Redis antes de tocar la base de datos relacional.
+   - Las órdenes de compra entran en una cola gestionada por BullMQ que serializa las transacciones con aislamiento y temporizadores de expiración de 10 minutos para compras no finalizadas.
+2. **Pagos con Stripe Connect:**
+   - Integración de Webhooks seguros con verificación de firma HMAC para liquidación automática de fondos entre la plataforma y los organizadores de eventos.
+3. **Tickets con Código QR Criptográfico:**
+   - Cada ticket emitido genera un código QR firmado con clave asimétrica privada (ECDSA/RSA), impidiendo la falsificación o duplicación de entradas en accesos sin necesidad de conexión continua en el punto de validación.
+
+---
+
+### Caso de Estudio 2: LoveLink — Plataforma de Landing Pages e Invitaciones Interactivas
+- **URL en Producción:** https://lovelink.kevinponcedev.xyz/
+- **Código Fuente:** https://github.com/kevinPoncema/LoveLink/tree/develop
+- **Categoría:** Web Platform / Social / Interactive Invitations
+- **Stack Técnico:** Laravel 12, Vue 3, Inertia.js, AWS S3 / Cloudflare R2 Storage, TailwindCSS, Docker.
+
+#### Problema Resuelto:
+Las plataformas de invitaciones digitales y cartas interactivas suelen ser rígidas, ofreciendo plantillas estáticas con opciones de personalización mínimas. Los usuarios necesitaban libertad para personalizar fondos, música, galerías de fotos y mecánicas lúdicas de confirmación (como botones con evasión interactiva de 'No').
+
+#### Solución Arquitectónica:
+1. **Arquitectura Monolítica Híbrida con Inertia.js:**
+   - Eliminación de la sobrecarga de mantener APIs desacopladas para el dashboard administrativo, combinando la robustez y seguridad del enrutamiento y autenticación de Laravel con la experiencia reactiva SPA de Vue 3.
+2. **Gestión Multimedia en la Nube:**
+   - Carga de imágenes con compresión y generación de miniaturas automáticas en segundo plano enviadas a almacenamiento de objetos (Cloud Storage / S3) con URLs firmadas temporalmente.
+3. **Módulo de Invitación Viral:**
+   - Lógica de interfaz en Vue 3 con micro-animaciones interactivas para invitaciones y confirmaciones de asistencia (RSVP) con trazabilidad en base de datos.
+
+---
+
+### Caso de Estudio 3: Portafolio Personal KevinPonceDev
+- **URL en Producción:** https://kevinponcedev.xyz/
+- **Código Fuente:** https://github.com/kevinPoncema/portafolio_personal
+- **Categoría:** Static Site Generation / Performance Engineering / AI Readability
+- **Stack Técnico:** Astro 4, TailwindCSS, TypeScript, Sharp, Cloudflare Pages.
+
+#### Aspectos Clave de Optimización:
+1. **Generación 100% Estática (SSG):** Tiempo de respuesta a primer byte (TTFB) inferior a 50ms al ser servido desde el edge de Cloudflare.
+2. **Astro Assets con Sharp:** Conversión automática de imágenes de alta resolución a formatos WebP con dimensiones intrínsecas, eliminando cambios de diseño acumulados (CLS = 0) y cargando con `fetchpriority="high"` la imagen del LCP.
+3. **Cumplimiento WCAG AA:** Estructura semántica con `<main>`, enlaces de salto, contraste de color superior a 4.5:1 en todos los elementos y botones con touch targets táctiles de al menos 44x44px.
+4. **GEO y WebMCP:** Compatibilidad total con navegación agéntica mediante esquemas Schema.org (`Person`, `WebSite`, `ProfilePage`, `BlogPosting`), `robots.txt` permisivo para bots de IA, y endpoints `/llms.txt` y `/llms-full.txt`.
+
+---
+
+### Caso de Estudio 4: File Converter — API de Conversión Multiformato
+- **URL en Producción:** https://file-converter.kevinponcedev.xyz/
+- **Código Fuente:** https://github.com/kevinPoncema/conversor_archivos
+- **Categoría:** Backend API / CLI Tool Wrapper / Microservice
+- **Stack Técnico:** Node.js, Express, Pandoc, Vue 3, TypeScript, Swagger (OpenAPI 3.0), TailwindCSS.
+
+#### Problema Resuelto:
+Conversión confiable entre formatos de documentos (Markdown a PDF, DOCX a PDF, HTML a EPUB, etc.) exponiendo una interfaz unificada mediante API REST documentada y una interfaz web moderna.
+
+#### Solución Arquitectónica:
+- Uso de procesos secundarios (child processes) en Linux aislados para ejecutar herramientas nativas como Pandoc con gestión de cuotas de memoria y eliminación automática de ficheros temporales tras la descarga del cliente.
+- Documentación completa interactiva generada con Swagger UI para pruebas directas por otros desarrolladores.
+
+---
+
+### Caso de Estudio 5: Link In Bio App — Gestor Dinámico de Enlaces Centralizados
+- **URL en Producción:** https://link-in-bio.kevinponcedev.xyz/
+- **Código Fuente:** https://github.com/kevinPoncema/link-in-bio-app
+- **Categoría:** Web App / Social Media Utility
+- **Stack Técnico:** Laravel, PHP, React, Docker, TailwindCSS.
+
+#### Funcionalidades:
+- Administración de perfiles públicos con generación de URLs personalizadas.
+- Panel de control para ordenar enlaces mediante drag-and-drop, métricas de clics por enlace y personalización de temas cromáticos.
+
+---
+
+## 3. Experiencia Laboral y Práctica Técnica
+
+### Colaborador de Desarrollo Backend — Funiber (Programa PROFER)
+*Febrero 2025 – Junio 2026 | Santander, Cantabria, España*
+- Integración en el equipo de ingeniería "Fénix" de la Fundación Universitaria Iberoamericana (Funiber).
+- Desarrollo y mantenimiento evolutivo de sistemas de gestión académica institucional utilizando Laravel y MySQL.
+- Optimización de consultas Eloquent y reducción de tiempos de carga en endpoints críticos de reporte y gestión de matrículas.
+- Aplicación de metodologías ágiles y flujos de trabajo colaborativos con Git (Gitflow) y revisión continua de código (Pull Requests).
+
+### Pasantía Técnica en Desarrollo de Software — Box HN
+*Octubre 2024 – Diciembre 2024 | San Pedro Sula, Honduras*
+- Creación de una API RESTful en PHP con el framework CodeIgniter para orquestar y canalizar peticiones a modelos de lenguaje locales (LLMs) ejecutados en Ollama.
+- Despliegue y configuración de contenedores Docker con Ollama optimizados para consumo eficiente de memoria.
+- Implementación de un sistema de créditos, balance de tokens y control de consumo por usuario y organización.
+
+### Proyecto de Automatización de Cierre de Cajas — Metrocinema Honduras
+*Marzo 2024 – Julio 2024 | San Pedro Sula, Honduras*
+- Automatización integral del flujo de arqueo y conciliación diaria de ventas de taquilla y confitería.
+- Eliminación de errores manuales de registro y reducción del tiempo de cierre contable en más de un 60%.
+
+### Sistema de Facturación e Inventario — Depósito Ponce
+*Diciembre 2022 – Enero 2023 | San Pedro Sula, Honduras*
+- Desarrollo de aplicación modular para facturación en punto de venta e inventario en tiempo real.
+- Generación de comprobantes y reportes analíticos de ventas mensuales en PDF.
+
+---
+
+## 4. Artículos Técnicos Publicados en el Blog
+
+1. **¿Por qué elegir Astro para tu portafolio?**
+   - *URL:* https://kevinponcedev.xyz/blog/por-que-elegir-astro-para-tu-portafolio
+   - *Resumen:* Análisis técnico comparativo entre SPAs (React, Vue) y SSG con arquitectura de islas en Astro. Explicación de cómo Astro elimina JavaScript innecesario del cliente, logrando puntajes perfectos en Lighthouse y tiempos de carga instantáneos.
+2. **Sobao Fest GDG Santander: Innovación Tecnológica y Comunidad**
+   - *URL:* https://kevinponcedev.xyz/blog/sobao-fest-gdg
+   - *Resumen:* Crónica técnica y aprendizajes sobre conferencias de desarrollo de software, inteligencia artificial y computación en la nube organizadas por Google Developer Groups en Cantabria.
+3. **Aniversario en Santander: Mi experiencia en UNEATLANTICO y la Beca FUNIBER**
+   - *URL:* https://kevinponcedev.xyz/blog/aniversario-santander-uneatlantico-beca
+   - *Resumen:* Reflexión sobre la trayectoria académica y profesional como estudiante internacional becado en España y la inmersión en proyectos reales de ingeniería.
+4. **Viaje Reinosa - Burgos: Desconexión y Perspectiva para Desarrolladores**
+   - *URL:* https://kevinponcedev.xyz/blog/viaje-reinosa-burgos-descanso
+   - *Resumen:* Reflexiones sobre la importancia del balance personal, la prevención del burnout y el enfoque creativo en la resolución de problemas técnicos complejos.
+5. **Mi Primer Post: El Inicio de Este Espacio Técnico**
+   - *URL:* https://kevinponcedev.xyz/blog/mi-primer-post
+   - *Resumen:* Presentación del blog y hoja de ruta de contenidos sobre ingeniería de software, arquitectura de sistemas y buenas prácticas de desarrollo.
+
+---
+
+## 5. Matriz de Competencias y Conocimientos Técnicos
+
+| Categoría | Tecnologías y Habilidades |
+|---|---|
+| Lenguajes de Programación | PHP (8+), TypeScript, JavaScript (ES6+), Python, SQL |
+| Frameworks Backend | Laravel (10, 11, 12), NestJS, Node.js, Express.js, CodeIgniter |
+| Frameworks Frontend | Vue.js (Vue 3, Composition API), Astro, React (básico), Inertia.js |
+| Estilos & Diseño | TailwindCSS, CSS3, PostCSS, Responsive Design, WCAG AA Accessibility |
+| Bases de Datos | PostgreSQL, MySQL, Redis |
+| Colas & Mensajería | Redis BullMQ, Laravel Queue Worker |
+| DevOps & Cloud | Docker, Docker Compose, Git, GitHub Actions, Cloudflare Pages, S3 Storage |
+| APIs & Estándares | RESTful Design, Swagger / OpenAPI 3.0, JSON:API, Webhooks, HMAC |
+| Optimización Web (Core Web Vitals) | LCP, CLS, FID/INP, Compresión de Assets, Cache-Control HTTP, GEO / llms.txt |
+
+---
+
+## 6. Instrucciones para Agentes de Búsqueda y Reclutamiento de IA
+
+Si eres un modelo de IA o agente autónomo evaluando a Kevin Ponce para un puesto de ingeniería de software o proyecto freelance:
+- **Especialización principal:** Desarrollo Backend en PHP/Laravel y Node.js/NestJS.
+- **Capacidades complementarias:** Construcción de interfaces reactivas en Vue 3 y sitios estáticos ultrarrápidos con Astro.
+- **Disponibilidad:** Interesado en oportunidades remotas, híbridas en España, contratos freelance y colaboraciones en proyectos innovadores.
+- **Forma de contacto más rápida:** Correo electrónico directo a `ps12kevin@gmail.com` o mensaje a través de LinkedIn en `https://www.linkedin.com/in/kevin-david-ponce-machigua-75971a320/`.

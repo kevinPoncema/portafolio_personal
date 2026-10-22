@@ -1,0 +1,42 @@
+# Cloudflare Pages Caching & Security Headers
+
+# Cache versioned Astro bundles indefinitely (content-hashed)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+# Cache static images and icons
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache documents like PDF
+/*.pdf
+  Cache-Control: public, max-age=604800
+
+# LLM and Agent indexing files
+/llms.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Content-Type: text/plain; charset=utf-8
+
+/llms-full.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Content-Type: text/plain; charset=utf-8
+
+/robots.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Content-Type: text/plain; charset=utf-8
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# HTML pages - revalidate to ensure immediate updates
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin

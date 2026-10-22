@@ -4,7 +4,7 @@
     "nombre": "Kevin Ponce",
     "descripcion": "Desarrollador web especializado en backend con enfoque en APIs RESTful. Actualmente curso Ingeniería Informática en la Universidad Europea del Atlántico y colaboro en el desarrollo de soluciones backend con Laravel y Node.js. Mi enfoque se centra en la arquitectura de servidores, la optimización de procesos y el desarrollo de APIs robustas. Apasionado por escribir código limpio y mantener buenas prácticas de desarrollo.",
     "github": "https://github.com/kevinPoncema/",
-    "email": "https://github.com/kevinPoncema/",
+    "email": "ps12kevin@gmail.com",
     "img_src": "images/foto_fea2.jpg"
   },
   "habilidades": {
@@ -103,7 +103,7 @@
       "tecnologias": [
         "JavaScript",
         "Astro",
-        "Talwing"
+        "TailwindCSS"
       ],
       "github": "https://github.com/kevinPoncema/portafolio_personal",
       "produccion": "https://kevinponcedev.xyz/"

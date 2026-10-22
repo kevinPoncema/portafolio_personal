@@ -1,35 +1,61 @@
 ---
+// Archivo: src/components/Contact.astro
 import portafolio from '../json/portafolio.json';
 
 const { contactos } = portafolio;
+
+const contactLabels: Record<string, { title: string; label: string; agentChannel: string }> = {
+  'github.svg': {
+    title: 'GitHub',
+    label: 'Visitar perfil de GitHub de Kevin Ponce',
+    agentChannel: 'github',
+  },
+  'gemail.svg': {
+    title: 'Correo Electrónico',
+    label: 'Enviar correo electrónico a ps12kevin@gmail.com',
+    agentChannel: 'email',
+  },
+  'linkedink.svg': {
+    title: 'LinkedIn',
+    label: 'Conectar en LinkedIn con Kevin Ponce',
+    agentChannel: 'linkedin',
+  },
+};
 ---
 
-<section class="contacto py-8 bg-gray-100 flex justify-center">
-  <div class="card w-full max-w-4xl p-8 bg-white rounded-lg shadow-2xl">
-    <h2 class="text-2xl font-bold mb-6 text-center">Contacto</h2>
-    <div class="contactos grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {contactos.map((contacto, index) => (
-        <div key={index} class="contacto-icon flex justify-center items-center p-4 bg-gray-50 rounded-lg shadow-md">
-          <a href={contacto.url} target="_blank" rel="noopener noreferrer">
-            <img src={contacto.icon} alt="icono de contacto" class="w-12 h-12" />
-          </a>
-        </div>
-      ))}
+<section id="contacto-section" class="contacto py-12 bg-gray-100 flex justify-center" data-agent-section="contact">
+  <div class="card w-full max-w-4xl p-8 bg-white rounded-lg shadow-xl">
+    <h2 class="text-2xl font-bold mb-3 text-center text-gray-900">Contacto</h2>
+    <p class="text-gray-600 text-center mb-8 max-w-md mx-auto">
+      ¿Tienes un proyecto en mente o una propuesta laboral? Estaré encantado de conversar contigo.
+    </p>
+    <div class="contactos grid grid-cols-1 sm:grid-cols-3 gap-6" id="contact-channels">
+      {contactos.map((contacto, index) => {
+        const iconKey = contacto.icon.split('/').pop() || '';
+        const info = contactLabels[iconKey] || {
+          title: 'Contacto',
+          label: 'Contactar a Kevin Ponce',
+          agentChannel: 'general',
+        };
+        const iconSrc = contacto.icon.startsWith('/') ? contacto.icon : '/' + contacto.icon;
+
+        return (
+          <div key={index} class="contacto-item flex flex-col items-center p-6 bg-gray-50 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <a 
+              href={contacto.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex flex-col items-center gap-3 w-full min-h-[44px] text-gray-800 hover:text-blue-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-lg p-2"
+              aria-label={info.label}
+              data-agent-channel={info.agentChannel}
+              data-agent-action="contact"
+            >
+              <img src={iconSrc} alt="" aria-hidden="true" class="w-12 h-12 transition-transform duration-200 hover:scale-110" width="48" height="48" />
+              <span class="font-semibold text-base">{info.title}</span>
+            </a>
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>
-
-<style>
-  .contacto {
-    text-align: center;
-  }
-  .contactos {
-    margin-top: 1rem;
-  }
-  .contacto-icon {
-    transition: transform 0.2s;
-  }
-  .contacto-icon:hover {
-    transform: scale(1.1);
-  }
-</style>

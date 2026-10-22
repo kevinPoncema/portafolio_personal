@@ -4,62 +4,77 @@ import portafolio from '../json/portafolio.json';
 import ImageCarrusel from './ImageCarrusel.astro';
 ---
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-
-<section class="w-full bg-gray-100 py-12">
+<section id="proyectos-section" class="w-full bg-gray-100 py-12" data-agent-section="projects">
   <div class="container mx-auto">
     <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Proyectos</h2>
-    <div class="flex flex-wrap justify-center">
-      {portafolio.proyectos.map((proyecto) => (
-        <div class="w-full sm:w-1/2 lg:w-1/3 p-4" key={proyecto.titulo}>
-          <div class="project-card bg-white shadow-lg rounded-lg p-6 h-full flex flex-col">
-            <div class="mb-4 flex-shrink-0">
-              <ImageCarrusel imagenes={proyecto.imagenes} altText={proyecto.titulo} />
-            </div>
-            <div class="flex flex-col flex-grow">
-              <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">{proyecto.titulo}</h3>
-              <p class="text-gray-700 mb-4 flex-grow text-sm leading-relaxed description-text">{proyecto.descripcion}</p>
-              <button 
-                class="view-more-btn text-blue-600 hover:text-blue-800 text-sm font-medium mb-4 self-start transition-colors duration-200"
-                data-project={JSON.stringify(proyecto)}
-              >
-                Ver más detalles →
-              </button>
-              <div class="flex flex-wrap gap-2 mb-4">
-                {proyecto.tecnologias.map((tecnologia) => (
-                  <span class="bg-blue-100 px-3 py-1 rounded-lg text-blue-800 font-bold text-xs" key={tecnologia}>
-                    {tecnologia.toUpperCase()}
-                  </span>
-                ))}
+    <div class="flex flex-wrap justify-center" id="projects-grid">
+      {portafolio.proyectos.map((proyecto) => {
+        const slug = proyecto.titulo.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        return (
+          <div class="w-full sm:w-1/2 lg:w-1/3 p-4" key={proyecto.titulo}>
+            <article 
+              id={`project-${slug}`}
+              class="project-card bg-white shadow-lg rounded-lg p-6 h-full flex flex-col"
+              data-agent-project={proyecto.titulo}
+            >
+              <div class="mb-4 flex-shrink-0">
+                <ImageCarrusel imagenes={proyecto.imagenes} altText={proyecto.titulo} />
               </div>
-              <div class="border-t pt-4 flex justify-between items-center mt-auto">
-                <a 
-                  href={proyecto.github} 
-                  target="_blank" 
-                  class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 github-link" 
-                  data-project-name={proyecto.titulo} 
-                  data-link-type="GitHub">
-                  <img src="icons/github.svg" alt="GitHub" class="w-6 h-6">
-                </a>
-                <a 
-                  href={proyecto.produccion} 
-                  target="_blank" 
-                  class="text-gray-600 hover:text-gray-800 transform transition-transform duration-300 hover:scale-110 production-link" 
-                  data-project-name={proyecto.titulo} 
-                  data-link-type="Producción">
-                  <img src="icons/share.svg" alt="Producción" class="w-6 h-6">
-                </a>
+              <div class="flex flex-col flex-grow">
+                <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">{proyecto.titulo}</h3>
+                <p class="text-gray-700 mb-4 flex-grow text-sm leading-relaxed description-text">{proyecto.descripcion}</p>
+                <button 
+                  class="view-more-btn text-blue-700 hover:text-blue-900 text-sm font-semibold mb-4 self-start transition-colors duration-200 py-1"
+                  data-project={JSON.stringify(proyecto)}
+                  aria-label={`Ver más detalles del proyecto ${proyecto.titulo}`}
+                  data-agent-action="view-project-details"
+                >
+                  Ver más detalles →
+                </button>
+                <div class="flex flex-wrap gap-2 mb-4" aria-label="Tecnologías utilizadas">
+                  {proyecto.tecnologias.map((tecnologia) => (
+                    <span class="bg-blue-100 px-3 py-1 rounded-lg text-blue-800 font-bold text-xs" key={tecnologia}>
+                      {tecnologia.toUpperCase()}
+                    </span>
+                  ))}
+                </div>
+                <div class="border-t pt-4 flex justify-between items-center mt-auto">
+                  <a 
+                    href={proyecto.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="text-gray-700 hover:text-gray-900 transform transition-transform duration-300 hover:scale-110 github-link w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-100" 
+                    data-project-name={proyecto.titulo} 
+                    data-link-type="GitHub"
+                    data-agent-action="view-github"
+                    aria-label={`Ver código fuente de ${proyecto.titulo} en GitHub`}
+                  >
+                    <img src="/icons/github.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
+                  </a>
+                  <a 
+                    href={proyecto.produccion} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="text-gray-700 hover:text-gray-900 transform transition-transform duration-300 hover:scale-110 production-link w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-100" 
+                    data-project-name={proyecto.titulo} 
+                    data-link-type="Producción"
+                    data-agent-action="view-demo"
+                    aria-label={`Ver proyecto ${proyecto.titulo} en producción`}
+                  >
+                    <img src="/icons/share.svg" alt="" aria-hidden="true" class="w-6 h-6" width="24" height="24" />
+                  </a>
+                </div>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>
 
 <!-- Modal para información completa del proyecto -->
-<div id="project-modal" class="project-modal-overlay fixed inset-0 z-[9997] hidden bg-black/80 backdrop-blur-sm">
+<div id="project-modal" class="project-modal-overlay fixed inset-0 z-[9997] hidden bg-black/80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
   <div class="project-modal-content flex items-center justify-center min-h-screen p-4">
     <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
       <!-- Header del modal -->
@@ -67,10 +82,10 @@ import ImageCarrusel from './ImageCarrusel.astro';
         <h3 id="project-modal-title" class="text-2xl font-bold text-gray-800"></h3>
         <button 
           id="close-project-modal"
-          class="text-gray-500 hover:text-gray-700 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
-          aria-label="Cerrar modal"
+          class="text-gray-600 hover:text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
+          aria-label="Cerrar modal de proyecto"
         >
-          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
@@ -98,21 +113,25 @@ import ImageCarrusel from './ImageCarrusel.astro';
         </div>
         
         <!-- Enlaces -->
-        <div class="flex gap-4 justify-center pt-4 border-t">
+        <div class="flex flex-wrap gap-4 justify-center pt-4 border-t">
           <a 
             id="project-modal-github"
             href="#"
             target="_blank" 
-            class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg transition-colors duration-200">
-            <img src="icons/github.svg" alt="GitHub" class="w-5 h-5 filter invert">
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg transition-colors duration-200 min-h-[44px]"
+            data-agent-action="github">
+            <img src="/icons/github.svg" alt="" aria-hidden="true" class="w-5 h-5 filter invert" width="20" height="20" />
             Ver en GitHub
           </a>
           <a 
             id="project-modal-production"
             href="#"
             target="_blank" 
-            class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-200">
-            <img src="icons/share.svg" alt="Producción" class="w-5 h-5 filter invert">
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg transition-colors duration-200 min-h-[44px]"
+            data-agent-action="demo">
+            <img src="/icons/share.svg" alt="" aria-hidden="true" class="w-5 h-5 filter invert" width="20" height="20" />
             Ver Proyecto
           </a>
         </div>
@@ -128,189 +147,173 @@ import ImageCarrusel from './ImageCarrusel.astro';
     const projectModalDescription = document.getElementById('project-modal-description');
     const projectModalTechnologies = document.getElementById('project-modal-technologies');
     const projectModalCarousel = document.getElementById('project-modal-carousel');
-    const projectModalGithub = document.getElementById('project-modal-github');
-    const projectModalProduction = document.getElementById('project-modal-production');
+    const projectModalGithub = document.getElementById('project-modal-github') as HTMLAnchorElement | null;
+    const projectModalProduction = document.getElementById('project-modal-production') as HTMLAnchorElement | null;
     const closeProjectModal = document.getElementById('close-project-modal');
     
-    console.log('Projects script loaded'); // Debug
-    
-    // Asegurarse de que el modal de proyecto esté oculto al inicio
     if (projectModal) {
       projectModal.classList.add('hidden');
     }
     
-    function openProjectModal(projectData) {
-      console.log('Opening project modal for:', projectData.titulo); // Debug
-      if (!projectModal) {
-        console.error('Project modal not found');
-        return;
-      }
+    function openProjectModal(projectData: any) {
+      if (!projectModal) return;
       
-      // Verificar si el modalManager está disponible, si no, usar fallback directo
-      if (window.modalManager && typeof window.modalManager.openModal === 'function') {
-        console.log('Using modal manager to open project modal'); // Debug
-        window.modalManager.openModal('project', () => {
+      const setupModalContent = () => {
+        if (projectModalTitle) projectModalTitle.textContent = projectData.titulo;
+        if (projectModalDescription) projectModalDescription.textContent = projectData.descripcion;
+      
+        if (projectModalTechnologies) {
+          projectModalTechnologies.innerHTML = '';
+          projectData.tecnologias.forEach((tech: string) => {
+            const span = document.createElement('span');
+            span.className = 'bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-bold text-sm';
+            span.textContent = tech.toUpperCase();
+            projectModalTechnologies.appendChild(span);
+          });
+        }
+        
+        if (projectModalCarousel) {
+          projectModalCarousel.innerHTML = '';
+          if (projectData.imagenes && projectData.imagenes.length > 0) {
+            const carouselContainer = document.createElement('div');
+            carouselContainer.className = 'relative';
+            
+            const carouselWrapper = document.createElement('div');
+            carouselWrapper.className = 'overflow-hidden rounded-lg';
+            
+            const carouselImages = document.createElement('div');
+            carouselImages.className = 'flex transition-transform duration-300 ease-in-out modal-project-carousel';
+            
+            projectData.imagenes.forEach((imagen: string, index: number) => {
+              const slide = document.createElement('div');
+              slide.className = 'w-full flex-shrink-0';
+              
+              const img = document.createElement('img');
+              img.src = imagen.startsWith('/') ? imagen : '/' + imagen;
+              img.alt = `${projectData.titulo} - Imagen ${index + 1}`;
+              img.className = 'w-full h-64 object-cover cursor-pointer hover:opacity-90';
+              img.loading = 'lazy';
+              
+              slide.appendChild(img);
+              carouselImages.appendChild(slide);
+            });
+            
+            carouselWrapper.appendChild(carouselImages);
+            carouselContainer.appendChild(carouselWrapper);
+            
+            if (projectData.imagenes.length > 1) {
+              let currentIndex = 0;
+              
+              const prevBtn = document.createElement('button');
+              prevBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2 rounded-full shadow-md flex items-center justify-center';
+              prevBtn.setAttribute('aria-label', 'Imagen anterior');
+              prevBtn.innerHTML = `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>`;
+              
+              const nextBtn = document.createElement('button');
+              nextBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 w-11 h-11 p-2 rounded-full shadow-md flex items-center justify-center';
+              nextBtn.setAttribute('aria-label', 'Imagen siguiente');
+              nextBtn.innerHTML = `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>`;
+              
+              const indicators = document.createElement('div');
+              indicators.className = 'flex justify-center items-center gap-1 mt-3';
+              
+              projectData.imagenes.forEach((_: any, index: number) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-11 h-11 p-0 flex items-center justify-center bg-transparent border-0 cursor-pointer rounded-full';
+                btn.setAttribute('aria-label', `Ir a diapositiva ${index + 1}`);
+                
+                const dot = document.createElement('span');
+                dot.className = `block rounded-full transition-all duration-200 ${
+                  index === 0 ? 'w-3 h-3 bg-blue-600' : 'w-2.5 h-2.5 bg-gray-400'
+                }`;
+                btn.appendChild(dot);
+                
+                btn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  currentIndex = index;
+                  updateCarousel();
+                });
+                
+                indicators.appendChild(btn);
+              });
+              
+              function updateCarousel() {
+                const translateX = -currentIndex * 100;
+                carouselImages.style.transform = `translateX(${translateX}%)`;
+                
+                Array.from(indicators.children).forEach((btn, index) => {
+                  const dot = btn.querySelector('span');
+                  if (dot) {
+                    dot.className = `block rounded-full transition-all duration-200 ${
+                      index === currentIndex ? 'w-3 h-3 bg-blue-600' : 'w-2.5 h-2.5 bg-gray-400'
+                    }`;
+                  }
+                });
+              }
+              
+              prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + projectData.imagenes.length) % projectData.imagenes.length;
+                updateCarousel();
+              });
+              
+              nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % projectData.imagenes.length;
+                updateCarousel();
+              });
+              
+              carouselWrapper.appendChild(prevBtn);
+              carouselWrapper.appendChild(nextBtn);
+              carouselContainer.appendChild(carouselWrapper);
+              carouselContainer.appendChild(indicators);
+              
+              updateCarousel();
+            }
+            
+            projectModalCarousel.appendChild(carouselContainer);
+          }
+        }
+        
+        if (projectModalGithub) projectModalGithub.href = projectData.github;
+        if (projectModalProduction) projectModalProduction.href = projectData.produccion;
+      };
+
+      if ((window as any).modalManager && typeof (window as any).modalManager.openModal === 'function') {
+        (window as any).modalManager.openModal('project', () => {
           setupModalContent();
           projectModal.classList.remove('hidden');
-          console.log('Project modal should now be visible'); // Debug
         });
       } else {
-        console.log('Modal manager not available, using direct fallback'); // Debug
         setupModalContent();
         projectModal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
       }
-      
-      function setupModalContent() {
-        console.log('Setting up modal content for:', projectData.titulo); // Debug
-        // Actualizar contenido del modal
-        if (projectModalTitle) projectModalTitle.textContent = projectData.titulo;
-        if (projectModalDescription) projectModalDescription.textContent = projectData.descripcion;
-      
-      // Actualizar tecnologías
-      if (projectModalTechnologies) {
-        projectModalTechnologies.innerHTML = '';
-        projectData.tecnologias.forEach(tech => {
-          const span = document.createElement('span');
-          span.className = 'bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-bold text-sm';
-          span.textContent = tech.toUpperCase();
-          projectModalTechnologies.appendChild(span);
-        });
-      }
-      
-      // Crear carrusel de imágenes
-      if (projectModalCarousel) {
-        projectModalCarousel.innerHTML = '';
-        if (projectData.imagenes && projectData.imagenes.length > 0) {
-          const carouselContainer = document.createElement('div');
-          carouselContainer.className = 'relative';
-          
-          const carouselWrapper = document.createElement('div');
-          carouselWrapper.className = 'overflow-hidden rounded-lg';
-          
-          const carouselImages = document.createElement('div');
-          carouselImages.className = 'flex transition-transform duration-300 ease-in-out modal-project-carousel';
-          
-          projectData.imagenes.forEach((imagen, index) => {
-            const slide = document.createElement('div');
-            slide.className = 'w-full flex-shrink-0';
-            
-            const img = document.createElement('img');
-            img.src = imagen;
-            img.alt = `${projectData.titulo} - Imagen ${index + 1}`;
-            img.className = 'w-full h-64 object-cover cursor-pointer hover:opacity-90';
-            
-            slide.appendChild(img);
-            carouselImages.appendChild(slide);
-          });
-          
-          carouselWrapper.appendChild(carouselImages);
-          carouselContainer.appendChild(carouselWrapper);
-          
-          // Agregar controles si hay más de una imagen
-          if (projectData.imagenes.length > 1) {
-            let currentIndex = 0;
-            
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md';
-            prevBtn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1 5 8l6 7"/></svg>`;
-            
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 p-2 rounded-full shadow-md';
-            nextBtn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="m5 1 6 7-6 7"/></svg>`;
-            
-            const indicators = document.createElement('div');
-            indicators.className = 'flex justify-center space-x-2 mt-3';
-            
-            projectData.imagenes.forEach((_, index) => {
-              const dot = document.createElement('button');
-              dot.className = `w-2 h-2 rounded-full transition-colors ${
-                index === 0 ? 'bg-blue-500' : 'bg-gray-300'
-              }`;
-              
-              dot.addEventListener('click', (e) => {
-                e.stopPropagation();
-                currentIndex = index;
-                updateCarousel();
-              });
-              
-              indicators.appendChild(dot);
-            });
-            
-            function updateCarousel() {
-              const translateX = -currentIndex * 100;
-              carouselImages.style.transform = `translateX(${translateX}%)`;
-              
-              Array.from(indicators.children).forEach((dot, index) => {
-                dot.className = `w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'
-                }`;
-              });
-            }
-            
-            prevBtn.addEventListener('click', (e) => {
-              e.stopPropagation();
-              currentIndex = (currentIndex - 1 + projectData.imagenes.length) % projectData.imagenes.length;
-              updateCarousel();
-            });
-            
-            nextBtn.addEventListener('click', (e) => {
-              e.stopPropagation();
-              currentIndex = (currentIndex + 1) % projectData.imagenes.length;
-              updateCarousel();
-            });
-            
-            carouselWrapper.appendChild(prevBtn);
-            carouselWrapper.appendChild(nextBtn);
-            carouselContainer.appendChild(carouselWrapper);
-            carouselContainer.appendChild(indicators);
-            
-            // Initialize carousel
-            updateCarousel();
-          }
-          
-          projectModalCarousel.appendChild(carouselContainer);
-        }
-      }
-      
-        // Actualizar enlaces
-        if (projectModalGithub) projectModalGithub.href = projectData.github;
-        if (projectModalProduction) projectModalProduction.href = projectData.produccion;
-      }
     }
-
     
     function closeProjectModalFunc() {
-      console.log('Closing project modal'); // Debug
       if (projectModal) {
         projectModal.classList.add('hidden');
         document.body.style.overflow = '';
       }
     }
     
-    // Registrar el modal de proyecto con el gestor global cuando esté disponible
     function registerProjectModal() {
-      if (window.modalManager && typeof window.modalManager.registerModal === 'function') {
-        console.log('Registering project modal with modal manager'); // Debug
-        window.modalManager.registerModal('project', closeProjectModalFunc);
+      if ((window as any).modalManager && typeof (window as any).modalManager.registerModal === 'function') {
+        (window as any).modalManager.registerModal('project', closeProjectModalFunc);
         return true;
       } else {
-        console.log('Modal manager not ready, retrying...'); // Debug
-        // Reintentar después de un breve delay si el gestor no está listo
         setTimeout(registerProjectModal, 100);
         return false;
       }
     }
     
-    // Registrar el modal al cargar (con reintentos)
     registerProjectModal();
     
-    // Event listeners
     if (closeProjectModal) {
       closeProjectModal.addEventListener('click', () => {
-        console.log('Close button clicked'); // Debug
-        if (window.modalManager && typeof window.modalManager.closeActive === 'function') {
-          window.modalManager.closeActive();
+        if ((window as any).modalManager && typeof (window as any).modalManager.closeActive === 'function') {
+          (window as any).modalManager.closeActive();
         } else {
           closeProjectModalFunc();
         }
@@ -320,9 +323,8 @@ import ImageCarrusel from './ImageCarrusel.astro';
     if (projectModal) {
       projectModal.addEventListener('click', (e) => {
         if (e.target === projectModal) {
-          console.log('Modal background clicked'); // Debug
-          if (window.modalManager && typeof window.modalManager.closeActive === 'function') {
-            window.modalManager.closeActive();
+          if ((window as any).modalManager && typeof (window as any).modalManager.closeActive === 'function') {
+            (window as any).modalManager.closeActive();
           } else {
             closeProjectModalFunc();
           }
@@ -330,98 +332,31 @@ import ImageCarrusel from './ImageCarrusel.astro';
       });
     }
     
-    // Event listener para Escape key como fallback
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && projectModal && !projectModal.classList.contains('hidden')) {
-        console.log('Escape pressed on project modal'); // Debug
         closeProjectModalFunc();
       }
     });
     
-    // Event listener principal con delegación
     document.addEventListener('click', (event) => {
-      console.log('Click detected on:', event.target, 'Classes:', event.target.className); // Debug
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
       
-      // Botón Ver más detalles
-      if (event.target.matches('.view-more-btn') || event.target.closest('.view-more-btn')) {
-        console.log('View more button clicked'); // Debug
+      const btn = target.matches('.view-more-btn') ? target : target.closest('.view-more-btn');
+      if (btn) {
         event.preventDefault();
         event.stopPropagation();
-        
-        const btn = event.target.matches('.view-more-btn') ? event.target : event.target.closest('.view-more-btn');
-        const projectDataStr = btn?.getAttribute('data-project');
-        
-        console.log('Button found:', btn, 'Data attribute exists:', !!projectDataStr); // Debug
-        
+        const projectDataStr = btn.getAttribute('data-project');
         if (projectDataStr) {
           try {
             const projectData = JSON.parse(projectDataStr);
-            console.log('Parsed project data:', projectData.titulo); // Debug
-            console.log('About to call openProjectModal'); // Debug
             openProjectModal(projectData);
           } catch (e) {
             console.error('Error parsing project data:', e);
           }
-        } else {
-          console.error('No project data found on button');
         }
-        return;
-      }
-      
-      // Analytics para enlaces
-      const linkTarget = event.target.closest('a[data-project-name]');
-      if (linkTarget) {
-        const projectName = linkTarget.getAttribute('data-project-name');
-        const linkType = linkTarget.getAttribute('data-link-type');
-        
-        if (typeof gtag === 'function') {
-          gtag('event', 'click', {
-            'event_category': linkType,
-            'event_label': projectName
-          });
-        }
-        
-        console.log(`Analytics: ${linkType} - ${projectName}`);
       }
     });
-    
-    // Event listener adicional específico para botones "Ver más detalles" como backup
-    const viewMoreButtons = document.querySelectorAll('.view-more-btn');
-    console.log('Found view-more buttons:', viewMoreButtons.length); // Debug
-    
-    viewMoreButtons.forEach((button, index) => {
-      console.log(`Setting up button ${index}:`, button); // Debug
-      const projectDataStr = button.getAttribute('data-project');
-      console.log(`Button ${index} data-project:`, projectDataStr); // Debug
-      
-      button.addEventListener('click', (e) => {
-        console.log(`Direct button ${index} clicked`); // Debug
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const projectDataStr = button.getAttribute('data-project');
-        console.log(`Raw data from attribute:`, projectDataStr); // Debug
-        
-        if (projectDataStr) {
-          try {
-            const projectData = JSON.parse(projectDataStr);
-            console.log('Direct button - opening modal for:', projectData.titulo); // Debug
-            openProjectModal(projectData);
-          } catch (error) {
-            console.error('Direct button - error parsing data:', error);
-            console.error('Problematic data:', projectDataStr);
-          }
-        } else {
-          console.error('No data-project attribute found');
-        }
-      });
-    });
-    
-    // Verificación final de configuración
-    console.log('Projects script setup complete'); // Debug
-    console.log('Modal manager available:', !!window.modalManager); // Debug
-    console.log('Project modal element:', !!projectModal); // Debug
-    console.log('View more buttons found:', document.querySelectorAll('.view-more-btn').length); // Debug
   });
 </script>
 
@@ -436,15 +371,15 @@ import ImageCarrusel from './ImageCarrusel.astro';
   .flex-wrap {
     display: flex;
     flex-wrap: wrap;
-    align-items: stretch; /* Para que todas las cards tengan la misma altura */
+    align-items: stretch;
   }
   .p-4 {
     padding: 1rem;
-    display: flex; /* Para que la card ocupe toda la altura disponible */
+    display: flex;
   }
   
   .project-card {
-    min-height: 550px; /* Altura mínima para uniformidad */
+    min-height: 550px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -455,11 +390,11 @@ import ImageCarrusel from './ImageCarrusel.astro';
   
   .description-text {
     display: -webkit-box;
-    -webkit-line-clamp: 6; /* Limita a 6 líneas máximo */
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 8.5rem; /* Altura máxima para la descripción */
+    max-height: 8.5rem;
     line-height: 1.4;
   }
   
@@ -474,15 +409,6 @@ import ImageCarrusel from './ImageCarrusel.astro';
   img {
     max-width: 100%;
     height: auto;
-  }
-  
-  span {
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
-    background-color: #bfdbfe;
-    color: #1e3a8a;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .border-t {
@@ -505,7 +431,6 @@ import ImageCarrusel from './ImageCarrusel.astro';
     text-decoration: none;
   }
   
-  /* Modal de proyecto */
   .project-modal-overlay {
     position: fixed !important;
     top: 0 !important;
@@ -548,7 +473,6 @@ import ImageCarrusel from './ImageCarrusel.astro';
     }
   }
   
-  /* Responsive design mejorado */
   @media (max-width: 640px) {
     .project-card {
       min-height: 500px;
